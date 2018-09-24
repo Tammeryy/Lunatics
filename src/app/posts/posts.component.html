@@ -1,0 +1,8 @@
+<h2>All Posts</h2>
+<ul class="all-post">
+  <li *ngFor="let post of posts" (click)="onSelect(post)">
+    Title: {{post.title}}
+    <!-- TODO add post details here -->
+    <button mat-button>Bid Now</button>
+  </li>
+</ul>
