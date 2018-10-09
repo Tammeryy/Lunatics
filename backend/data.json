@@ -1,7 +1,7 @@
 {
-    "users": [ // do we want a field for usertype - i.e. poster bidder or both?
+    "users": [
         {
-            "id": 0,    // PK
+            "id": 0,
             "username": "timtam",
             "password": "iwannadropout",
             "name": "tammy",
@@ -9,7 +9,7 @@
             "email": "tam@mail.com"
         },
         {
-            "id": 1,    // PK
+            "id": 1,
             "username": "MnM",
             "password": "idontwannadropout",
             "name": "emily",
@@ -17,7 +17,7 @@
             "email": "em@mail.com"
         },
         {
-            "id": 2,    // PK
+            "id": 2,
             "username": "Lu Slee Choo",
             "password": "iloveuni",
             "name": "Lucy",
@@ -27,9 +27,9 @@
     ],
     "posts": [
         {
-            "id": 0, // PK
-            "posterid": 1,  // FK - user
-            "price": "88.88",   // need to clarify what this means - lowest price? budget?
+            "id": 0,
+            "posterid": 1,
+            "price": "88.88",
             "location": "cabramatta",
             "numppl": 10,
             "bidclose": "10/10/2018",
@@ -39,9 +39,9 @@
             "diet": "vegetarian"
         },
         {
-            "id": 1, // PK
-            "posterid": 0,  // FK - user
-            "price": "100.00",   // need to clarify what this means - lowest price? budget?
+            "id": 1,
+            "posterid": 0,
+            "price": "100.00",
             "location": "parramatta",
             "numppl": 20,
             "bidclose": "11/11/2018",
@@ -53,9 +53,9 @@
     ],
     "bids": [
         {
-            "postid": 0, // FK - post
-            "bidderid": 2, // FK - user
-            "name": "Lucy",  // may or may not be the same as user details from bidder id FK
+            "postid": 0,
+            "bidderid": 2,
+            "name": "Lucy",
             "phone": "0486754231",
             "email": "luslee@mail.com",
             "price": "2.00"

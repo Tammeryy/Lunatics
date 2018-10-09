@@ -1,5 +1,6 @@
 from flask import Flask
 import json
+from flask import jsonify
 app = Flask(__name__)
 
 with open('data.json', 'r') as data_file:    
@@ -8,6 +9,8 @@ with open('data.json', 'r') as data_file:
 # NOTE: database = json file
 # return format = json format
 # from routes import app # separate into files later?
+
+# https://stackoverflow.com/questions/34057851/python-flask-typeerror-dict-object-is-not-callable
 """
 @app.route("/")
 def index():
@@ -38,17 +41,15 @@ def index():
 # postTask
 
 # getPostedTasks
-#@
 
 # getBiddersForTask
-#@
 
 # bidTask
 
 # getAllTasks
 @app.route("/alltasks")
 def getAllTasks():
-	return data.posts
+	return jsonify(data["posts"])
 
 
 if __name__ == "__main__":
