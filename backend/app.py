@@ -36,9 +36,9 @@ def index():
 
 # createAccount - unsure about the ones that need to pass in a parameter
 
-# authenticate
+# authenticate - unsure how authentications work?
 
-# postTask
+# postTask -how to edit json files?
 
 # getPostedTasks
 
