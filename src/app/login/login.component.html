@@ -1,0 +1,21 @@
+<div class="login-popup">
+  <div class="login-popup-header">
+    <h1 mat-dialog-title>Login</h1><p id="exit-button" (click)="exitClick()">x</p>
+  </div>
+  <br>
+  <div mat-dialog-content>
+    <!-- <b>Username: </b> -->
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.username" placeholder="Username" type="text"/>
+    </mat-form-field>
+    <br>
+    <!-- <b>Password: </b> -->
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.password" placeholder="Password" type="text"/>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="createAccount()">Create an account</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Login</button>
+  </div>
+</div>
