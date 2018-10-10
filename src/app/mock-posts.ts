@@ -1,5 +1,15 @@
 import { Post } from './post';
 
+export const POST: Post = {
+  title: 'Watch Youtube',
+  description: 'Procrastination service',
+  poster_name: 'Tex',
+  task_budget: 5,
+  task_open: true,
+  due_date: '10 October 2018',
+  location: 'Lazy Town'
+}
+
 export const POSTS: Post[] = [
   {
     title: 'Cook for 50-people event',

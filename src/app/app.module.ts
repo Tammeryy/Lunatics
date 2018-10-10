@@ -16,6 +16,7 @@ import { TaskComponent } from './task/task.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { PostTaskComponent } from './post-task/post-task.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PostTaskComponent } from './post-task/post-task.component';
     ProfileComponent,
     TaskComponent,
     LoginComponent,
-    PostTaskComponent
+    PostTaskComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,6 @@ import { PostTaskComponent } from './post-task/post-task.component';
     ReactiveFormsModule
   ],
   providers: [AppComponent, HeaderComponent],
-  bootstrap: [AppComponent, LoginComponent]
+  bootstrap: [AppComponent, LoginComponent, PostTaskComponent]
 })
 export class AppModule { }

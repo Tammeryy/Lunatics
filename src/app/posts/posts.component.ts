@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {POSTS} from '../mock-posts';
 import {Post} from '../post'; // dummy data
+
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',

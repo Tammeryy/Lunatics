@@ -14,20 +14,21 @@
       <!--TODO change li's class to class="active" when it's active-->
       <li><a href="#">Browse</a></li>
       <li><a href="#">Task</a></li>
-      <li *ngIf="validLogin"><a href="#">Profile</a></li>
+      <li *ngIf="loggedIn"><a href="#">Profile</a></li>
       <!-- CHANGE STYLING OF THIS -->
       <li><a href="#" (click)="openPostPopup()">Post a Task</a></li>
     </ul>
     <!--TODO change li's class to sign out-->
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#" (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li *ngIf="!loggedIn"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+      <li *ngIf="!loggedIn"><a href="#" (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+      <li *ngIf="loggedIn"><a href="#" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
     </ul>
   </div>
 </nav>
 <li *ngIf="login">
   <i>Login: {{login.username}}  Password: {{login.password}}</i>
 </li>
-<li *ngIf="validLogin">
+<li *ngIf="loggedIn">
   <i>Login successful</i>
 </li>
