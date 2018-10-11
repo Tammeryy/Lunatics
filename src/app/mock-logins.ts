@@ -13,5 +13,13 @@ export const Logins: LoginData[] = [
   {
     username: 'Cap',
     password: 'Pwd123'
+  },
+  {
+    username: 'valid-username',
+    password: 'valid-password'
+  },
+  {
+    username: 'Heather',
+    password: 'someStrongPassword'
   }
 ]

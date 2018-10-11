@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
 import { LOGIN } from '../mock-logins';
+import { Logins } from '../mock-logins';
 import { LoginData } from '../login-data'; // dummy data
 
 import { PostTaskComponent } from '../post-task/post-task.component';
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   login = LOGIN;
   post = POST;
   posts = POSTS;
+  logins = Logins;
 
   constructor(public dialog: MatDialog) { }
 
@@ -26,6 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   // Login - will remove later
+  existingAcc: any = [];
   username: string;
   password: string;
   loggedIn: boolean = false;
@@ -48,17 +51,26 @@ export class HeaderComponent implements OnInit {
       console.log('The dialog was closed');
       this.username = result.username;
       this.password = result.password;
+      /*
+      this.existingAcc = this.logins.filter(function(login) {
+        return login.username === result.username && login.password === result.password;
+      })[0];
+      if (this.existingAcc.length > 0) {
+      */
       if (this.username === "user" && this.password === "pwd") {
+        // console.log("Existing Acc: " + this.existingAcc.username + " | " + this.existingAcc.password);
         this.loggedIn = true;
         if (this.requestPostTask) this.openPostPopup();
       }
       else {
+        console.log("Login failed...account does not exist");
         this.openLogin();
       }
     });
-  });
+  }
 
   openPostPopup() {
+    console.log('[PRE] open post popup called');
     this.requestPostTask = true;
     if (!this.loggedIn) {
        this.openLogin();
@@ -86,7 +98,6 @@ export class HeaderComponent implements OnInit {
         this.addPost(result);
       });
     }
-
   }
 
   openSignUp() {
