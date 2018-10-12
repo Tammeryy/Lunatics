@@ -12,10 +12,14 @@
   display: inline;
 }
 
+#bid-button {
+  /* need to align button to right */
+}
+
 mat-form-field {
   width: 80%;
 }
 
 mat-dialog-actions {
-  /* need to align buttons in center - currently doesn't work */
+  /* need to align items to left currently doesn't work */
 }

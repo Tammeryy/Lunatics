@@ -16,9 +16,25 @@
     <mat-form-field>
         <textarea matInput [(ngModel)]="bid.email" placeholder="Email"></textarea>
     </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="bid.description" placeholder="Description"></textarea>
+    </mat-form-field>
   </div>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <p> Current bid </p>
+      <input matInput type="text"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <p> Your bid </p>
+      <input matInput [(ngModel)]="bid.bid_offer" type="text"/>
+    </mat-form-field>
+  </div>
+
   <div mat-dialog-actions>
     <!-- dialog box will only close if "bid" list is not empty ([mat-dialog-close]="bid")-->
-    <button mat-button (click)="verifyBid()" cdkFocusInitial>Bid Task</button>
+    <button mat-button (click)="verifyBid()" id="bid-button" cdkFocusInitial>Bid Task</button>
   </div>
 </div>

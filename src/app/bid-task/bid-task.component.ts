@@ -13,7 +13,9 @@ export class BidTaskComponent implements OnInit {
   bid: Bid = {
     name: "",
     phone_no: undefined,
-    email: ""
+    email: "",
+    description: "",
+    bid_offer: undefined
   };
 
   constructor(public dialogRef: MatDialogRef<BidTaskComponent>) { }
@@ -26,12 +28,12 @@ export class BidTaskComponent implements OnInit {
   }
 
   verifyBid() {
-    if (this.bid.name && this.bid.phone_no && this.bid.email) {
-      alert('Post details are valid. Adding post to browse list...');
+    if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.description && this.bid.bid_offer) {
+      alert('Bid details are valid. Adding bid to browse list...');
       this.dialogRef.close(this.bid);
     }
     else {
-      alert('Post details are invalid. Try again');
+      alert('Bid details are invalid. Try again');
       this.clearData();
     }
   }
@@ -40,6 +42,8 @@ export class BidTaskComponent implements OnInit {
     this.bid.name = "";
     this.bid.phone_no = undefined;
     this.bid.email = "";
+    this.bid.description = "";
+    this.bid.bid_offer = undefined;
   }
 
 }
