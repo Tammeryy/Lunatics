@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { POST } from '../mock-posts';
 import { Post } from '../post';
 
@@ -21,7 +21,10 @@ export class PostTaskComponent implements OnInit {
     location: ""
   };
 
-  constructor(public dialogRef: MatDialogRef<PostTaskComponent>) { }
+  constructor(public dialogRef: MatDialogRef<PostTaskComponent>,
+              @Inject(MAT_DIALOG_DATA) data) {
+    this.post.poster_name = data.poster_name; // data refers to dialogConfig.data passed in from header component
+  }
 
   ngOnInit() {
   }
@@ -34,9 +37,8 @@ export class PostTaskComponent implements OnInit {
   verifyPost() {
     if (confirm("Post task?")) {
       // TODO: need somewhere to store current login data to access
-      this.post.poster_name = "POSTER NAME";
-      this.post.task_open = true;
-      if (this.post.title && this.post.description && this.post.task_budget && this.post.due_date && this.post.location) {
+      if (this.post.poster_name && this.post.title && this.post.description && this.post.task_budget && this.post.due_date && this.post.location) {
+        this.post.task_open = true;
         alert('Post details are valid. Adding post to browse list...');
         this.dialogRef.close(this.post);
       }

@@ -65,6 +65,9 @@ export class HeaderComponent implements OnInit {
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = '30%';
+      dialogConfig.data = {
+        poster_name: this.activeLogin.username
+      };
 
       // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
       const dialogRef = this.dialog.open(PostTaskComponent, dialogConfig);
