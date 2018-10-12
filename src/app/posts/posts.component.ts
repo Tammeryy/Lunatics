@@ -28,25 +28,25 @@ export class PostsComponent implements OnInit {
   }
 
   openBidPopup(post: Post) {
-  console.log('Bid popup called');
-  // Bid - Post title, Post's current lowest bid
+    console.log('Bid popup called');
+    // Bid - Post title, Post's current lowest bid
 
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose = true;
-  dialogConfig.autoFocus = true;
-  dialogConfig.width = '30%';
-  dialogConfig.data = {
-    post_title: post.title,
-    lowest_bid: post.lowest_bid
-  };
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    dialogConfig.data = {
+      post_title: post.title,
+      lowest_bid: post.lowest_bid
+    };
 
-  // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
-  const dialogRef = this.dialog.open(BidTaskComponent, dialogConfig);
+    // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
+    const dialogRef = this.dialog.open(BidTaskComponent, dialogConfig);
 
-  // result refers to 'data' in [mat-dialog-close]
-  dialogRef.afterClosed().subscribe(result => {
-    // add to list of bids for that post
-  });
+    // result refers to 'data' in [mat-dialog-close]
+    dialogRef.afterClosed().subscribe(result => {
+      // add to list of bids for that post
+    });
   }
 
 }

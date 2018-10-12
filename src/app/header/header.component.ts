@@ -50,6 +50,9 @@ export class HeaderComponent implements OnInit {
           this.openPostPopup();
         }
       }
+      else {
+        this.requestPostTask = false;
+      }
     });
   }
 
@@ -75,6 +78,7 @@ export class HeaderComponent implements OnInit {
       // result refers to 'data' in [mat-dialog-close]
       dialogRef.afterClosed().subscribe(result => {
         if (result) this.addPost(result);
+        else this.requestPostTask = false;
       });
     }
   }

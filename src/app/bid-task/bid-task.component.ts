@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Bid } from '../bid';
 
@@ -17,8 +17,14 @@ export class BidTaskComponent implements OnInit {
     description: "",
     bid_offer: undefined
   };
+  post_title: string;
+  lowest_bid: number;
 
-  constructor(public dialogRef: MatDialogRef<BidTaskComponent>) { }
+  constructor(public dialogRef: MatDialogRef<BidTaskComponent>,
+              @Inject(MAT_DIALOG_DATA) data) {
+    this.post_title = data.post_title;
+    this.lowest_bid = data.lowest_bid;
+  }
 
   ngOnInit() {
   }

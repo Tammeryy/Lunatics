@@ -28,6 +28,7 @@
 </nav>
 <li *ngIf="activeLogin">
   <i>Login: {{activeLogin.username}} | Password: {{activeLogin.password}}</i>
+  <p> Requesting Post Task: {{requestPostTask}} </p>
 </li>
 <li *ngIf="this.activeLogin">
   <i>Login successful</i>

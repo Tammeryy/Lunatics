@@ -35,7 +35,7 @@ export class PostTaskComponent implements OnInit {
   }
 
   verifyPost() {
-    console.log("[VERIFY POST] " this.post.poster_name + " | " + this.post.title + " | " + this.post.description + " | " + this.post.due_date + " | " + this.post.location);
+    console.log("[VERIFY POST] " + this.post.poster_name + " | " + this.post.title + " | " + this.post.description + " | " + this.post.due_date + " | " + this.post.location);
     if (confirm("Post task?")) {
       // TODO: need somewhere to store current login data to access
       if (this.post.poster_name && this.post.title && this.post.description && this.post.due_date && this.post.location) {
