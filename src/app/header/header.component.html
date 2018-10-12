@@ -20,7 +20,7 @@
     </ul>
     <!--TODO change li's class to sign out-->
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!loggedIn"><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+      <li *ngIf="!loggedIn"><a href="#" (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
       <li *ngIf="!loggedIn"><a href="#" (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
       <li *ngIf="loggedIn"><a href="#" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
     </ul>
@@ -33,3 +33,7 @@
   <i>Login successful</i>
 </li>
 <p> loggedIn: {{loggedIn}} </p>
+<h2> Accounts </h2>
+<li *ngFor="let login of logins">
+  <p> Account: {{login.username}} | {{login.password}} </p>
+</li>

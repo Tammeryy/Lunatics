@@ -1,17 +1,3 @@
-.login-popup-header {
-  display: inline;
-}
-
-.login-popup-header h1 {
-  float: left;
-}
-
-.login-popup-header #exit-button {
-  float: right;
-  font-size: 1.5em;
-  display: inline;
-}
-
 mat-form-field {
   width: 80%;
 }

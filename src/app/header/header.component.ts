@@ -9,6 +9,8 @@ import { LoginData } from '../login-data'; // dummy data
 import { PostTaskComponent } from '../post-task/post-task.component';
 import { POST, POSTS } from '../mock-posts';
 
+import { SignUpComponent } from '../sign-up/sign-up.component';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -40,9 +42,6 @@ export class HeaderComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '30%';
-    dialogConfig.data = {
-        data: {username: "", password: ""}
-    };
 
     const dialogRef = this.dialog.open(LoginComponent, dialogConfig);
 
@@ -60,7 +59,10 @@ export class HeaderComponent implements OnInit {
       if (this.username === "user" && this.password === "pwd") {
         // console.log("Existing Acc: " + this.existingAcc.username + " | " + this.existingAcc.password);
         this.loggedIn = true;
-        if (this.requestPostTask) this.openPostPopup();
+        if (this.requestPostTask) {
+          this.requestPostTask = false;
+          this.openPostPopup();
+        }
       }
       else {
         console.log("Login failed...account does not exist");
@@ -83,9 +85,6 @@ export class HeaderComponent implements OnInit {
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = '30%';
-      dialogConfig.data = {
-          data: {title: "", description: ""}  // can remove later
-      };
 
       // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
       const dialogRef = this.dialog.open(PostTaskComponent, dialogConfig);
@@ -102,7 +101,14 @@ export class HeaderComponent implements OnInit {
 
   openSignUp() {
     console.log('Sign up called');
-    // TODO: add later
+    // call signUp function from header component (or somewhere?)
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+
+    // opens a dialog box/pop-up displaying contents from SignUpComponent's html file
+    const dialogRef = this.dialog.open(SignUpComponent, dialogConfig);
   }
 
   addPost(newPost: any) {

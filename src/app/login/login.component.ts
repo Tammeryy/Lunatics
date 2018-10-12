@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { LOGIN } from '../mock-logins';
+
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   data = LOGIN;
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>) { }
+  constructor(public dialog: MatDialog,
+              public dialogRef: MatDialogRef<LoginComponent>) { }
 
   ngOnInit() {
   }
@@ -20,8 +23,15 @@ export class LoginComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  createAccount(): void {
+  signUp(): void {
     // call signUp function from header component (or somewhere?)
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+
+    // opens a dialog box/pop-up displaying contents from SignUpComponent's html file
+    const dialogRef = this.dialog.open(SignUpComponent, dialogConfig);
   }
 
 }

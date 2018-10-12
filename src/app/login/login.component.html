@@ -1,5 +1,5 @@
-<div class="login-popup">
-  <div class="login-popup-header">
+<div class="popup">
+  <div class="popup-header">
     <h1 mat-dialog-title>Login</h1><p id="exit-button" (click)="exitClick()">x</p>
   </div>
   <br>
@@ -15,7 +15,7 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="createAccount()">Create an account</button>
+    <button mat-button [mat-dialog-close] (click)="signUp()">Create an account</button>
     <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Login</button>
   </div>
 </div>
