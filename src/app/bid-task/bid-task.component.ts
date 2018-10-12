@@ -22,6 +22,7 @@ export class BidTaskComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<BidTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
+    // data refers to dialogConfig.data from Posts component in openBidPopup() 
     this.post_title = data.post_title;
     this.lowest_bid = data.lowest_bid;
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { POST } from '../mock-posts';
+import { POSTS } from '../mock-posts';
 import { Post } from '../post';
 
 @Component({
@@ -10,10 +10,14 @@ import { Post } from '../post';
 })
 export class PostTaskComponent implements OnInit {
 
+  posts = POSTS;
+
   // post = POST;
   post: Post = {
+    post_id: Object.keys(this.posts).length+1,
     title: "",
     description: "",
+    poster_id: 0,
     poster_name: "",
     lowest_bid: 0,
     task_open: false,
@@ -42,7 +46,8 @@ export class PostTaskComponent implements OnInit {
       if (this.post.poster_name && this.post.title && this.post.description && this.post.due_date && this.post.location) {
         this.post.task_open = true;
         alert('Post details are valid. Adding post to browse list...');
-        this.dialogRef.close(this.post);
+        this.addPost(this.post);
+        this.dialogRef.close(true);
       }
       else {
         alert('Post details are invalid. Try again');
@@ -51,10 +56,14 @@ export class PostTaskComponent implements OnInit {
     }
   }
 
+  addPost(newPost: any) {
+    console.log('Add post called');
+    this.posts.push(newPost);
+  }
+
   clearData() {
     this.post.title ="";
     this.post.description = "";
-    this.post.poster_name = "";
     this.post.lowest_bid = 0;
     this.post.task_open = false;
     this.post.due_date = "";

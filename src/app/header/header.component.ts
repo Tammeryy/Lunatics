@@ -77,8 +77,9 @@ export class HeaderComponent implements OnInit {
 
       // result refers to 'data' in [mat-dialog-close]
       dialogRef.afterClosed().subscribe(result => {
-        if (result) this.addPost(result);
-        else this.requestPostTask = false;
+        this.requestPostTask = false;
+        var i: number;
+        for(i=0; i<this.posts.length; i++) console.log(this.posts[i]);
       });
     }
   }
@@ -93,11 +94,6 @@ export class HeaderComponent implements OnInit {
 
     // opens a dialog box/pop-up displaying contents from SignUpComponent's html file
     const dialogRef = this.dialog.open(SignUpComponent, dialogConfig);
-  }
-
-  addPost(newPost: any) {
-    console.log('Add post called');
-    this.posts.push(newPost);
   }
 
   logOut() {

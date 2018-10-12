@@ -1,8 +1,10 @@
 import { Post } from './post';
 
 export const POST: Post = {
+  post_id: 0,
   title: 'Watch Youtube',
   description: 'Procrastination service',
+  poster_id: 0,
   poster_name: 'Tex',
   lowest_bid: 5,
   task_open: true,
@@ -28,8 +30,10 @@ export const POST: Post = {
 
 export const POSTS: Post[] = [
     {
+        post_id: 1,
         title: 'Cook for 50-people event',
         description: 'Cater for a wedding event with various options (vegan, vegetarian, etc..)',
+        poster_id: 1,
         poster_name: 'Steven',
         lowest_bid: 1500,
         task_open: true,
@@ -46,8 +50,10 @@ export const POSTS: Post[] = [
         ]
     },
     {
+        post_id: 2,
         title: 'Clean the house',
         description: 'Clean the house before 3pm today',
+        poster_id: 2,
         poster_name: 'Emily',
         lowest_bid: 1254,
         task_open: true,
@@ -78,8 +84,10 @@ export const POSTS: Post[] = [
         ]
     },
     {
+        post_id: 3,
         title: "Buy and deliver groceries",
         description: "Buy groceries at specified shops given a to-buy list",
+        poster_id: 1,
         poster_name: "Steven",
         lowest_bid: 0,
         task_open: true,
@@ -88,8 +96,10 @@ export const POSTS: Post[] = [
         bids: []
     },
     {
+        post_id: 4,
         title: "Send message to friends",
         description: "Type what I say and send to my friends",
+        poster_id: 3,
         poster_name: "Tracey",
         lowest_bid: 10,
         task_open: false,
@@ -113,8 +123,10 @@ export const POSTS: Post[] = [
         ]
     },
     {
+        post_id: 5,
         title: "Drive to airport",
         description: "Drive me and my family to the airport before 10am",
+        poster_id: 4,
         poster_name: "Chrissy",
         lowest_bid: 80,
         task_open: true,
@@ -127,6 +139,26 @@ export const POSTS: Post[] = [
                 email: 'steve@smail.com',
                 description: "a nice deal",
                 bid_offer: 80
+            }
+        ]
+    },
+    {
+        post_id: 6,
+        title: "Buy me chips thx",
+        description: "Anything :)",
+        poster_id: 5,
+        poster_name: "Steven", // tests two posters with same name but different ids
+        lowest_bid: 5,
+        task_open: true,
+        due_date: '13 October 2018',
+        location: 'Lazy Street',
+        bids: [
+            {
+                name: 'Ynot',
+                phone_no: 99959993,
+                email: 'itstony@gmail.com',
+                description: "sure m8",
+                bid_offer: 5
             }
         ]
     }
