@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { PostTaskComponent } from './post-task/post-task.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { BidTaskComponent } from './bid-task/bid-task.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     TaskComponent,
     LoginComponent,
     PostTaskComponent,
-    SignUpComponent
+    SignUpComponent,
+    BidTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ReactiveFormsModule
   ],
   providers: [AppComponent, HeaderComponent],
-  bootstrap: [AppComponent, LoginComponent, PostTaskComponent, SignUpComponent]
+  bootstrap: [AppComponent, LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent]
 })
 export class AppModule { }

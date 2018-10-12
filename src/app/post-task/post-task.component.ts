@@ -1,5 +1,3 @@
-// Inject, MAT_DIALOG_DATA and PostData is needed to access PostData
-// MatDialog, MatDialogRef is needed to access the dialog box from HeaderComponent
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { POST } from '../mock-posts';
@@ -43,7 +41,17 @@ export class PostTaskComponent implements OnInit {
     }
     else {
       alert('Post details are invalid. Try again');
-      this.post = {};
+      this.clearData();
     }
+  }
+
+  clearData() {
+    this.post.title ="";
+    this.post.description = "";
+    this.post.poster_name = "";
+    this.post.task_budget = undefined;
+    this.post.task_open = false;
+    this.post.due_date = "";
+    this.post.location = "";
   }
 }

@@ -1,0 +1,24 @@
+<div class="bid-popup">
+  <div class="bid-popup-header">
+    <!-- the "x" text represents the exit button on top right corner of bid task popup box -->
+    <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
+    <h1 mat-dialog-title>Bid Task</h1><p id="exit-button" (click)="exitClick()">x</p>
+  </div>
+  <br>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput [(ngModel)]="bid.name" placeholder="Name" type="text"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="bid.phone_no" placeholder="Phone number"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="bid.email" placeholder="Email"></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <!-- dialog box will only close if "bid" list is not empty ([mat-dialog-close]="bid")-->
+    <button mat-button (click)="verifyBid()" cdkFocusInitial>Bid Task</button>
+  </div>
+</div>

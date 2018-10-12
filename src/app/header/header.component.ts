@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
 
   activeLogin: LoginData;
   posts = POSTS;
+  logins = Logins // remove later
 
   constructor(public dialog: MatDialog) { }
 
@@ -70,9 +71,7 @@ export class HeaderComponent implements OnInit {
 
       // result refers to 'data' in [mat-dialog-close]
       dialogRef.afterClosed().subscribe(result => {
-        // TODO verify post details
         if (result) this.addPost(result);
-
       });
     }
   }
