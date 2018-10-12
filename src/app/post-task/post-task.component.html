@@ -25,6 +25,6 @@
   </div>
   <div mat-dialog-actions>
     <!-- dialog box will only close if "post" list is not empty ([mat-dialog-close]="post")-->
-    <button mat-button [mat-dialog-close]="post" cdkFocusInitial>Post Task</button>
+    <button mat-button (click)="verifyPost()" cdkFocusInitial>Post Task</button>
   </div>
 </div>

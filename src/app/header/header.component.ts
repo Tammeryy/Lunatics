@@ -71,7 +71,8 @@ export class HeaderComponent implements OnInit {
       // result refers to 'data' in [mat-dialog-close]
       dialogRef.afterClosed().subscribe(result => {
         // TODO verify post details
-        this.addPost(result);
+        if (result) this.addPost(result);
+
       });
     }
   }

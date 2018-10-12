@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { POST } from '../mock-posts';
+import { Post } from '../post';
 
 @Component({
   selector: 'app-post-task',
@@ -11,7 +12,16 @@ import { POST } from '../mock-posts';
 })
 export class PostTaskComponent implements OnInit {
 
-  post = POST;
+  // post = POST;
+  post: Post = {
+    title: "",
+    description: "",
+    poster_name: "",
+    task_budget: undefined,
+    task_open: false,
+    due_date: "",
+    location: ""
+  };
 
   constructor(public dialogRef: MatDialogRef<PostTaskComponent>) { }
 
@@ -23,4 +33,17 @@ export class PostTaskComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  verifyPost() {
+    // TODO: need somewhere to store current login data to access
+    this.post.poster_name = "POSTER NAME";
+    this.post.task_open = true;
+    if (this.post.title && this.post.description && this.post.task_budget && this.post.due_date && this.post.location) {
+      alert('Post details are valid. Adding post to browse list...');
+      this.dialogRef.close(this.post);
+    }
+    else {
+      alert('Post details are invalid. Try again');
+      this.post = {};
+    }
+  }
 }
