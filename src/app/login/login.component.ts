@@ -12,6 +12,7 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 export class LoginComponent implements OnInit {
 
   data: LoginData = {
+    id: 0,
     username: "",
     password: ""
   };
@@ -34,8 +35,7 @@ export class LoginComponent implements OnInit {
     }
     else {
       alert('Login failed. Try again.');
-      this.data.username = "";
-      this.data.password = "";
+      this.clearData();
     }
   }
 
@@ -48,6 +48,12 @@ export class LoginComponent implements OnInit {
 
     // opens a dialog box/pop-up displaying contents from SignUpComponent's html file
     const dialogRef = this.dialog.open(SignUpComponent, dialogConfig);
+  }
+
+  clearData() {
+    this.data.id = 0;
+    this.data.username = "";
+    this.data.password = "";
   }
 
 }

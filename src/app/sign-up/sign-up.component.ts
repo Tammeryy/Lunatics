@@ -10,9 +10,10 @@ import { LoginData } from '../login-data';
 })
 export class SignUpComponent implements OnInit {
 
-  accounts = Logins;
+  logins = Logins;
 
   data: LoginData = {
+    id: Object.keys(this.logins).length+1,
     username: "",
     password: ""
   };
@@ -37,13 +38,17 @@ export class SignUpComponent implements OnInit {
     }
     else {
       alert('Invalid sign up details. Try again.');
-      this.data.username = "";
-      this.data.password = "";
+      this.clearData();
     }
   }
 
   addAccount() {
-    this.accounts.push(this.data);
+    this.logins.push(this.data);
+  }
+
+  clearData() {
+    this.data.username = "";
+    this.data.password = "";
   }
 
 }
