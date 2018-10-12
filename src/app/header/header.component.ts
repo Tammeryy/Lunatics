@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
-import { LOGIN } from '../mock-logins';
+import { currentLogin } from '../mock-logins';
 import { Logins } from '../mock-logins';
 import { LoginData } from '../login-data'; // dummy data
 
 import { PostTaskComponent } from '../post-task/post-task.component';
+import { Post } from '../post';
 import { POST, POSTS } from '../mock-posts';
 
 import { SignUpComponent } from '../sign-up/sign-up.component';
@@ -19,10 +20,8 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 export class HeaderComponent implements OnInit {
   title = 'LunaWhip';
 
-  login = LOGIN;
-  post = POST;
+  activeLogin: LoginData;
   posts = POSTS;
-  logins = Logins;
 
   constructor(public dialog: MatDialog) { }
 
@@ -30,15 +29,10 @@ export class HeaderComponent implements OnInit {
   }
 
   // Login - will remove later
-  existingAcc: any = [];
-  username: string;
-  password: string;
-  loggedIn: boolean = false;
   requestPostTask: boolean = false;
 
   openLogin() {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '30%';
@@ -48,11 +42,8 @@ export class HeaderComponent implements OnInit {
     // result refers to 'data' in [mat-dialog-close]
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.username = result.username;
-      this.password = result.password;
       if (result.username && result.password) {
-      console.log("[OPENLOGIN] username: " + result.username + " | password: " + result.password);
-        this.loggedIn = true;
+        this.activeLogin = result;
         if (this.requestPostTask) {
           this.requestPostTask = false;
           this.openPostPopup();
@@ -64,14 +55,12 @@ export class HeaderComponent implements OnInit {
   openPostPopup() {
     console.log('[PRE] open post popup called');
     this.requestPostTask = true;
-    if (!this.loggedIn) {
+    if (!this.activeLogin) {
        this.openLogin();
     }
     else {
       console.log('Post task called');
-
       const dialogConfig = new MatDialogConfig();
-
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = '30%';
@@ -81,9 +70,7 @@ export class HeaderComponent implements OnInit {
 
       // result refers to 'data' in [mat-dialog-close]
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The post popup dialog was closed');
-        console.log("[POST POPUP] title: " + result.title + " | description: " + result.description + " | poster: " + result.poster_name);
-        // TODO verification to make sure post details are valid? should it be done in post-task component?
+        // TODO verify post details
         this.addPost(result);
       });
     }
@@ -107,6 +94,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    this.loggedIn = false;
+    this.activeLogin = undefined;
   }
 }
