@@ -32,16 +32,18 @@ export class PostTaskComponent implements OnInit {
   }
 
   verifyPost() {
-    // TODO: need somewhere to store current login data to access
-    this.post.poster_name = "POSTER NAME";
-    this.post.task_open = true;
-    if (this.post.title && this.post.description && this.post.task_budget && this.post.due_date && this.post.location) {
-      alert('Post details are valid. Adding post to browse list...');
-      this.dialogRef.close(this.post);
-    }
-    else {
-      alert('Post details are invalid. Try again');
-      this.clearData();
+    if (confirm("Post task?")) {
+      // TODO: need somewhere to store current login data to access
+      this.post.poster_name = "POSTER NAME";
+      this.post.task_open = true;
+      if (this.post.title && this.post.description && this.post.task_budget && this.post.due_date && this.post.location) {
+        alert('Post details are valid. Adding post to browse list...');
+        this.dialogRef.close(this.post);
+      }
+      else {
+        alert('Post details are invalid. Try again');
+        this.clearData();
+      }
     }
   }
 

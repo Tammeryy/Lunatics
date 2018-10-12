@@ -14,6 +14,11 @@ import { BidTaskComponent } from '../bid-task/bid-task.component';
 export class PostsComponent implements OnInit {
   selectedPost: Post;
   posts = POSTS;
+
+  sortByOptions: string[] = [
+     'Price', 'Location'
+   ];
+
   constructor(public dialog: MatDialog) { }
 
   onSelect(post: Post): void {

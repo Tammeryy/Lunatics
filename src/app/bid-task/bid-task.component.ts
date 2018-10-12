@@ -28,13 +28,15 @@ export class BidTaskComponent implements OnInit {
   }
 
   verifyBid() {
-    if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.description && this.bid.bid_offer) {
-      alert('Bid details are valid. Adding bid to browse list...');
-      this.dialogRef.close(this.bid);
-    }
-    else {
-      alert('Bid details are invalid. Try again');
-      this.clearData();
+    if (confirm("Bid task?")) {
+      if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.description && this.bid.bid_offer) {
+        alert('Bid details are valid. Adding bid to browse list...');
+        this.dialogRef.close(this.bid);
+      }
+      else {
+        alert('Bid details are invalid. Try again');
+        this.clearData();
+      }
     }
   }
 
