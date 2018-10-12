@@ -1,3 +1,5 @@
+import { Bid } from './bid';
+
 export class Post {
   title: string;
   description: string;
@@ -7,4 +9,5 @@ export class Post {
   due_date: any; // change to date variable type
   location: any; // change to location type
   // Add more variables below
+  bids: Bid[];
 }

@@ -13,7 +13,7 @@
     <ul class="nav navbar-nav">
       <!--TODO change li's class to class="active" when it's active-->
       <li><a href="#">Browse</a></li>
-      <li><a href="#">Task</a></li>
+      <li *ngIf="this.activeLogin"><a href="#">Task</a></li>
       <li *ngIf="this.activeLogin"><a href="#">Profile</a></li>
       <!-- CHANGE STYLING OF THIS -->
       <li><a href="#" (click)="openPostPopup()">Post a Task</a></li>

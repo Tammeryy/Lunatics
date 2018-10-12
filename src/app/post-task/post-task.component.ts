@@ -18,7 +18,8 @@ export class PostTaskComponent implements OnInit {
     lowest_bid: 0,
     task_open: false,
     due_date: "",
-    location: ""
+    location: "",
+    bids: []
   };
 
   constructor(public dialogRef: MatDialogRef<PostTaskComponent>,
@@ -58,5 +59,6 @@ export class PostTaskComponent implements OnInit {
     this.post.task_open = false;
     this.post.due_date = "";
     this.post.location = "";
+    this.post.bids = [];
   }
 }

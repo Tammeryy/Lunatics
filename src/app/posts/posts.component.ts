@@ -28,6 +28,7 @@ export class PostsComponent implements OnInit {
   }
 
   openBidPopup(post: Post) {
+    console.log("[BID] Title: " + post.title + " | Lowest Bid: " + post.lowest_bid);
     console.log('Bid popup called');
     // Bid - Post title, Post's current lowest bid
 
@@ -46,6 +47,10 @@ export class PostsComponent implements OnInit {
     // result refers to 'data' in [mat-dialog-close]
     dialogRef.afterClosed().subscribe(result => {
       // add to list of bids for that post
+      if (result) post.bids.push(result);
+      for (var i in post.bids) {
+        console.log("[POST BID] Bidder: " +  post.bids[i].name + " | Bid Offer: " + post.bids[i].bid_offer);
+      }
     });
   }
 
