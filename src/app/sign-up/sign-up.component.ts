@@ -12,8 +12,10 @@ export class SignUpComponent implements OnInit {
 
   accounts = Logins;
 
-  username: string;
-  password: string;
+  data: LoginData = {
+    username: "",
+    password: ""
+  };
 
   constructor(public dialogRef: MatDialogRef<SignUpComponent>) { }
 
@@ -28,18 +30,20 @@ export class SignUpComponent implements OnInit {
     // TODO insert verify username and password code
 
     // valid username and password
-    if (this.username && this.password) {
+    if (this.data.username && this.data.password) {
       alert('Valid sign up details! Creating new account...');
       this.addAccount();
+      this.dialogRef.close();
     }
     else {
       alert('Invalid sign up details. Try again.');
+      this.data.username = "";
+      this.data.password = "";
     }
   }
 
   addAccount() {
-    const newAccount: LoginData = { username: this.username, password: this.password };
-    this.accounts.push(newAccount);
+    this.accounts.push(this.data);
   }
 
 }

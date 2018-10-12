@@ -50,23 +50,13 @@ export class HeaderComponent implements OnInit {
       console.log('The dialog was closed');
       this.username = result.username;
       this.password = result.password;
-      /*
-      this.existingAcc = this.logins.filter(function(login) {
-        return login.username === result.username && login.password === result.password;
-      })[0];
-      if (this.existingAcc.length > 0) {
-      */
-      if (this.username === "user" && this.password === "pwd") {
-        // console.log("Existing Acc: " + this.existingAcc.username + " | " + this.existingAcc.password);
+      if (result.username && result.password) {
+      console.log("[OPENLOGIN] username: " + result.username + " | password: " + result.password);
         this.loggedIn = true;
         if (this.requestPostTask) {
           this.requestPostTask = false;
           this.openPostPopup();
         }
-      }
-      else {
-        console.log("Login failed...account does not exist");
-        this.openLogin();
       }
     });
   }

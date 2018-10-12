@@ -16,6 +16,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button [mat-dialog-close] (click)="signUp()">Create an account</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Login</button>
+    <button mat-button (click)="verifyLogin()" cdkFocusInitial>Login</button>
   </div>
 </div>

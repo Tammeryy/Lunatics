@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
-import { LOGIN } from '../mock-logins';
+import { LoginData } from '../login-data';
 
 import { SignUpComponent } from '../sign-up/sign-up.component';
 
@@ -11,7 +11,10 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 })
 export class LoginComponent implements OnInit {
 
-  data = LOGIN;
+  data: LoginData = {
+    username: "",
+    password: ""
+  };
 
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<LoginComponent>) { }
@@ -21,6 +24,19 @@ export class LoginComponent implements OnInit {
 
   exitClick(): void {
     this.dialogRef.close();
+  }
+
+  verifyLogin() {
+    // TODO: replace with verification code
+    if (this.data.username === "user" && this.data.password === "pwd") {
+      alert('Login successful. Logging in...');
+      this.dialogRef.close(this.data);
+    }
+    else {
+      alert('Login failed. Try again.');
+      this.data.username = "";
+      this.data.password = "";
+    }
   }
 
   signUp(): void {
