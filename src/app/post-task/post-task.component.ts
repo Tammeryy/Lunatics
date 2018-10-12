@@ -15,7 +15,7 @@ export class PostTaskComponent implements OnInit {
     title: "",
     description: "",
     poster_name: "",
-    task_budget: undefined,
+    lowest_bid: 0,
     task_open: false,
     due_date: "",
     location: ""
@@ -35,9 +35,10 @@ export class PostTaskComponent implements OnInit {
   }
 
   verifyPost() {
+    console.log("[VERIFY POST] " this.post.poster_name + " | " + this.post.title + " | " + this.post.description + " | " + this.post.due_date + " | " + this.post.location);
     if (confirm("Post task?")) {
       // TODO: need somewhere to store current login data to access
-      if (this.post.poster_name && this.post.title && this.post.description && this.post.task_budget && this.post.due_date && this.post.location) {
+      if (this.post.poster_name && this.post.title && this.post.description && this.post.due_date && this.post.location) {
         this.post.task_open = true;
         alert('Post details are valid. Adding post to browse list...');
         this.dialogRef.close(this.post);
@@ -53,7 +54,7 @@ export class PostTaskComponent implements OnInit {
     this.post.title ="";
     this.post.description = "";
     this.post.poster_name = "";
-    this.post.task_budget = undefined;
+    this.post.lowest_bid = 0;
     this.post.task_open = false;
     this.post.due_date = "";
     this.post.location = "";
