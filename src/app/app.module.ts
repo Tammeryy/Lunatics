@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { PostTaskComponent } from './post-task/post-task.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BidTaskComponent } from './bid-task/bid-task.component';
+import { ViewBidsComponent } from './view-bids/view-bids.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BidTaskComponent } from './bid-task/bid-task.component';
     LoginComponent,
     PostTaskComponent,
     SignUpComponent,
-    BidTaskComponent
+    BidTaskComponent,
+    ViewBidsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,6 @@ import { BidTaskComponent } from './bid-task/bid-task.component';
     ReactiveFormsModule
   ],
   providers: [AppComponent, HeaderComponent],
-  bootstrap: [AppComponent, LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent]
+  bootstrap: [AppComponent, LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent, ViewBidsComponent]
 })
 export class AppModule { }

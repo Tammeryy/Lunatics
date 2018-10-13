@@ -27,8 +27,8 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
   }
 
-  openBidPopup(post: Post) {
-    console.log("[BID] Title: " + post.title + " | Lowest Bid: " + post.lowest_bid);
+  openBidPopup() {
+    console.log("[BID] Title: " + this.selectedPost.title + " | Lowest Bid: " + this.selectedPost.lowest_bid);
     console.log('Bid popup called');
     // Bid - Post title, Post's current lowest bid
 
@@ -37,8 +37,8 @@ export class PostsComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '30%';
     dialogConfig.data = {
-      post_title: post.title,
-      lowest_bid: post.lowest_bid
+      post_title: this.selectedPost.title,
+      lowest_bid: this.selectedPost.lowest_bid
     };
 
     // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
@@ -47,9 +47,9 @@ export class PostsComponent implements OnInit {
     // result refers to 'data' in [mat-dialog-close]
     dialogRef.afterClosed().subscribe(result => {
       // add to list of bids for that post
-      if (result) post.bids.push(result);
-      for (var i in post.bids) {
-        console.log("[POST BID] Bidder: " +  post.bids[i].name + " | Bid Offer: " + post.bids[i].bid_offer);
+      if (result) this.selectedPost.bids.push(result);
+      for (var i in this.selectedPost.bids) {
+        console.log("[POST BID] Bidder: " +  this.selectedPost.bids[i].name + " | Bid Offer: " + this.selectedPost.bids[i].bid_offer);
       }
     });
   }
