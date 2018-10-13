@@ -22,7 +22,7 @@ export class TaskComponent implements OnInit {
 
    constructor(public dialog: MatDialog) {
      // need to add service so we can retrieve activeLogin details from any component
-     this.user_posts = this.posts.filter(post => post.poster_id === 1);
+     this.user_posts = this.posts.filter(post => post.poster_id === 2);
    }
 
    onSelect(post: Post): void { // remove?
