@@ -69,6 +69,7 @@ export class HeaderComponent implements OnInit {
       dialogConfig.autoFocus = true;
       dialogConfig.width = '30%';
       dialogConfig.data = {
+        poster_id: this.activeLogin.id,
         poster_name: this.activeLogin.username
       };
 

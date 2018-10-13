@@ -28,6 +28,7 @@ export class PostTaskComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<PostTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
+    this.post.poster_id = data.poster_id;
     this.post.poster_name = data.poster_name; // data refers to dialogConfig.data passed in from header component
   }
 
