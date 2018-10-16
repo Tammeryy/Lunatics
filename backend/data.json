@@ -28,24 +28,24 @@
     "posts": [
         {
             "id": 0,
-            "posterid": 1,
+            "poster_id": 1,
             "price": "88.88",
             "location": "cabramatta",
-            "numppl": 10,
-            "bidclose": "10/10/2018",
-            "eventdate": "24/11/2018",
+            "num_ppl": 10,
+            "bid_close": "10/10/2018",
+            "event_date": "24/11/2018",
             "cuisine": "chinese",
             "quality": "Fine Dining",
             "diet": "vegetarian"
         },
         {
             "id": 1,
-            "posterid": 0,
+            "poster_id": 0,
             "price": "100.00",
             "location": "parramatta",
-            "numppl": 20,
-            "bidclose": "11/11/2018",
-            "eventdate": "24/12/2018",
+            "num_ppl": 20,
+            "bid_close": "11/11/2018",
+            "event_date": "24/12/2018",
             "cuisine": "malaysian",
             "quality": "Fast Food",
             "diet": "halal"
@@ -53,8 +53,8 @@
     ],
     "bids": [
         {
-            "postid": 0,
-            "bidderid": 2,
+            "post_id": 0,
+            "bidder_id": 2,
             "name": "Lucy",
             "phone": "0486754231",
             "email": "luslee@mail.com",
