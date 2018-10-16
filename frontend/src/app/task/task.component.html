@@ -1,0 +1,35 @@
+<!-- TODO SAME CODE AS POST-->
+<h2> All posts </h2>
+<ul class="all-post">
+  <li *ngFor="let post of posts">
+    Title: {{post.title}}
+    <!-- TODO add post details here -->
+    <button mat-button>Bid Now</button>
+  </li>
+</ul>
+<h2> Your tasks/posts </h2>
+<ul class="all-post">
+  <li *ngFor="let post of user_posts">
+    Title: {{post.title}}
+    <!-- TODO add post details here -->
+    <button mat-button>Bid Now</button>
+  </li>
+</ul>
+
+<mat-list>
+  <div class="search-bar">
+    <input type="text" ng-model="search" placeholder="Search for a task"/>
+    <mat-form-field>
+      <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
+      <mat-select placeholder="Sort by">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-list-item *ngFor="let post of user_posts">
+    <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
+    <p mat-line id="task-desc"> {{post.description}} </p>
+    <button class="btn btn-warning" id="bid-button" (click)="openViewBidPopup(post)"> Bid </button>
+  </mat-list-item>
+</mat-list>

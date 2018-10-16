@@ -1,0 +1,21 @@
+.post-popup-header {
+  display: inline;
+}
+
+.post-popup-header h1 {
+  float: left;
+}
+
+.post-popup-header #exit-button {
+  float: right;
+  font-size: 1.5em;
+  display: inline;
+}
+
+mat-form-field {
+  width: 80%;
+}
+
+mat-dialog-actions {
+  /* need to align buttons in center - currently doesn't work */
+}

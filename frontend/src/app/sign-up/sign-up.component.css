@@ -1,0 +1,8 @@
+mat-form-field {
+  width: 80%;
+}
+
+mat-dialog-actions {
+  /* need to align buttons in center - currently doesn't work */
+  align-items: center;
+}
