@@ -46,6 +46,7 @@ import { ViewBidsComponent } from './view-bids/view-bids.component';
     ReactiveFormsModule
   ],
   providers: [AppComponent, HeaderComponent],
-  bootstrap: [AppComponent, LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent, ViewBidsComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent, ViewBidsComponent]
 })
 export class AppModule { }
