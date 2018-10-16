@@ -27,10 +27,10 @@
   </div>
 </nav>
 <li *ngIf="activeLogin">
-  <i>Login: {{activeLogin.username}} | Password: {{activeLogin.password}}</i>
+  <i>ID: {{activeLogin.id}} | Login: {{activeLogin.username}} | Password: {{activeLogin.password}}</i>
   <p> Requesting Post Task: {{requestPostTask}} </p>
 </li>
-<li *ngIf="this.activeLogin">
+<li *ngIf="activeLogin">
   <i>Login successful</i>
 </li>
 <h2> Accounts </h2>

@@ -21,6 +21,6 @@
   <mat-list-item *ngFor="let post of posts" (click)="onSelect(post)">
     <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
     <p mat-line id="task-desc"> {{post.description}} </p>
-    <button class="btn btn-warning" id="bid-button" (click)="openBidPopup()"> Bid </button>
+    <button class="btn btn-warning" id="bid-button" (click)="openBidPopup(post)"> Bid </button>
   </mat-list-item>
 </mat-list>

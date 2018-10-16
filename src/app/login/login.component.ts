@@ -12,7 +12,7 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 export class LoginComponent implements OnInit {
 
   data: LoginData = {
-    id: 0,
+    id: 1,
     username: "",
     password: ""
   };

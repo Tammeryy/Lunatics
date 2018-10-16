@@ -1,1 +1,23 @@
-// file for methods to exist universally, this includes methods like getpost getPOSTS, edit post etc should be here
+import { Injectable } from '@angular/core';
+
+import { Post } from './post';
+import { POSTS } from './mock-posts';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostService {
+
+  constructor() { }
+
+  getPosts(): Post[] {
+      return POSTS;
+  }
+
+  getNewPostID() {
+    return Object.keys(POSTS).length+1;
+  }
+
+  
+
+}
