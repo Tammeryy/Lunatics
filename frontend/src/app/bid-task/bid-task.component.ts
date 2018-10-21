@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Bid } from '../bid';
+import { Bids } from '../mock-bids';
 
 @Component({
   selector: 'app-bid-task',
@@ -22,7 +23,7 @@ export class BidTaskComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<BidTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
-    // data refers to dialogConfig.data from Posts component in openBidPopup() 
+    // data refers to dialogConfig.data from Posts component in openBidPopup()
     this.post_title = data.post_title;
     this.lowest_bid = data.lowest_bid;
   }

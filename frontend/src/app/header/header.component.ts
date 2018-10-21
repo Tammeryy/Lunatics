@@ -22,8 +22,7 @@ export class HeaderComponent implements OnInit {
 
     activeLogin: LoginData;
     posts: Post[];
-    logins = Logins // remove later
-    // Login - will remove later
+    logins = Logins; // remove later
     requestPostTask: boolean = false;
 
     constructor(private postService: PostService,
@@ -80,8 +79,6 @@ export class HeaderComponent implements OnInit {
             // result refers to 'data' in [mat-dialog-close]
             dialogRef.afterClosed().subscribe(result => {
                 this.requestPostTask = false;
-                var i: number;
-                for (i=0; i<this.posts.length; i++) console.log(this.posts[i]);
             });
         }
     }

@@ -34,7 +34,6 @@ export class TaskComponent implements OnInit {
   }
 
   openViewBidPopup(post: Post) {
-    console.log("[VIEW BID] Title: " + post.title + " | Lowest Bid: " + post.lowest_bid);
     console.log('View Bid popup called');
     // Bid - Post title, Post's current lowest bid
 
@@ -48,13 +47,6 @@ export class TaskComponent implements OnInit {
 
     // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
     const dialogRef = this.dialog.open(ViewBidsComponent, dialogConfig);
-
-    // result refers to 'data' in [mat-dialog-close]
-    dialogRef.afterClosed().subscribe(result => {
-      for (var i in post.bids) {
-        console.log("[POST BID] Bidder: " +  post.bids[i].name + " | Bid Offer: " + post.bids[i].bid_offer);
-      }
-    });
   }
 
 }
