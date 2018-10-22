@@ -11,8 +11,7 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 })
 export class LoginComponent implements OnInit {
 
-  data: LoginData = {
-    id: 0, // all login ids should start from 1 
+  data = {
     username: "",
     password: ""
   };
@@ -34,7 +33,7 @@ export class LoginComponent implements OnInit {
     const user: LoginData = this.getUser(this.data.username, this.data.password);
     if (user) {
       alert('Login successful. Logging in...');
-      this.dialogRef.close(this.data);
+      this.dialogRef.close(user);
     }
     else {
       alert('Login failed. Try again.');
@@ -64,7 +63,6 @@ export class LoginComponent implements OnInit {
         }
         return user;
     }
-
     return null;
   }
 
