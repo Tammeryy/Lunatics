@@ -57,9 +57,12 @@ export class LoginComponent implements OnInit {
     // replace with something like return this.loginService.getUser(username, password);
     if (username === "user" && password === "pwd") {
         const user: LoginData = {
-            id: 1,
-            username: "user",
-            password: "pwd"
+          id: 1,
+          username: 'user',
+          password: 'pwd',
+          name: 'user',
+          phone: '0412345678',
+          email: 'user@hotmail.com',
         }
         return user;
     }
@@ -67,7 +70,6 @@ export class LoginComponent implements OnInit {
   }
 
   clearData() {
-    this.data.id = 0;
     this.data.username = "";
     this.data.password = "";
   }

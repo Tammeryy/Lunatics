@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
-import { currentLogin } from '../mock-logins';
+import { currentLogin } from '../mock-logins'; // remove later
 import { Logins } from '../mock-logins';
 import { LoginData } from '../login-data'; // dummy data
 
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
         // result refers to 'data' in [mat-dialog-close]
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
-            if (result.username && result.password) {
+            if (result) {
                 this.activeLogin = result;
                 if (this.requestPostTask) {
                     this.requestPostTask = false;
