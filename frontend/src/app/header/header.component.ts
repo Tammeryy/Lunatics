@@ -70,7 +70,6 @@ export class HeaderComponent implements OnInit {
             dialogConfig.width = '30%';
             dialogConfig.data = {
                 poster_id: this.activeLogin.id,
-                poster_name: this.activeLogin.username
             };
 
             // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file

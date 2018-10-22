@@ -12,6 +12,7 @@ import { Bids } from '../mock-bids';
 export class BidTaskComponent implements OnInit {
 
   bid: Bid = {
+    post_id: 0, // TODO need to get post_id
     name: "",
     phone_no: undefined,
     email: "",
@@ -24,6 +25,7 @@ export class BidTaskComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<BidTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
     // data refers to dialogConfig.data from Posts component in openBidPopup()
+    this.bid.post_id = data.post_id;
     this.post_title = data.post_title;
     this.lowest_bid = data.lowest_bid;
   }
@@ -39,6 +41,7 @@ export class BidTaskComponent implements OnInit {
     if (confirm("Bid task?")) {
       if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.description && this.bid.bid_offer) {
         alert('Bid details are valid. Adding bid to browse list...');
+        // this.addBid(this.bid);
         this.dialogRef.close(this.bid);
       }
       else {

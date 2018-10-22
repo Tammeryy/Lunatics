@@ -28,37 +28,42 @@
     "posts": [
         {
             "id": 0,
+            "title": "Cook for 50-people event",
+            "description": "Cater for a wedding event with various options (vegan, vegetarian, etc..)",
             "poster_id": 1,
-            "price": "88.88",
+            "budget": 88.88,
             "location": "cabramatta",
             "num_ppl": 10,
             "bid_close": "10/10/2018",
             "event_date": "24/11/2018",
             "cuisine": "chinese",
             "quality": "Fine Dining",
-            "diet": "vegetarian"
+            "diet": "vegetarian",
+            "lowest_bid": 90,
+            "task_open": true
         },
         {
             "id": 1,
             "poster_id": 0,
-            "price": "100.00",
+            "budget": 100.00,
             "location": "parramatta",
             "num_ppl": 20,
             "bid_close": "11/11/2018",
             "event_date": "24/12/2018",
             "cuisine": "malaysian",
             "quality": "Fast Food",
-            "diet": "halal"
+            "diet": "halal",
+            "lowest_bid": 110,
+            "task_open": true
         }
     ],
     "bids": [
         {
             "post_id": 0,
-            "bidder_id": 2,
             "name": "Lucy",
             "phone": "0486754231",
             "email": "luslee@mail.com",
-            "price": "2.00"
+            "bid_offer": "2.00"
         }
     ]
 }

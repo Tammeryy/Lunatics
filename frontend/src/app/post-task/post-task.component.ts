@@ -13,22 +13,25 @@ export class PostTaskComponent implements OnInit {
   posts = POSTS;
 
   post: Post = {
-    post_id: Object.keys(this.posts).length+1,
+    id: Object.keys(this.posts).length+1,
     title: "",
     description: "",
     poster_id: 0,
-    poster_name: "",
-    lowest_bid: 0,
-    task_open: false,
-    due_date: "",
+    cuisine: "",
+    quality: "",
+    diet: "",
+    num_ppl: 0,
+    budget: 0,
+    event_date: "",
+    bid_close: "", // change to date variable type
     location: "",
-    bids: []
+    task_open: true,
+    lowest_bid: 0,
   };
 
   constructor(public dialogRef: MatDialogRef<PostTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
     this.post.poster_id = data.poster_id;
-    this.post.poster_name = data.poster_name; // data refers to dialogConfig.data passed in from header component
   }
 
   ngOnInit() {
@@ -42,7 +45,7 @@ export class PostTaskComponent implements OnInit {
   verifyPost() {
     if (confirm("Post task?")) {
       // TODO: need somewhere to store current login data to access
-      if (this.post.poster_name && this.post.title && this.post.description && this.post.due_date && this.post.location) {
+      if (this.post.title && this.post.description && this.post.bid_close && this.post.location) {
         this.post.task_open = true;
         alert('Post details are valid. Adding post to browse list...');
         this.addPost(this.post);
@@ -50,7 +53,7 @@ export class PostTaskComponent implements OnInit {
       }
       else {
         alert('Post details are invalid. Try again');
-        this.clearData();
+        // this.clearData();
       }
     }
   }
@@ -64,10 +67,12 @@ export class PostTaskComponent implements OnInit {
   clearData() {
     this.post.title ="";
     this.post.description = "";
-    this.post.lowest_bid = 0;
-    this.post.task_open = false;
-    this.post.due_date = "";
+    this.post.cuisine = "";
+    this.post.quality = "";
+    this.post.diet = "";
+    this.post.budget = 0;
+    this.post.event_date = "";
+    this.post.bid_close = "";
     this.post.location = "";
-    this.post.bids = [];
   }
 }
