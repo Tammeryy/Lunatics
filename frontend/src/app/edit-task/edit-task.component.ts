@@ -52,14 +52,14 @@ export class EditTaskComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  editPost() {
+  editTask() {
       if (this.validPost()) {
           alert('Post updated');
           console.log(this.post);
-          this.updatePost();
+          if (this.updatePost() === "success") alert('Edit task successful!');
           console.log(this.updatedPost);
           console.log(this.post);
-          this.dialogRef.close(this.updatedPost);
+          this.dialogRef.close();
       }
       else {
           this.dialogRef.close();
@@ -74,7 +74,7 @@ export class EditTaskComponent implements OnInit {
       for (var i in this.updatedPost) {
           if (this.post[i] !== this.updatedPost[i]) this.post[i] = this.updatedPost[i];
       }
-      this.postService.editPost(this.updatedPost);
+      return this.postService.editPost(this.updatedPost);
   }
 
 }
