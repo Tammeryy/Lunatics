@@ -46,6 +46,8 @@ def index():
 ##### POST REQUESTS CHANGING THE DATABASE #####
 # create an account
 # adds account to the db
+# expected input format:
+#   {"username" : "Tammy", "password" : "1234" , "name" : "Man", "phone" : "044444444", "email" : "tammy@gmail.com"}
 @app.route("/createAccount", methods=['POST'])
 def createAccount():
 
@@ -84,8 +86,59 @@ def createAccount():
     
     return jsonify({'result' : 'success', 'username' : username, 'password' : password})
 
-#@app.route("/postTask", methods=['POST'])
-#def postTask():
+
+# used when user logs in - need to return entire account object if account exists
+@app.route("/authenticate", methods=['GET','POST'])
+def authenticate():
+    # need to get the username and pwd
+    data = request.get_json()
+    username = data["username"]
+    password = data["password"]
+
+    # verifies if it exists
+    # if false return None 
+
+    # verifies password is correct
+    # if false, return password inccorect
+
+    # if correct , returnn the user dictionary object
+
+
+"""
+@app.route("/postTask", methods=['POST'])
+def postTask():
+
+    data = request.json()
+    cuisine = data["cuisine"]
+    task_open = "true"
+    description = data["description"]
+    title = data["title"]
+    bid_close = data["bid_close"]
+    budget = data["budget"]
+    diet = data["diet"]
+    #poster_id 
+    lowest_bid = data["lowest_bid"]
+    location = data["location"]
+    event_date = data["event_date"]
+    quality = data["quality"]
+    num_ppl = data["num_ppl"]
+"""
+    """
+    "cuisine": "chinese", 
+      "task_open": true, 
+      "description": "Cater for a wedding event with various options (vegan, vegetarian, etc..)", 
+      "title": "Cook for 50-people event", 
+      "bid_close": "10/10/2018", 
+      "budget": 88.88, 
+      "diet": "vegetarian", 
+      "poster_id": 1, 
+      "lowest_bid": 90, 
+      "location": "cabramatta", 
+      "event_date": "24/11/2018", 
+      "quality": "Fine Dining", 
+      "id": 0, 
+      "num_ppl": 10
+    """
 
 #@app.route("/bidTask", methods=['POST'])
 #def bidTask():
@@ -99,6 +152,8 @@ def createAccount():
 # del bids
 # create profile
 # edit profile
+
+#GOALS TODAY^^###
 
 @app.route()
 
