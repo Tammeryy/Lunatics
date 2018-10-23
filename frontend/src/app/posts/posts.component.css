@@ -1,23 +1,12 @@
 .search-bar {
   text-align: center;
 }
-
 .search-bar input {
   width: 70%;
   margin-bottom: 1em;
 }
-
 #task-list {
   text-align: center;
-}
-
-mat-list {
-}
-
-mat-list-item {
-  outline: 2px solid red;
-  position: relative;
-  height: 8em !important;
 }
 
 #budget {
@@ -26,23 +15,50 @@ mat-list-item {
   text-align: right;
   margin-top: -5em;
 }
-
 #task-title, #task-desc {
   text-align: left;
 }
-
 #task-title {
   position: absolute;
-  top: 0;
-  outline: 1px solid blue;
+  top: 5px;
+  font-size: 25px;
+  color: #ffffff;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
 }
-
 #task-desc {
+  position: absolute;
+  font-size: 18px;
+  color: #f7f7f7;
+  font-family: Helvetica, sans-serif;
 }
-
 #bid-button {
   position: absolute;
   bottom: 0;
   right: 0;
   margin-top: 1em;
+}
+#budget {
+  font-size: 18px;
+  color: #f7f7f7;
+  font-family: Helvetica, sans-serif;
+}
+#h2 {
+  font-size: 45px;
+  line-height: 190px;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+#container {
+  /*Change colour so it looks good*/
+  outline: 1px dashed #98abb9;
+  outline-offset: -5px;
+  background-color: #556068;
+  height: 350px;
+  width: 700px;
+  margin: auto;
+  /*shadow*/
+  -webkit-box-shadow: 2px 2px 2px #000;
+  -moz-box-shadow: 2px 2px 2px #000;
+  box-shadow: 2px 2px 2px #000;
 }

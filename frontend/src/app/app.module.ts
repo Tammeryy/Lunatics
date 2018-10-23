@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +20,12 @@ import { PostTaskComponent } from './post-task/post-task.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BidTaskComponent } from './bid-task/bid-task.component';
 import { ViewBidsComponent } from './view-bids/view-bids.component';
+
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent, pathMatch: 'full'},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'task', component: TaskComponent}
+];
 
 @NgModule({
   declarations: [
@@ -43,7 +50,11 @@ import { ViewBidsComponent } from './view-bids/view-bids.component';
     MatInputModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {enableTracing: false} // <-- debugging purposes only
+    )
   ],
   providers: [AppComponent, HeaderComponent],
   bootstrap: [AppComponent],

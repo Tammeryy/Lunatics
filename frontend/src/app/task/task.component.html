@@ -15,7 +15,6 @@
     <button mat-button>Bid Now</button>
   </li>
 </ul>
-
 <mat-list>
   <div class="search-bar">
     <input type="text" ng-model="search" placeholder="Search for a task"/>
@@ -27,9 +26,9 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <mat-list-item *ngFor="let post of user_posts">
+  <mat-list-item *ngFor="let post of user_posts" id="container">
     <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
     <p mat-line id="task-desc"> {{post.description}} </p>
-    <button class="btn btn-warning" id="bid-button" (click)="openViewBidPopup(post)">View Bids</button>
+    <button class="btn btn-warning" id="bid-button" (click)="openViewBidPopup(post)"> Bid</button>
   </mat-list-item>
 </mat-list>
