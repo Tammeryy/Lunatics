@@ -26,10 +26,21 @@ export class PostService {
   }
 
   getNewPostID() {
-    return of(Object.keys(this.posts).length+1);
+      return of(Object.keys(this.posts).length+1);
   }
 
+  // Returns true if post added successfully, else false
   addPost(post: Post) {
+      // TODO: replace with backend (return_value = { result: 'success/fail'})
       this.posts.push(post);
+      return true;
+  }
+
+  // TODO replace with backend call to check for valid post
+  validPost(post: Post) {
+      if (post.title && post.description && post.bid_close && post.location) {
+          return true;
+      }
+      return false;
   }
 }

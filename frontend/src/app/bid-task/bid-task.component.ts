@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { Post } from '../post';
+
+import { BidService } from '../bid.service';
 import { Bid } from '../bid';
-import { Bids } from '../mock-bids';
 
 @Component({
   selector: 'app-bid-task',
@@ -19,15 +21,13 @@ export class BidTaskComponent implements OnInit {
     description: "",
     bid_offer: undefined
   };
-  post_title: string;
-  lowest_bid: number;
+  post: Post;
 
-  constructor(public dialogRef: MatDialogRef<BidTaskComponent>,
+  constructor(private bidService: BidService,
+              public dialogRef: MatDialogRef<BidTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
     // data refers to dialogConfig.data from Posts component in openBidPopup()
-    this.bid.post_id = data.post_id;
-    this.post_title = data.post_title;
-    this.lowest_bid = data.lowest_bid;
+    this.post = data.selected_post;
   }
 
   ngOnInit() {
@@ -38,17 +38,15 @@ export class BidTaskComponent implements OnInit {
   }
 
   verifyBid() {
-    if (confirm("Bid task?")) {
-      if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.description && this.bid.bid_offer) {
+      if (this.validBid()) {
         alert('Bid details are valid. Adding bid to browse list...');
-        // this.addBid(this.bid);
-        this.dialogRef.close(this.bid);
+        this.addBid();
+        this.dialogRef.close(this.bid.bid_offer);
       }
       else {
         alert('Bid details are invalid. Try again');
         this.clearData();
       }
-    }
   }
 
   clearData() {
@@ -57,6 +55,16 @@ export class BidTaskComponent implements OnInit {
     this.bid.email = "";
     this.bid.description = "";
     this.bid.bid_offer = undefined;
+  }
+
+  validBid() {
+      return this.bidService.validBid(this.bid);
+  }
+
+  // Adds bid to bids list.
+  // If adding bid to backend is successful, make success alert popup
+  addBid() {
+      this.bidService.addBid(this.bid);
   }
 
 }

@@ -13,11 +13,13 @@ import { BidTaskComponent } from '../bid-task/bid-task.component';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+
+  // Used to display all posts on home page
   posts: Post[];
 
   sortByOptions: string[] = [
      'Price', 'Location'
-   ];
+  ];
 
   constructor(private postService: PostService,
               public dialog: MatDialog) { }
@@ -36,6 +38,7 @@ export class PostsComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '30%';
     dialogConfig.data = {
+      selected_post: post,
       post_id: post.id,
       post_title: post.title,
       lowest_bid: post.lowest_bid
@@ -45,13 +48,8 @@ export class PostsComponent implements OnInit {
     const dialogRef = this.dialog.open(BidTaskComponent, dialogConfig);
 
     // result refers to 'data' in [mat-dialog-close]
-    dialogRef.afterClosed().subscribe(newBid => {
-      // add to list of bids for that post
-      if (newBid && newBid.bid_offer > post.lowest_bid) post.lowest_bid = newBid.bid_offer;
-      // if (result) post.bids.push(result);
-      // for (var i in post.bids) {
-      //   console.log("[POST BID] Bidder: " +  post.bids[i].name + " | Bid Offer: " + post.bids[i].bid_offer);
-      // }
+    dialogRef.afterClosed().subscribe(newBid_offer => {
+      if (newBid_offer && newBid_offer > post.lowest_bid) post.lowest_bid = newBid_offer;
     });
   }
 

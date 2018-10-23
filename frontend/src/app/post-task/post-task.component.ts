@@ -45,24 +45,26 @@ export class PostTaskComponent implements OnInit {
   }
 
   verifyPost() {
-    if (confirm("Post task?")) {
-      // TODO: need somewhere to store current login data to access
-      if (this.post.title && this.post.description && this.post.bid_close && this.post.location) {
+      if (this.validPost()) {
         this.post.task_open = true;
         alert('Post details are valid. Adding post to browse list...');
-        this.addPost();
-        this.dialogRef.close(true);
+        const success = this.addPost(); // TODO replace with if (this.add)
+        this.dialogRef.close(success);
       }
       else {
         alert('Post details are invalid. Try again');
         // this.clearData();
       }
-    }
+  }
+
+  validPost() {
+      // TODO replace with backend verify code
+      return this.postService.validPost(this.post);
   }
 
   addPost() {
     console.log('Add post called');
-    this.postService.addPost(this.post);
+    return this.postService.addPost(this.post);
   }
 
   getNewPostID() {
