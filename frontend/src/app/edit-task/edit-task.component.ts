@@ -12,7 +12,22 @@ import { PostService } from '../post.service';
 export class EditTaskComponent implements OnInit {
 
   post: Post;
-  updatedPost: Post;
+  updatedPost: Post = {
+    id: -1,
+    title: null,
+    description: null,
+    poster_id: -1,
+    budget: -1,
+    location: null,
+    num_ppl: -1,
+    bid_close: null,
+    event_date: null,
+    cuisine: null,
+    quality: null,
+    diet: null,
+    lowest_bid: -1,
+    task_open: null
+  };
 
   constructor(private postService: PostService,
               public dialogRef: MatDialogRef<EditTaskComponent>,
@@ -26,10 +41,6 @@ export class EditTaskComponent implements OnInit {
 
   deepCopyPost() {
       for (var i in this.post) this.updatedPost[i] = this.post[i];
-  }
-
-  ngOnChanges(changes: any) {
-    console.log('CHANGES: ' + changes.title);
   }
 
   // closes the Post Task pop-up dialog box (done in html page)
