@@ -7,35 +7,35 @@
   <br>
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput [value]="post.title" (input)="updatedPost.title" placeholder="Task Title" type="text"/>
+      <input matInput [value]="post.title" (input)="updatedPost.title=$event.target.value"  placeholder="Task Title" type="text"/>
     </mat-form-field>
     <br>
     <mat-form-field>
-        <textarea matInput [value]="post.description" (ngModel)="updatedPost.description" placeholder="Description"></textarea>
+        <textarea matInput [value]="post.description" (input)="updatedPost.description=$event.target.value" placeholder="Description"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.cuisine" (ngModel)="updatedPost.cuisine" placeholder="Type of cuisine"></textarea>
+        <textarea matInput [value]="post.cuisine" (input)="updatedPost.cuisine=$event.target.value" placeholder="Type of cuisine"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.quality" (ngModel)="updatedPost.quality" placeholder="Food quality"></textarea>
+        <textarea matInput [value]="post.quality" (input)="updatedPost.quality=$event.target.value" placeholder="Food quality"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.diet" (ngModel)="updatedPost.diet" placeholder="Type of diet"></textarea>
+        <textarea matInput [value]="post.diet" (input)="updatedPost.diet=$event.target.value" placeholder="Type of diet"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.num_ppl" (ngModel)="updatedPost.num_ppl" placeholder="Number of people"></textarea>
+        <textarea matInput [value]="post.num_ppl" (input)="updatedPost.num_ppl=$event.target.value" placeholder="Number of people"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.budget" (ngModel)="updatedPost.budget" placeholder="Budget"></textarea>
+        <textarea matInput [value]="post.budget" (input)="updatedPost.budget=$event.target.value" placeholder="Budget"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.event_date" (ngModel)="updatedPost.event_date" placeholder="Event date"></textarea>
+        <textarea matInput [value]="post.event_date" (input)="updatedPost.event_date=$event.target.value" placeholder="Event date"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.bid_close" (ngModel)="updatedPost.bid_close" placeholder="Bid closing date"></textarea>
+        <textarea matInput [value]="post.bid_close" (input)="updatedPost.bid_close=$event.target.value" placeholder="Bid closing date"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [value]="post.location" (ngModel)="updatedPost.location" placeholder="Location"></textarea>
+        <textarea matInput [value]="post.location" (input)="updatedPost.location=$event.target.value" placeholder="Location"></textarea>
     </mat-form-field>
   </div>
   <div mat-dialog-actions>

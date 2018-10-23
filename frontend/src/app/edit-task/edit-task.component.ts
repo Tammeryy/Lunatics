@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Post } from '../post';
@@ -12,7 +12,22 @@ import { PostService } from '../post.service';
 export class EditTaskComponent implements OnInit {
 
   post: Post;
-  updatedPost: Post;
+  updatedPost: Post = {
+    id: -1,
+    title: null,
+    description: null,
+    poster_id: -1,
+    budget: -1,
+    location: null,
+    num_ppl: -1,
+    bid_close: null,
+    event_date: null,
+    cuisine: null,
+    quality: null,
+    diet: null,
+    lowest_bid: -1,
+    task_open: null
+  };
 
   constructor(private postService: PostService,
               public dialogRef: MatDialogRef<EditTaskComponent>,
@@ -21,6 +36,15 @@ export class EditTaskComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.deepCopyPost();
+  }
+
+  deepCopyPost() {
+      for (var i in this.post) this.updatedPost[i] = this.post[i];
+  }
+
+  ngOnChanges(changes: any) {
+    console.log('CHANGES: ' + changes.title);
   }
 
   // closes the Post Task pop-up dialog box (done in html page)
@@ -30,8 +54,9 @@ export class EditTaskComponent implements OnInit {
 
   editPost() {
       if (this.validPost()) {
-          this.postService.editPost(this.updatedPost);
           alert('Post updated');
+          console.log(this.post);
+          this.updatePost();
           console.log(this.updatedPost);
           console.log(this.post);
           this.dialogRef.close(this.updatedPost);
@@ -43,6 +68,13 @@ export class EditTaskComponent implements OnInit {
 
   validPost() {
       return this.postService.validPost(this.post);
+  }
+
+  updatePost() {
+      for (var i in this.updatedPost) {
+          if (this.post[i] !== this.updatedPost[i]) this.post[i] = this.updatedPost[i];
+      }
+      this.postService.editPost(this.updatedPost);
   }
 
 }

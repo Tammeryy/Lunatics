@@ -49,7 +49,6 @@ export class TaskComponent implements OnInit {
 
       // result refers to 'data' in [mat-dialog-close]
       dialogRef.afterClosed().subscribe(result => {
-          post = result;
       });
   }
 

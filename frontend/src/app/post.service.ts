@@ -37,6 +37,7 @@ export class PostService {
   }
 
   editPost(post: Post) {
+      // TODO call backend function and make it return 
       return "success";
   }
 
