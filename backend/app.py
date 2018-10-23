@@ -184,9 +184,9 @@ def postTask():
       "num_ppl": 10
     """
 
-#@app.route("/bidTask", methods=['POST'])
-#def bidTask():
-
+@app.route("/bidTask", methods=['POST'])
+def bidTask():
+    
 #### should have post requests###
 # change pwd
 # del account

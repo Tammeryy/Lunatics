@@ -2,6 +2,7 @@
   "bids": [
     {
       "post_id": 0, 
+      "bidder_id": 0,
       "bid_offer": "2.00", 
       "email": "luslee@mail.com", 
       "name": "Lucy", 
