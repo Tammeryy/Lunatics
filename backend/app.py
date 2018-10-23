@@ -13,7 +13,8 @@ app = Flask(__name__)
 api = Api(app)
 
 # Add the end points
-api.add_resource(Login, '/login') # <username>/<password>')
+api.add_resource(Login, '/login') 
+api.add_resource(Logout, '/logout/<token>')
     
 @app.route("/")
 def index():
