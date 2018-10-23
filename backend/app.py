@@ -15,6 +15,8 @@ api = Api(app)
 # Add the end points
 api.add_resource(Login, '/login') 
 api.add_resource(Logout, '/logout/<token>')
+api.add_resource(Posts, '/tasks')
+api.add_resource(PostsByUser, '/tasks/user/<user_id>')
     
 @app.route("/")
 def index():

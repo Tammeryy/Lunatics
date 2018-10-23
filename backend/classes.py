@@ -13,7 +13,7 @@ sessions = []
 with open('data.json', 'r') as data_file:
     database = json.load(data_file)
 
-
+##### Session Handling #####
 ### Login handler ###
 class Login(Resource):
     def post(self):
@@ -53,3 +53,25 @@ class Logout(Resource):
                 sessions.remove(i)
                 return {"Success": "Logged out."}
         return {'Error': 'Session doesn\'t exist.'}
+
+
+
+##### Bidding #####
+
+
+
+
+
+##### Posting #####
+### Get and post tasks
+class Posts(Resource):
+    def get(self):
+        return {'Lol?': 'No.'}
+
+
+class PostsByUser(Resource):
+    def get(self, user_id):
+        return {'This is': 'A placeholder'}
+
+
+##### User interaction #####
