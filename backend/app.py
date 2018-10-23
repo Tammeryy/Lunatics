@@ -92,9 +92,16 @@ def createAccount():
     """
 
     # calculate id
+    #newId = len(database['users'])
+    #newId = 0
+    #for account in database['users']:
+    #newId = account['id'] + 1
     newId = 0
     for account in database['users']:
-        newId = account['id'] + 1
+        if account['id'] > newId:
+            newId = account['id']
+
+    newId = newId + 1 # the new id is the largest existing id + 1
 
     # edit the global variable - before updating the file
     database['users'].append({'id' : newId, 'username' : username, 'password' : password, 'name' : name, 'phone' : phone, 'email' : email})
@@ -148,10 +155,13 @@ def postTask():
     quality = data["quality"]
     num_ppl = data["num_ppl"]
 
-    # calculate id
+    # calculate id - can use gloabl var later - make it more efficient?
     newId = 0
     for post in database['posts']:
-        newId = post['id'] + 1
+        if post['id'] > newId:
+            newId = post['id']
+
+    newId = newId + 1
 
     # edit the global variable - before updating the file
     database['posts'].append({'cuisine' : cuisine, 'task_open' : task_open, 'description' : description,    
@@ -207,7 +217,7 @@ def bidTask():
     for j, d in enumerate(database['bids']):
         print j
         #if d["name"] == name and d["email"] == email and d["phone"] == phone and d["post_id"] == post_id:
-        if d["post_id"] == post_id and d["bidder_id"] == bidder_id
+        if d["post_id"] == post_id and d["bidder_id"] == bidder_id:
             i = j
             break
 
@@ -320,10 +330,52 @@ def delAccount():
     return jsonify({'result' : 'success'})
 
 # expects an entire post object - which replaces the old one
+#{ "cuisine": "chinese", "task_open": "true", "description": "Cater for a wedding event with various options (vegan, vegetarian, etc..)", "title": "Cook for 50-people event", 
+#      "bid_close": "10/10/2018", "budget": 88.88, "diet": "vegetarian", "poster_id": 1, "lowest_bid": 90, "location": "cabramatta", 
+#      "event_date": "24/11/2018", "quality": "Fine Dining", "post_id": 0, "num_ppl": 10 }
 @app.route("/editTask", methods=['POST'])
 def editTask():
     # edit task
     print("need to clarify interface")
+    data = request.get_json()
+    # process json of post object
+    cuisine = data["cuisine"]
+    task_open = "true"
+    description = data["description"]
+    title = data["title"]
+    bid_close = data["bid_close"]
+    budget = data["budget"]
+    diet = data["diet"]
+    poster_id = data["poster_id"] 
+    lowest_bid = data["lowest_bid"]
+    location = data["location"]
+    event_date = data["event_date"]
+    quality = data["quality"]
+    num_ppl = data["num_ppl"]
+    post_id = data["post_id"]
+
+    # delete task
+    i = 0
+    for post in database["posts"]:
+        if post["id"] == post_id:
+            del database["posts"][i]
+        i = i + 1
+
+    # edit the global variable - before updating the file
+    database['posts'].append({'cuisine' : cuisine, 'task_open' : task_open, 'description' : description,    
+        'title' : title, 'bid_close' : bid_close, 'budget' : budget, 'diet' : diet, 'poster_id' : poster_id,
+        'lowest_bid' : lowest_bid, 'location' : location, 'event_date' : event_date, 'quality' : quality,
+        'id' : post_id, 'num_ppl' : num_ppl})
+
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
+
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
+    return jsonify({'result' : 'success'})
+
 
 # expected input format:
 #   {"post_id" : 3 }
