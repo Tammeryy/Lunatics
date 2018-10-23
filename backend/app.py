@@ -187,6 +187,8 @@ def postTask():
 
 # post_id is already in front end since frontend retrieves stuff from db before anything
 # and calculated postid for any posts added after that
+# if it's a guest (i.e. someone with no accounts adding a bid - just add it in) - bidder_id = -1
+# if it is a person with an account - same person on same post if bidderid&&postid are same
 #expected input formaat
 #   {"post_id": 0, "bidder_id": 0, "bid_offer": 2.00, "email": "luslee@mail.com", "name": "Lucy", "phone": "0486754231" }
 @app.route("/bidTask", methods=['POST'])
@@ -204,12 +206,13 @@ def bidTask():
     i = -1
     for j, d in enumerate(database['bids']):
         print j
-        if d["name"] == name and d["email"] == email and d["phone"] == phone and d["post_id"] == post_id:
+        #if d["name"] == name and d["email"] == email and d["phone"] == phone and d["post_id"] == post_id:
+        if d["post_id"] == post_id and d["bidder_id"] == bidder_id
             i = j
             break
 
     print(i)
-    if i == -1:
+    if i == -1 or bidder_id == -1:
         # new record
         # edit the global variable - before updating the file
         # add bid to db
@@ -316,6 +319,7 @@ def delAccount():
     
     return jsonify({'result' : 'success'})
 
+# expects an entire post object - which replaces the old one
 @app.route("/editTask", methods=['POST'])
 def editTask():
     # edit task
@@ -345,11 +349,12 @@ def delTask():
     
     return jsonify({'result' : 'success'})
 
-
+# NOTE: guests(i.e. people with no accounts cannot update their bids)
 @app.route("/updateBid", methods=['POST'])
 def updateBid():
     print("update an existing bid")
 
+# NOTE: guests(i.e. people with no accounts cannot delete their bids)
 @app.route("/delBid", methods=['POST'])
 def delBid():
     # del bids
