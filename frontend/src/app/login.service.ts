@@ -9,9 +9,17 @@ import { Logins } from './mock-logins';
 })
 export class LoginService {
 
-  logins: LoginData[] = Logins;
+  logins: LoginData[];
 
-  constructor() { }
+  constructor() {
+      this.init();
+  }
+
+  // Grab initial logins data from backend
+  init() {
+      // TODO replace with backend GET
+      this.logins = Logins;
+  }
 
   getLogins(): Observable<LoginData[]> {
       return of(this.logins);

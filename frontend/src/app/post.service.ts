@@ -9,9 +9,17 @@ import { POSTS } from './mock-posts';
 })
 export class PostService {
 
-  posts: Post[] = POSTS;
+  posts: Post[];
 
-  constructor() { }
+  constructor() {
+      this.init();
+  }
+
+  // Grab initial posts data from backend
+  init() {
+      // TODO replace with backend GET
+      this.posts = POSTS;
+  }
 
   getPosts(): Observable<Post[]> {
       return of(this.posts);
