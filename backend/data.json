@@ -1,32 +1,58 @@
 {
+  "bids": [
+    {
+      "bidder_id": 0, 
+      "name": "Lucy", 
+      "post_id": 0, 
+      "phone": "0486754231", 
+      "bid_offer": 2.0, 
+      "email": "luslee@mail.com"
+    }, 
+    {
+      "bidder_id": 0, 
+      "name": "TLucy", 
+      "phone": "0486754231", 
+      "post_id": 0, 
+      "bid_offer": 5.0, 
+      "email": "luslee@mail.com"
+    }, 
+    {
+      "bidder_id": 0, 
+      "name": "TLucy", 
+      "post_id": 1, 
+      "phone": "0486754231", 
+      "bid_offer": 2.0, 
+      "email": "luslee@mail.com"
+    }
+  ], 
   "posts": [
     {
       "cuisine": "chinese", 
       "task_open": true, 
       "description": "Cater for a wedding event with various options (vegan, vegetarian, etc..)", 
-      "quality": "Fine Dining", 
       "title": "Cook for 50-people event", 
       "bid_close": "10/10/2018", 
       "budget": 88.88, 
       "diet": "vegetarian", 
       "poster_id": 1, 
+      "lowest_bid": 90, 
       "location": "cabramatta", 
       "event_date": "24/11/2018", 
-      "lowest_bid": 90, 
+      "quality": "Fine Dining", 
       "id": 0, 
       "num_ppl": 10
     }, 
     {
       "cuisine": "malaysian", 
       "task_open": true, 
-      "quality": "Fast Food", 
       "bid_close": "11/11/2018", 
       "budget": 100.0, 
       "diet": "halal", 
       "poster_id": 0, 
+      "lowest_bid": 2.0, 
       "location": "parramatta", 
       "event_date": "24/12/2018", 
-      "lowest_bid": 2.0, 
+      "quality": "Fast Food", 
       "id": 1, 
       "num_ppl": 20
     }, 
@@ -34,15 +60,15 @@
       "cuisine": "cuisine", 
       "task_open": "true", 
       "description": "we want yummy food", 
+      "quality": "high quality", 
       "title": "Looking for a world class chef", 
       "bid_close": "24/11/2018", 
       "budget": "5.00", 
       "diet": "vegan", 
       "poster_id": "0", 
-      "lowest_bid": null, 
       "location": "Sydney", 
       "event_date": "12/12/2018", 
-      "quality": "high quality", 
+      "lowest_bid": null, 
       "id": 2, 
       "num_ppl": "5"
     }, 
@@ -50,15 +76,15 @@
       "cuisine": "cuisine", 
       "task_open": "true", 
       "description": "we want yummy food", 
+      "quality": "high quality", 
       "title": "Looking for a world class chef", 
       "bid_close": "24/11/2018", 
       "budget": 5.0, 
       "diet": "vegan", 
       "poster_id": 0, 
-      "lowest_bid": null, 
       "location": "Sydney", 
       "event_date": "12/12/2018", 
-      "quality": "high quality", 
+      "lowest_bid": null, 
       "id": 3, 
       "num_ppl": 5
     }, 
@@ -66,43 +92,17 @@
       "cuisine": "cuisine", 
       "task_open": "true", 
       "description": "we want yummy food", 
-      "quality": "high quality", 
       "title": "Looking for a world class chef", 
       "bid_close": "24/11/2018", 
       "budget": 5.0, 
       "diet": "vegan", 
       "poster_id": 0, 
+      "lowest_bid": null, 
       "location": "Sydney", 
       "event_date": "12/12/2018", 
-      "lowest_bid": null, 
+      "quality": "high quality", 
       "id": 4, 
       "num_ppl": 5
-    }
-  ], 
-  "bids": [
-    {
-      "bidder_id": 0, 
-      "name": "Lucy", 
-      "phone": "0486754231", 
-      "post_id": 0, 
-      "bid_offer": 2.0, 
-      "email": "luslee@mail.com"
-    }, 
-    {
-      "bidder_id": 0, 
-      "name": "TLucy", 
-      "post_id": 0, 
-      "phone": "0486754231", 
-      "bid_offer": 5.0, 
-      "email": "luslee@mail.com"
-    }, 
-    {
-      "bidder_id": 0, 
-      "name": "TLucy", 
-      "phone": "0486754231", 
-      "post_id": 1, 
-      "bid_offer": 2.0, 
-      "email": "luslee@mail.com"
     }
   ], 
   "users": [
@@ -111,7 +111,7 @@
       "name": "tammy", 
       "email": "tam@mail.com", 
       "phone": "0412345678", 
-      "password": "iwannadropout", 
+      "password": "mynewpwd", 
       "id": 0
     }, 
     {

@@ -185,9 +185,6 @@ def postTask():
       "num_ppl": 10
     """
 
-# NEED TO CHECK WITH KRIS WHETHER DOUBLE UPS IN POST and BIDDER ID for a bid or double up in name and email matter 
-
-# this function can cause the above^ - when getting and showing list of bids...
 # post_id is already in front end since frontend retrieves stuff from db before anything
 # and calculated postid for any posts added after that
 #expected input formaat
@@ -269,14 +266,44 @@ def bidTask():
     # check lowest bid and change it in db
 
     #return bid.bid_offer
+
+# NOTE: currently to change password for account does not need any type of verification
+# need to double check^ - not in our req
+# expected input format:
+#   {"user_id" : 0, "new_password" : "mynewpwd" }
+@app.route("/changePwd", methods=['POST'])
+def changePwd():
+    # change pwd
+    data = request.get_json()
+    user_id = data["user_id"]
+    new_password = data["new_password"]
+    #print(database["users"][])
+    for user in database['users']:
+        if user["id"] == user_id:
+            user["password"] = new_password
+            # to check what databaase looks like
+            newDb = json.dumps(database, indent=2) 
+
+            # write new db to file
+            with open("data.json", "w") as file:
+                json.dump(database, file, indent=2)
+            
+            return jsonify({'result' : 'success'})
+
+    return jsonify({'result' : 'failure'}) # when it does not find the user id
+
+
+
+
+
+
 #### should have post requests###
-# change pwd
 # del account
 # edit atsk
 # del task
 # update bids
 # del bids
-# create profile
+# create profile - need to add a field in users for this - probably another object within the user?
 # edit profile
 
 #GOALS TODAY^^###
