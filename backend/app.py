@@ -1,12 +1,14 @@
 from flask import Flask
 import json
 from flask import jsonify
-# import request
+#import request
+from flask import request
 
 app = Flask(__name__)
 
 with open('data.json', 'r') as data_file:    
-    data = json.load(data_file)
+    database = json.load(data_file) # global
+    print(type(database))
 
 # NOTE: database = json file
 # return format = json format
@@ -37,7 +39,8 @@ def getMember(name):
 """
 @app.route("/")
 def index():
-	return "Welcome to Lunatics' chaotic backend!"
+    print(database)
+    return "Welcome to Lunatics' chaotic backend!"
 
 # post - mvp - Tammy
 # get - mvp - Kris
@@ -72,9 +75,11 @@ def index():
 
 
 # getBiddersForTask
+"""
 @app.route("")
 def getbidders():
 	# return as json object
+    return None
 
 # bidTask
 
@@ -82,6 +87,67 @@ def getbidders():
 @app.route("/alltasks")
 def getAllTasks():
 	return jsonify(data["posts"])
+
+
+"""
+# cross origin?
+##### POST REQUESTS CHANGING THE DATABASE #####
+# create an account
+# adds account to the db
+@app.route("/createAccount", methods=['POST'])
+def createAccount():
+
+    # need to get the username and pwd
+    data = request.get_json()
+    username = data["username"]
+    password = data["password"]
+    name = data["name"]
+    phone = data["phone"]
+    email = data["email"]
+    
+    # check if username is taken - using binary search
+    for account in database['users']:
+        #print(account)
+        print(account['username'])
+        print(username)
+        if account['username'] == username:
+            print("fjhsdfhk")
+            return jsonify({'result' : 'failure'})
+        #print(account['password'])
+
+    # calculate id
+    newId = 0
+    for account in database['users']:
+        newId = account['id'] + 1
+
+    #print(newId)
+
+    #database['users']['username'] = username
+
+    # edit the global variable - before updating the file
+    database['users'].append({'id' : newId, 'username' : username, 'password' : password, 'name' : name, 'phone' : phone, 'email' : email})
+    #print(database['users'])
+
+    newDb = json.dumps(database, indent=2) # to check what databaase looks like
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+
+    #print(newDb)
+
+    # write new db to file
+
+    #newAccount = {username: pwd}
+    return jsonify({'result' : 'success', 'username' : username, 'password' : password})
+
+#@app.route("/postTask", methods=['POST'])
+#def postTask():
+
+
+
+# make a post
+#@app.route("/")
+
+# make a bid
 
 if __name__ == "__main__":
     app.run()

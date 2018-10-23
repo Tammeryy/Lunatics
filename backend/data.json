@@ -1,64 +1,112 @@
 {
-    "users": [
-        {
-            "id": 0,
-            "username": "timtam",
-            "password": "iwannadropout",
-            "name": "tammy",
-            "phone": "0412345678",
-            "email": "tam@mail.com"
-        },
-        {
-            "id": 1,
-            "username": "MnM",
-            "password": "idontwannadropout",
-            "name": "emily",
-            "phone": "0487654321",
-            "email": "em@mail.com"
-        },
-        {
-            "id": 2,
-            "username": "Lu Slee Choo",
-            "password": "iloveuni",
-            "name": "Lucy",
-            "phone": "0486754231",
-            "email": "luslee@mail.com"
-        }
-    ],
-    "posts": [
-        {
-            "id": 0,
-            "poster_id": 1,
-            "price": "88.88",
-            "location": "cabramatta",
-            "num_ppl": 10,
-            "bid_close": "10/10/2018",
-            "event_date": "24/11/2018",
-            "cuisine": "chinese",
-            "quality": "Fine Dining",
-            "diet": "vegetarian"
-        },
-        {
-            "id": 1,
-            "poster_id": 0,
-            "price": "100.00",
-            "location": "parramatta",
-            "num_ppl": 20,
-            "bid_close": "11/11/2018",
-            "event_date": "24/12/2018",
-            "cuisine": "malaysian",
-            "quality": "Fast Food",
-            "diet": "halal"
-        }
-    ],
-    "bids": [
-        {
-            "post_id": 0,
-            "bidder_id": 2,
-            "name": "Lucy",
-            "phone": "0486754231",
-            "email": "luslee@mail.com",
-            "price": "2.00"
-        }
-    ]
+  "bids": [
+    {
+      "bidder_id": 2, 
+      "name": "Lucy", 
+      "phone": "0486754231", 
+      "price": "2.00", 
+      "post_id": 0, 
+      "email": "luslee@mail.com"
+    }
+  ], 
+  "posts": [
+    {
+      "cuisine": "chinese", 
+      "bid_close": "10/10/2018", 
+      "price": "88.88", 
+      "diet": "vegetarian", 
+      "poster_id": 1, 
+      "location": "cabramatta", 
+      "event_date": "24/11/2018", 
+      "quality": "Fine Dining", 
+      "id": 0, 
+      "num_ppl": 10
+    }, 
+    {
+      "cuisine": "malaysian", 
+      "bid_close": "11/11/2018", 
+      "price": "100.00", 
+      "diet": "halal", 
+      "poster_id": 0, 
+      "location": "parramatta", 
+      "event_date": "24/12/2018", 
+      "quality": "Fast Food", 
+      "id": 1, 
+      "num_ppl": 20
+    }
+  ], 
+  "users": [
+    {
+      "username": "timtam", 
+      "name": "tammy", 
+      "email": "tam@mail.com", 
+      "phone": "0412345678", 
+      "password": "iwannadropout", 
+      "id": 0
+    }, 
+    {
+      "username": "MnM", 
+      "name": "emily", 
+      "email": "em@mail.com", 
+      "phone": "0487654321", 
+      "password": "idontwannadropout", 
+      "id": 1
+    }, 
+    {
+      "username": "Lu Slee Choo", 
+      "name": "Lucy", 
+      "email": "luslee@mail.com", 
+      "phone": "0486754231", 
+      "password": "iloveuni", 
+      "id": 2
+    }, 
+    {
+      "username": "Tammyy", 
+      "name": "Tammy", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "password": "1234", 
+      "id": 3
+    }, 
+    {
+      "username": "Kris", 
+      "name": "Man", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "password": "1234", 
+      "id": 4
+    }, 
+    {
+      "username": "Kris", 
+      "name": "Man", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "password": "1234", 
+      "id": 5
+    }, 
+    {
+      "username": "Kris", 
+      "name": "Man", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "password": "1234", 
+      "id": 6
+    }, 
+    {
+      "username": "Kris", 
+      "name": "Man", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "password": "1234", 
+      "id": 7
+    }, 
+    {
+      "username": "Krisdsfjsdf", 
+      "name": "Man", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "password": "1234", 
+      "id": 8
+    }
+  ]
 }
