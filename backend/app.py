@@ -292,13 +292,30 @@ def changePwd():
 
     return jsonify({'result' : 'failure'}) # when it does not find the user id
 
+# expected input format:
+#   {"user_id" : 3 }
+@app.route("/delAcc", methods=['POST'])
+def delAccount():
+    # del account
+    data = request.get_json()
+    user_id = data["user_id"]
+    i = 0
+    for user in database["users"]:
+        if user["id"] == user_id:
+            del database["users"][i]
+        i = i + 1
 
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
 
-
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
+    return jsonify({'result' : 'success'})
 
 
 #### should have post requests###
-# del account
 # edit atsk
 # del task
 # update bids
