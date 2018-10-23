@@ -27,5 +27,4 @@ export class ViewBidsComponent implements OnInit {
   exitClick(): void {
     this.dialogRef.close();
   }
-
 }

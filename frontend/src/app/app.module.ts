@@ -10,6 +10,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -56,6 +58,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatSliderModule,
     MatSidenavModule,
+    MatTableModule,
     MatCheckboxModule,
     RouterModule.forRoot(
       appRoutes,

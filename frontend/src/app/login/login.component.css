@@ -2,6 +2,10 @@ mat-form-field {
   width: 80%;
 }
 
+btn {
+  padding: 30px;
+}
+
 mat-dialog-actions {
   /* need to align buttons in center - currently doesn't work */
   align-items: center;
