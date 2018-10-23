@@ -6,7 +6,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -51,10 +54,16 @@ const appRoutes: Routes = [
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSliderModule,
+    MatSidenavModule,
+    MatCheckboxModule,
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: false} // <-- debugging purposes only
     )
+  ],
+  exports: [
+    ReactiveFormsModule,
   ],
   providers: [AppComponent, HeaderComponent],
   bootstrap: [AppComponent],
