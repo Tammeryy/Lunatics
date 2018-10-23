@@ -11,6 +11,7 @@ export class LoginService {
 
   activeLogin: LoginData;
   logins: LoginData[];
+  newLoginID: number;
 
   constructor() {
       this.init();
@@ -21,6 +22,7 @@ export class LoginService {
       // TODO replace with backend GET
       this.logins = Logins;
       this.activeLogin = ActiveLogin;
+      this.newLoginID = this.logins.length;
   }
 
   getActiveLogin(): Observable<LoginData> {
@@ -36,13 +38,20 @@ export class LoginService {
   }
 
   getNewLoginID() {
-    return of(Object.keys(this.logins).length);
+    return of(this.newLoginID);
   }
 
   addAccount(account: LoginData) {
       this.logins.push(account);
+      this.newLoginID++;
       // TODO remove later
       console.log('[NEW ACCOUNT ADDED: ] id: ' + account.id + " | username: " + account.username + " | password: " + account.password);
+  }
+
+  deleteAccount(account: LoginData) {
+      // TODO add backend code
+      this.logins = this.logins.filter(account_obj => account_obj !== account);
+      return "success";
   }
 
   validSignUp(data: LoginData) {

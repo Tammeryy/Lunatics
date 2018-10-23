@@ -10,6 +10,7 @@ import { Bids } from './mock-bids';
 export class BidService {
 
   bids: Bid[];
+  newBidID: number;
 
   constructor() {
       this.init();
@@ -19,6 +20,7 @@ export class BidService {
   init() {
       // TODO replace with backend GET
       this.bids = Bids;
+      this.newBidID = this.bids.length;
   }
 
   getBids(): Observable<Bid[]> {
@@ -26,13 +28,14 @@ export class BidService {
   }
 
   getNewBidID() {
-      return of(Object.keys(this.bids).length);
+      return of(this.newBidID);
   }
 
   // Returns true if bid added successfully, else false
   addBid(bid: Bid) {
       // TODO: add backend push function call (return_value = { result: 'success/fail'})
       this.bids.push(bid);
+      this.newBidID++;
   }
 
   // TODO replace with backend call to check for valid bid

@@ -9,6 +9,7 @@ import { POSTS } from './mock-posts';
 })
 export class PostService {
 
+  newPostID: number;
   posts: Post[];
 
   constructor() {
@@ -19,6 +20,7 @@ export class PostService {
   init() {
       // TODO replace with backend GET
       this.posts = POSTS;
+      this.newPostID = this.posts.length;
   }
 
   getPosts(): Observable<Post[]> {
@@ -26,18 +28,19 @@ export class PostService {
   }
 
   getNewPostID() {
-      return of(Object.keys(this.posts).length);
+      return of(this.newPostID);
   }
 
   // Returns true if post added successfully, else false
   addPost(post: Post) {
       // TODO: replace with backend (return_value = { result: 'success/fail'})
       this.posts.push(post);
+      this.newPostID++;
       return true;
   }
 
   editPost(post: Post) {
-      // TODO call backend function and make it return 
+      // TODO call backend function and make it return
       return "success";
   }
 
