@@ -63,7 +63,7 @@ def index():
 
 
 ##### POST REQUESTS CHANGING THE DATABASE #####
-# create an account
+# create an account & auto creates default profile - need to add
 # adds account to the db
 # precondition: username is not taken - use other function to check
 # expected input format:
@@ -267,6 +267,8 @@ def bidTask():
 
     #return bid.bid_offer
 
+#################### should have post requests#####################
+
 # NOTE: currently to change password for account does not need any type of verification
 # need to double check^ - not in our req
 # expected input format:
@@ -314,18 +316,58 @@ def delAccount():
     
     return jsonify({'result' : 'success'})
 
+@app.route("/editTask", methods=['POST'])
+def editTask():
+    # edit task
+    print("need to clarify interface")
 
-#### should have post requests###
-# edit atsk
-# del task
-# update bids
-# del bids
-# create profile - need to add a field in users for this - probably another object within the user?
-# edit profile
+# expected input format:
+#   {"post_id" : 3 }
+@app.route("/delTask", methods=['POST'])
+def delTask():
+    # del task
+    print("deletes a task")
+    data = request.get_json()
+    post_id = data["post_id"]
 
-#GOALS TODAY^^###
+    i = 0
+    for post in database["posts"]:
+        if post["id"] == post_id:
+            del database["posts"][i]
+        i = i + 1
 
-#@app.route()
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
+
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
+    return jsonify({'result' : 'success'})
+
+
+@app.route("/updateBid", methods=['POST'])
+def updateBid():
+    print("update an existing bid")
+
+@app.route("/delBid", methods=['POST'])
+def delBid():
+    # del bids
+    print("delete an existiing bid")
+"""
+# "profile" created by default when an account is created
+@app.route("/createProfile", methods=['POST'])
+def createProfile():
+    # need to add a field in users for this - probably another object within the user?
+    print("creates a profile")
+"""
+
+@app.route("/editProfile", methods=['POST'])
+def editProfile():
+    print("edit a profile")
+
+
+
 
 if __name__ == "__main__":
     app.run()
