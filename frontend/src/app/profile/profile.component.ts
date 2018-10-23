@@ -4,6 +4,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoginData } from '../login-data';
 import { LoginService } from '../login.service';
 
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,15 +15,30 @@ export class ProfileComponent implements OnInit {
 
   activeLogin: LoginData;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
       this.getActiveLogin();
   }
 
-  // pop up
+  // pop up - can edit skills_exp, about me,
   editProfile() {
+    console.log('Edit Post popup called');
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    dialogConfig.data = {
+        account: this.activeLogin,
+    };
 
+    // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
+    const dialogRef = this.dialog.open(EditProfileComponent, dialogConfig);
+
+    // result refers to 'data' in [mat-dialog-close]
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   deleteAccount() {

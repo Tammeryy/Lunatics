@@ -1,0 +1,45 @@
+<div class="profile-popup">
+  <div class="profile-popup-header">
+    <!-- the "x" text represents the exit button on top right corner of activeLogin task popup box -->
+    <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
+    <h1 mat-dialog-title>Edit Task</h1><p id="exit-button" (click)="exitClick()">x</p>
+  </div>
+  <br>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput [value]="activeLogin.title" (input)="updatedProfile.title=$event.target.value"  placeholder="Task Title" type="text"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.description" (input)="updatedProfile.description=$event.target.value" placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.cuisine" (input)="updatedProfile.cuisine=$event.target.value" placeholder="Type of cuisine"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.quality" (input)="updatedProfile.quality=$event.target.value" placeholder="Food quality"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.diet" (input)="updatedProfile.diet=$event.target.value" placeholder="Type of diet"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.num_ppl" (input)="updatedProfile.num_ppl=$event.target.value" placeholder="Number of people"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.budget" (input)="updatedProfile.budget=$event.target.value" placeholder="Budget"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.event_date" (input)="updatedProfile.event_date=$event.target.value" placeholder="Event date"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.bid_close" (input)="updatedProfile.bid_close=$event.target.value" placeholder="Bid closing date"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="activeLogin.location" (input)="updatedProfile.location=$event.target.value" placeholder="Location"></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <!-- dialog box will only close if "activeLogin" list is not empty ([mat-dialog-close]="activeLogin")-->
+    <button mat-button (click)="editTask()" cdkFocusInitial>Edit Task</button>
+  </div>
+</div>

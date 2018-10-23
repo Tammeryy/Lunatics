@@ -12,22 +12,7 @@ import { PostService } from '../post.service';
 export class EditTaskComponent implements OnInit {
 
   post: Post;
-  updatedPost: Post = {
-    id: -1,
-    title: null,
-    description: null,
-    poster_id: -1,
-    budget: -1,
-    location: null,
-    num_ppl: -1,
-    bid_close: null,
-    event_date: null,
-    cuisine: null,
-    quality: null,
-    diet: null,
-    lowest_bid: -1,
-    task_open: null
-  };
+  updatedPost: Post;
 
   constructor(private postService: PostService,
               public dialogRef: MatDialogRef<EditTaskComponent>,
@@ -71,6 +56,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   updatePost() {
+      console.log(this.updatedPost);
       for (var i in this.updatedPost) {
           if (this.post[i] !== this.updatedPost[i]) this.post[i] = this.updatedPost[i];
       }
