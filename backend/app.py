@@ -37,6 +37,25 @@ def members():
 def getMember(name):
     return name
 """
+# used when user logs in - need to return entire account object if account exists
+"""
+# kris will be doing authentication
+@app.route("/authenticate", methods=['GET','POST'])
+def authenticate():
+    # need to get the username and pwd
+    data = request.get_json()
+    username = data["username"]
+    password = data["password"]
+
+    # verifies if it exists
+    # if false return None 
+
+    # verifies password is correct
+    # if false, return password inccorect
+
+    # if correct , returnn the user dictionary object
+"""
+
 @app.route("/")
 def index():
     print(database)
@@ -46,6 +65,7 @@ def index():
 ##### POST REQUESTS CHANGING THE DATABASE #####
 # create an account
 # adds account to the db
+# precondition: username is not taken - use other function to check
 # expected input format:
 #   {"username" : "Tammy", "password" : "1234" , "name" : "Man", "phone" : "044444444", "email" : "tammy@gmail.com"}
 @app.route("/createAccount", methods=['POST'])
@@ -59,7 +79,8 @@ def createAccount():
     phone = data["phone"]
     email = data["email"]
     
-    # check if username is taken - using binary search
+    # check if username is taken
+    """
     for account in database['users']:
         #print(account)
         print(account['username'])
@@ -68,6 +89,7 @@ def createAccount():
             print("fjhsdfhk")
             return jsonify({'result' : 'failure'})
         #print(account['password'])
+    """
 
     # calculate id
     newId = 0
@@ -86,29 +108,31 @@ def createAccount():
     
     return jsonify({'result' : 'success', 'username' : username, 'password' : password})
 
-
-# used when user logs in - need to return entire account object if account exists
-@app.route("/authenticate", methods=['GET','POST'])
-def authenticate():
-    # need to get the username and pwd
+# checks that the account about to be created 
+# username is valid - i.e. does  not exist
+# expected input format
+#   {"username" : "Taf"}
+@app.route("/verifyAvailUsername", methods=["GET", 'POST'])
+def verifyAvailUsername():
     data = request.get_json()
     username = data["username"]
-    password = data["password"]
+    for account in database['users']:
+        #print(account)
+        print(account['username'])
+        print(username)
+        if account['username'] == username:
+            print("fjhsdfhk")
+            return jsonify({'result' : 'false'}) # not available
 
-    # verifies if it exists
-    # if false return None 
+    return jsonify({'result' : 'true'}) # available
 
-    # verifies password is correct
-    # if false, return password inccorect
-
-    # if correct , returnn the user dictionary object
-
-
-"""
+# for adding a post to database
+# precondition: assumes that poster id exists
+# expected input format
+#   {"cuisine" : "cuisine", "description" : "we want yummy food", "title" : "Looking for a world class chef", "bid_close" : "24/11/2018", "budget" : 5.00, "diet" : "vegan", "poster_id" : 0, "location" : "Sydney", "event_date" : "12/12/2018", "quality" : "high quality", "num_ppl" : 5}
 @app.route("/postTask", methods=['POST'])
 def postTask():
-
-    data = request.json()
+    data = request.get_json()
     cuisine = data["cuisine"]
     task_open = "true"
     description = data["description"]
@@ -116,13 +140,33 @@ def postTask():
     bid_close = data["bid_close"]
     budget = data["budget"]
     diet = data["diet"]
-    #poster_id 
-    lowest_bid = data["lowest_bid"]
+    poster_id = data["poster_id"] 
+    lowest_bid = None
     location = data["location"]
     event_date = data["event_date"]
     quality = data["quality"]
     num_ppl = data["num_ppl"]
-"""
+
+    # calculate id
+    newId = 0
+    for post in database['posts']:
+        newId = post['id'] + 1
+
+    # edit the global variable - before updating the file
+    database['posts'].append({'cuisine' : cuisine, 'task_open' : task_open, 'description' : description,    
+        'title' : title, 'bid_close' : bid_close, 'budget' : budget, 'diet' : diet, 'poster_id' : poster_id,
+        'lowest_bid' : lowest_bid, 'location' : location, 'event_date' : event_date, 'quality' : quality,
+        'id' : newId, 'num_ppl' : num_ppl})
+
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
+
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
+    return jsonify({'result' : 'success'})
+
     """
     "cuisine": "chinese", 
       "task_open": true, 
@@ -155,7 +199,7 @@ def postTask():
 
 #GOALS TODAY^^###
 
-@app.route()
+#@app.route()
 
 if __name__ == "__main__":
     app.run()

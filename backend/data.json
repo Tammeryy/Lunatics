@@ -1,8 +1,8 @@
 {
   "bids": [
     {
-      "bid_offer": "2.00", 
       "post_id": 0, 
+      "bid_offer": "2.00", 
       "email": "luslee@mail.com", 
       "name": "Lucy", 
       "phone": "0486754231"
@@ -38,6 +38,54 @@
       "quality": "Fast Food", 
       "id": 1, 
       "num_ppl": 20
+    }, 
+    {
+      "cuisine": "cuisine", 
+      "task_open": "true", 
+      "description": "we want yummy food", 
+      "title": "Looking for a world class chef", 
+      "quality": "high quality", 
+      "budget": "5.00", 
+      "diet": "vegan", 
+      "poster_id": "0", 
+      "location": "Sydney", 
+      "bid_close": "24/11/2018", 
+      "event_date": "12/12/2018", 
+      "lowest_bid": null, 
+      "id": 2, 
+      "num_ppl": "5"
+    }, 
+    {
+      "cuisine": "cuisine", 
+      "task_open": "true", 
+      "description": "we want yummy food", 
+      "title": "Looking for a world class chef", 
+      "quality": "high quality", 
+      "budget": 5.0, 
+      "diet": "vegan", 
+      "poster_id": 0, 
+      "location": "Sydney", 
+      "bid_close": "24/11/2018", 
+      "event_date": "12/12/2018", 
+      "lowest_bid": null, 
+      "id": 3, 
+      "num_ppl": 5
+    }, 
+    {
+      "description": "we want yummy food", 
+      "diet": "vegan", 
+      "poster_id": 0, 
+      "lowest_bid": null, 
+      "id": 4, 
+      "cuisine": "cuisine", 
+      "task_open": "true", 
+      "quality": "high quality", 
+      "title": "Looking for a world class chef", 
+      "bid_close": "24/11/2018", 
+      "budget": 5.0, 
+      "location": "Sydney", 
+      "event_date": "12/12/2018", 
+      "num_ppl": 5
     }
   ], 
   "users": [
