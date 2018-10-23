@@ -8,10 +8,10 @@
   <div mat-dialog-content>
     <h3> Current Lowest Bid:{{post.lowest_bid}}</h3>
     <mat-list-item *ngFor="let bid of bids">
-      <b mat-line> {{bid.name}} </b> <span id="budget"> {{bid.bid_offer | currency}} </span>
-      <p mat-line> {{bid.phone_no}} </p>
-      <p mat-line> {{bid.email}} </p>
-      <p mat-line> {{bid.description}} </p>
+      <b mat-line class="col-sm-2 control-label mat-form-field"> {{bid.name}} </b> <span id="budget" class="form-control"> {{bid.bid_offer | currency}} </span>
+      <p mat-line class="col-sm-2 control-label mat-form-field"> {{bid.phone_no}} </p>
+      <p mat-line class="col-sm-2 control-label mat-form-field"> {{bid.email}} </p>
+      <p mat-line class="col-sm-2 control-label mat-form-field"> {{bid.description}} </p>
       <br>
     </mat-list-item>
   </div>

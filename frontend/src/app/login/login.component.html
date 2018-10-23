@@ -1,6 +1,7 @@
 <div class="popup">
   <div class="popup-header">
-    <h1 mat-dialog-title>Login</h1><p id="exit-button" (click)="exitClick()">x</p>
+    <h1 mat-dialog-title>Login</h1>
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
   </div>
   <br>
   <div mat-dialog-content>
@@ -16,6 +17,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button [mat-dialog-close] (click)="signUp()">Create an account</button>
-    <button mat-button (click)="verifyLogin()" cdkFocusInitial>Login</button>
+    <button mat-button (click)="verifyLogin()" cdkFocusInitial class="btn btn-primary">Login</button>
   </div>
 </div>

@@ -8,21 +8,21 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">{{title}}</a>
+      <a class="navbar-brand" href="">{{title}}</a>
     </div>
     <ul class="nav navbar-nav">
       <!--TODO change li's class to class="active" when it's active-->
-      <li><a href="#">Browse</a></li>
-      <li *ngIf="this.activeLogin"><a href="#">Task</a></li>
-      <li *ngIf="this.activeLogin"><a href="#">Profile</a></li>
+      <li><a routerLink="" routerLinkActive="active">Browse</a></li>
+      <li *ngIf="this.activeLogin" routerLink="/task" routerLinkActive="active"><a>Task</a></li>
+      <li *ngIf="this.activeLogin" routerLink="/profile" routerLinkActive="active"><a>Profile</a></li>
       <!-- CHANGE STYLING OF THIS -->
-      <li><a href="#" (click)="openPostPopup()">Post a Task</a></li>
+      <li><a (click)="openPostPopup()">Post a Task</a></li>
     </ul>
     <!--TODO change li's class to sign out-->
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!this.activeLogin"><a href="#" (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-      <li *ngIf="!this.activeLogin"><a href="#" (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-      <li *ngIf="this.activeLogin"><a href="#" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+      <li *ngIf="!this.activeLogin"><a (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+      <li *ngIf="!this.activeLogin"><a (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+      <li *ngIf="this.activeLogin"><a (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -33,3 +33,4 @@
 <li *ngIf="activeLogin">
   <i>Login successful</i>
 </li>
+<router-outlet></router-outlet>
