@@ -26,11 +26,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { BidTaskComponent } from './bid-task/bid-task.component';
 import { ViewBidsComponent } from './view-bids/view-bids.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { BidPageComponent } from './bid-page/bid-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'profile', component: ProfileComponent},
-  {path: 'task', component: TaskComponent}
+  {path: 'task', component: TaskComponent},
+  {path: 'bidpage', component: BidPageComponent}
 ];
 
 @NgModule({
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     SignUpComponent,
     BidTaskComponent,
     ViewBidsComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    BidPageComponent
   ],
   imports: [
     BrowserModule,
