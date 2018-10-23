@@ -42,55 +42,7 @@ def index():
     print(database)
     return "Welcome to Lunatics' chaotic backend!"
 
-# post - mvp - Tammy
-# get - mvp - Kris
-# search, sort, filter (2/3) - dafny then code - Lucy
-	# minimum of 2 dafny verification
-# front end - can see mvp by next week
 
-
-
-
-
-
-# request.json - getting params from frontend
-
-
-# editing json files in python?
-
-
-# passin gin params through routes bit? or a separate function?
-
-
-# createAccount - unsure about the ones that need to pass in a parameter
-
-
-# authenticate - unsure how authentications work?
-
-
-# postTask -how to edit json files?
-
-
-# getPostedTasks
-
-
-# getBiddersForTask
-"""
-@app.route("")
-def getbidders():
-	# return as json object
-    return None
-
-# bidTask
-
-# getAllTasks
-@app.route("/alltasks")
-def getAllTasks():
-	return jsonify(data["posts"])
-
-
-"""
-# cross origin?
 ##### POST REQUESTS CHANGING THE DATABASE #####
 # create an account
 # adds account to the db
@@ -120,23 +72,16 @@ def createAccount():
     for account in database['users']:
         newId = account['id'] + 1
 
-    #print(newId)
-
-    #database['users']['username'] = username
-
     # edit the global variable - before updating the file
     database['users'].append({'id' : newId, 'username' : username, 'password' : password, 'name' : name, 'phone' : phone, 'email' : email})
-    #print(database['users'])
 
-    newDb = json.dumps(database, indent=2) # to check what databaase looks like
-    with open("data.json", "w") as file:
-        json.dump(database, file, indent=2)
-
-    #print(newDb)
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
 
     # write new db to file
-
-    #newAccount = {username: pwd}
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
     return jsonify({'result' : 'success', 'username' : username, 'password' : password})
 
 #@app.route("/postTask", methods=['POST'])
@@ -145,11 +90,17 @@ def createAccount():
 #@app.route("/bidTask", methods=['POST'])
 #def bidTask():
 
+#### should have post requests###
+# change pwd
+# del account
+# edit atsk
+# del task
+# update bids
+# del bids
+# create profile
+# edit profile
 
-# make a post
-#@app.route("/")
-
-# make a bid
+@app.route()
 
 if __name__ == "__main__":
     app.run()
