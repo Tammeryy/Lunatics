@@ -36,6 +36,15 @@ export class PostService {
       return true;
   }
 
+  editPost(post: Post) {
+      return "success";
+  }
+
+  deletePost(post: Post) {
+      // TODO replace with backend call
+      return "success";
+  }
+
   // TODO replace with backend call to check for valid post
   validPost(post: Post) {
       if (post.title && post.description && post.bid_close && post.location) {

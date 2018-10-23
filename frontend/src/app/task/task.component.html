@@ -29,6 +29,19 @@
   <mat-list-item *ngFor="let post of userPosts" id="container">
     <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
     <p mat-line id="task-desc"> {{post.description}} </p>
-    <button class="btn btn-warning" id="bid-button" (click)="openViewBidPopup(post)"> Bid</button>
+    <div class="btn-group" id="bid-button">
+      <a class="btn btn-primary a-btn-slide-text bottom-btn" (click)="openEditPopup(post)">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        <span><strong>Edit</strong></span>
+      </a>
+      <a class="btn btn-danger a-btn-slide-text bottom-btn" (click)="deletePost(post)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <span><strong>Delete</strong></span>
+      </a>
+      <a class="btn btn-warning a-btn-slide-text bottom-btn" (click)="openViewBidPopup(post)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <span><strong>View Bids</strong></span>
+      </a>
+    </div>
   </mat-list-item>
 </mat-list>

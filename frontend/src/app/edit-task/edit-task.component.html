@@ -1,0 +1,45 @@
+<div class="post-popup">
+  <div class="post-popup-header">
+    <!-- the "x" text represents the exit button on top right corner of post task popup box -->
+    <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
+    <h1 mat-dialog-title>Edit Task</h1><p id="exit-button" (click)="exitClick()">x</p>
+  </div>
+  <br>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput [value]="post.title" (input)="updatedPost.title" placeholder="Task Title" type="text"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <textarea matInput [value]="post.description" (ngModel)="updatedPost.description" placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.cuisine" (ngModel)="updatedPost.cuisine" placeholder="Type of cuisine"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.quality" (ngModel)="updatedPost.quality" placeholder="Food quality"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.diet" (ngModel)="updatedPost.diet" placeholder="Type of diet"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.num_ppl" (ngModel)="updatedPost.num_ppl" placeholder="Number of people"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.budget" (ngModel)="updatedPost.budget" placeholder="Budget"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.event_date" (ngModel)="updatedPost.event_date" placeholder="Event date"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.bid_close" (ngModel)="updatedPost.bid_close" placeholder="Bid closing date"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.location" (ngModel)="updatedPost.location" placeholder="Location"></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <!-- dialog box will only close if "post" list is not empty ([mat-dialog-close]="post")-->
+    <button mat-button (click)="editPost()" cdkFocusInitial>Edit Task</button>
+  </div>
+</div>
