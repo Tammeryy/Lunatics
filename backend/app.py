@@ -5,6 +5,8 @@ import json
 
 # Starter code for Api found here:
 # https://www.codementor.io/sagaragarwal94/building-a-basic-restful-api-in-python-58k02xsiq
+# More found here
+# https://www.codementor.io/dongido/how-to-build-restful-apis-with-python-and-flask-fh5x7zjrx
 
 # Setup
 app = Flask(__name__)
