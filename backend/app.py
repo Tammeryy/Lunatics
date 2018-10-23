@@ -142,6 +142,8 @@ def createAccount():
 #@app.route("/postTask", methods=['POST'])
 #def postTask():
 
+#@app.route("/bidTask", methods=['POST'])
+#def bidTask():
 
 
 # make a post

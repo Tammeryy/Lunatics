@@ -1,21 +1,24 @@
 {
   "bids": [
     {
-      "bidder_id": 2, 
-      "name": "Lucy", 
-      "phone": "0486754231", 
-      "price": "2.00", 
+      "bid_offer": "2.00", 
       "post_id": 0, 
-      "email": "luslee@mail.com"
+      "email": "luslee@mail.com", 
+      "name": "Lucy", 
+      "phone": "0486754231"
     }
   ], 
   "posts": [
     {
       "cuisine": "chinese", 
+      "task_open": true, 
+      "description": "Cater for a wedding event with various options (vegan, vegetarian, etc..)", 
+      "title": "Cook for 50-people event", 
       "bid_close": "10/10/2018", 
-      "price": "88.88", 
+      "budget": 88.88, 
       "diet": "vegetarian", 
       "poster_id": 1, 
+      "lowest_bid": 90, 
       "location": "cabramatta", 
       "event_date": "24/11/2018", 
       "quality": "Fine Dining", 
@@ -24,10 +27,12 @@
     }, 
     {
       "cuisine": "malaysian", 
+      "task_open": true, 
       "bid_close": "11/11/2018", 
-      "price": "100.00", 
+      "budget": 100.0, 
       "diet": "halal", 
       "poster_id": 0, 
+      "lowest_bid": 110, 
       "location": "parramatta", 
       "event_date": "24/12/2018", 
       "quality": "Fast Food", 
@@ -61,52 +66,12 @@
       "id": 2
     }, 
     {
-      "username": "Tammyy", 
-      "name": "Tammy", 
+      "username": "Tammy", 
+      "name": "Man", 
       "email": "tammy@gmail.com", 
       "phone": "044444444", 
       "password": "1234", 
       "id": 3
-    }, 
-    {
-      "username": "Kris", 
-      "name": "Man", 
-      "email": "tammy@gmail.com", 
-      "phone": "044444444", 
-      "password": "1234", 
-      "id": 4
-    }, 
-    {
-      "username": "Kris", 
-      "name": "Man", 
-      "email": "tammy@gmail.com", 
-      "phone": "044444444", 
-      "password": "1234", 
-      "id": 5
-    }, 
-    {
-      "username": "Kris", 
-      "name": "Man", 
-      "email": "tammy@gmail.com", 
-      "phone": "044444444", 
-      "password": "1234", 
-      "id": 6
-    }, 
-    {
-      "username": "Kris", 
-      "name": "Man", 
-      "email": "tammy@gmail.com", 
-      "phone": "044444444", 
-      "password": "1234", 
-      "id": 7
-    }, 
-    {
-      "username": "Krisdsfjsdf", 
-      "name": "Man", 
-      "email": "tammy@gmail.com", 
-      "phone": "044444444", 
-      "password": "1234", 
-      "id": 8
     }
   ]
 }
