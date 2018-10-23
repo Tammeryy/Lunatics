@@ -436,12 +436,31 @@ def updateBid():
     return jsonify({'result' : 'success'})
     
 
-
+# expected input:
+# { "post_id" : 0, "bidder_id" : 0 }
 # NOTE: guests(i.e. people with no accounts cannot delete their bids)
 @app.route("/delBid", methods=['POST'])
 def delBid():
+    data = request.get_json()
+    post_id = data["post_id"]
+    bidder_id = data["bidder_id"]
+
     # del bids
     print("delete an existiing bid")
+    i = 0
+    for bid in database["bids"]:
+        if bid["post_id"] == post_id and bid["bidder_id"] == bidder_id:
+            del database["bids"][i]
+        i = i + 1
+
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
+
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
+    return jsonify({'result' : 'success'})
 
 """
 # "profile" created by default when an account is created
