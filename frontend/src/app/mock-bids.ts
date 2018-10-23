@@ -2,7 +2,7 @@ import { Bid } from './bid';
 
 export const Bids: Bid[] = [
   {
-    post_id: 1,
+    post_id: 0,
     name: 'Steve',
     phone_no: "0401010101",
     email: 'steve@smail.com',

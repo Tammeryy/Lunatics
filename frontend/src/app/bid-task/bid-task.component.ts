@@ -40,6 +40,7 @@ export class BidTaskComponent implements OnInit {
   verifyBid() {
       if (this.validBid()) {
         alert('Bid details are valid. Adding bid to browse list...');
+        console.log("[BID] Title: " + this.post.title + " | Lowest Bid: " + this.post.lowest_bid);
         this.addBid();
         this.dialogRef.close(this.bid.bid_offer);
       }

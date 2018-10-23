@@ -19,6 +19,22 @@ export const POST: Post = {
 
 export const POSTS: Post[] = [
     {
+        id: 0,
+        title: "Cook for 20-people event",
+        description: "Cater for a party event with various options (vegan, vegetarian, etc..)",
+        poster_id: 2,
+        budget: 500,
+        location: "auburn",
+        num_ppl: 40,
+        bid_close: "15/10/2018",
+        event_date: "21/11/2018",
+        cuisine: "chinese",
+        quality: "Fine Dining",
+        diet: "vegetarian",
+        lowest_bid: 400,
+        task_open: true
+    },
+    {
         id: 1,
         title: "Cook for 50-people event",
         description: "Cater for a wedding event with various options (vegan, vegetarian, etc..)",

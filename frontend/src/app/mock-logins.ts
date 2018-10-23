@@ -2,12 +2,20 @@ import { LoginData } from './login-data';
 
 export const Logins: LoginData[] = [
   {
-    id: 1,
+    id: 0,
     username: 'user',
     password: 'pwd',
     name: 'user',
     phone: '0412345678',
     email: 'user@hotmail.com',
+  },
+  {
+    id: 1,
+    username: 'passuser',
+    password: 'ped',
+    name: 'pass',
+    phone: '0452345678',
+    email: 'pass@hotmail.com',
   },
   {
     id: 2,

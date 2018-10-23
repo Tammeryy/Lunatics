@@ -29,7 +29,6 @@ export class PostsComponent implements OnInit {
   }
 
   openBidPopup(post: Post) {
-    console.log("[BID] Title: " + post.title + " | Lowest Bid: " + post.lowest_bid);
     console.log('Bid popup called');
     // Bid - Post title, Post's current lowest bid
 

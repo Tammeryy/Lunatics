@@ -26,7 +26,7 @@ export class LoginService {
   }
 
   getNewLoginID() {
-    return of(Object.keys(this.logins).length+1);
+    return of(Object.keys(this.logins).length);
   }
 
   addAccount(account: LoginData) {

@@ -26,7 +26,7 @@ export class PostService {
   }
 
   getNewPostID() {
-      return of(Object.keys(this.posts).length+1);
+      return of(Object.keys(this.posts).length);
   }
 
   // Returns true if post added successfully, else false
