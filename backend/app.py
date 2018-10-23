@@ -78,6 +78,8 @@ def createAccount():
     name = data["name"]
     phone = data["phone"]
     email = data["email"]
+    about_me = ""
+    skills_exp = ""
     
     # check if username is taken
     """
@@ -104,7 +106,7 @@ def createAccount():
     newId = newId + 1 # the new id is the largest existing id + 1
 
     # edit the global variable - before updating the file
-    database['users'].append({'id' : newId, 'username' : username, 'password' : password, 'name' : name, 'phone' : phone, 'email' : email})
+    database['users'].append({'id' : newId, 'username' : username, 'password' : password, 'name' : name, 'phone' : phone, 'email' : email, 'about_me' : about_me, 'skills_exp' : skills_exp})
 
     # to check what databaase looks like
     newDb = json.dumps(database, indent=2) 
@@ -470,10 +472,41 @@ def createProfile():
     print("creates a profile")
 """
 
+# updates the "profile" that was auto created when account was created
+# profile = the fields in an user object
+# { "username": "Lu Slee Choo", "name": "Lucy", "email": "luslee@mail.com", "phone": "0486754231", "password": "iloveuni", "user_id": 2, "about_me" : "luslee", "skills_exp" : "experienced as" }
 @app.route("/editProfile", methods=['POST'])
 def editProfile():
     print("edit a profile")
+    data = request.get_json()
+    username = data["username"]
+    name = data["name"]
+    email = data["email"]
+    phone = data["phone"]
+    password = data["password"]
+    user_id = data["user_id"] # diff name
+    about_me = data["about_me"]
+    skills_exp = data["skills_exp"]
 
+    i = 0
+    for user in database["users"]:
+        if user["id"] == user_id:
+            del database["users"][i]
+        i = i + 1
+
+    # edit the global variable - before updating the file
+    # add it back in with updated info
+    database['users'].append({ "username": username, "name": name, "email": email, "phone": phone, "password": password, "id": user_id, "about_me" : about_me, "skills_exp" : skills_exp })
+
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
+
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
+    return jsonify({'result' : 'success'})
+    
 
 
 
