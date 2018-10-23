@@ -362,6 +362,7 @@ def editTask():
         i = i + 1
 
     # edit the global variable - before updating the file
+    # add it back in with updated info
     database['posts'].append({'cuisine' : cuisine, 'task_open' : task_open, 'description' : description,    
         'title' : title, 'bid_close' : bid_close, 'budget' : budget, 'diet' : diet, 'poster_id' : poster_id,
         'lowest_bid' : lowest_bid, 'location' : location, 'event_date' : event_date, 'quality' : quality,
@@ -401,16 +402,47 @@ def delTask():
     
     return jsonify({'result' : 'success'})
 
+# expected input:
+# { "bidder_id": 0, "name": "Lucy", "phone": "0486754231", "post_id": 0, "bid_offer": 2.0, "email": "luslee@mail.com" }
 # NOTE: guests(i.e. people with no accounts cannot update their bids)
 @app.route("/updateBid", methods=['POST'])
 def updateBid():
     print("update an existing bid")
+    data = request.get_json()
+    bidder_id = data["bidder_id"]
+    name = data["name"]
+    phone = data["phone"]
+    post_id = data["post_id"]
+    bid_offer = data["bid_offer"]
+    email = data["email"]
+
+    i = 0
+    for bid in database["bids"]:
+        if bid["post_id"] == post_id and bid["bidder_id"] == bidder_id:
+            del database["bids"][i]
+        i = i + 1
+
+    # edit the global variable - before updating the file
+    # add it back in with updated info
+    database['bids'].append({ "bidder_id": bidder_id, "name": name, "phone": phone, "post_id": post_id, "bid_offer": bid_offer, "email": email })
+
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
+
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
+    
+    return jsonify({'result' : 'success'})
+    
+
 
 # NOTE: guests(i.e. people with no accounts cannot delete their bids)
 @app.route("/delBid", methods=['POST'])
 def delBid():
     # del bids
     print("delete an existiing bid")
+
 """
 # "profile" created by default when an account is created
 @app.route("/createProfile", methods=['POST'])
