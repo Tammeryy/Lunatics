@@ -66,4 +66,11 @@ export class LoginService {
       if (user.length === 1) return user[0];
       return null;
   }
+
+  editLogin(login: LoginData) {
+      // TODO this.activeLogin.... = ...
+      if (this.activeLogin.about_me !== login.about_me) this.activeLogin.about_me = login.about_me;
+      if (this.activeLogin.skills_exp !== login.skills_exp) this.activeLogin.skills_exp = login.skills_exp;
+      return "success";
+  }
 }

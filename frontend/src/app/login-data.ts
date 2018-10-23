@@ -5,4 +5,6 @@ export class LoginData {
   name: string;
   phone: string;
   email: string;
+  about_me: string;
+  skills_exp: string;
 }

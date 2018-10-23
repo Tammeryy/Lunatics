@@ -6,7 +6,9 @@ export const ActiveLogin: LoginData = {
   password: '',
   name: '',
   phone: '',
-  email: ''
+  email: '',
+  about_me: '',
+  skills_exp: ''
 };
 
 export const Logins: LoginData[] = [
@@ -17,6 +19,8 @@ export const Logins: LoginData[] = [
     name: 'user',
     phone: '0412345678',
     email: 'user@hotmail.com',
+    about_me: "",
+    skills_exp: ""
   },
   {
     id: 1,
@@ -25,6 +29,8 @@ export const Logins: LoginData[] = [
     name: 'pass',
     phone: '0452345678',
     email: 'pass@hotmail.com',
+    about_me: "pass user",
+    skills_exp: "i pass courses"
   },
   {
     id: 2,
@@ -33,6 +39,8 @@ export const Logins: LoginData[] = [
     name: 'Kappa',
     phone: '0422345678',
     email: 'cap@gmail.com',
+    about_me: "kappa",
+    skills_exp: "kappa"
   },
   {
     id: 3,
@@ -41,6 +49,8 @@ export const Logins: LoginData[] = [
     name: 'valid guy',
     phone: '0432345678',
     email: 'valid.user@hotmail.com',
+    about_me: "i am valid. don't question me",
+    skills_exp: "everything"
   },
   {
     id: 4,
@@ -49,6 +59,8 @@ export const Logins: LoginData[] = [
     name: 'Heather Jones',
     phone: '0442345678',
     email: 'boop@outlook.com',
+    about_me: "",
+    skills_exp: ""
   },
   {
     id: 5,
@@ -57,5 +69,7 @@ export const Logins: LoginData[] = [
     name: 'Ric',
     phone: '0452345678',
     email: 'err@hotmail.com',
+    about_me: "",
+    skills_exp: ""
   }
 ]
