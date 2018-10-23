@@ -9,7 +9,7 @@
 </ul>
 <h2> Your tasks/posts </h2>
 <ul class="all-post">
-  <li *ngFor="let post of user_posts">
+  <li *ngFor="let post of userPosts">
     Title: {{post.title}}
     <!-- TODO add post details here -->
     <button mat-button>Bid Now</button>
@@ -26,7 +26,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <mat-list-item *ngFor="let post of user_posts" id="container">
+  <mat-list-item *ngFor="let post of userPosts" id="container">
     <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
     <p mat-line id="task-desc"> {{post.description}} </p>
     <button class="btn btn-warning" id="bid-button" (click)="openViewBidPopup(post)"> Bid</button>
