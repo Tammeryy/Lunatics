@@ -128,6 +128,7 @@ def verifyAvailUsername():
 
 # for adding a post to database
 # precondition: assumes that poster id exists
+# NOTE: frontend also keeps track of all posts initially in db and calculates id like backend as posts are made - they match
 # expected input format
 #   {"cuisine" : "cuisine", "description" : "we want yummy food", "title" : "Looking for a world class chef", "bid_close" : "24/11/2018", "budget" : 5.00, "diet" : "vegan", "poster_id" : 0, "location" : "Sydney", "event_date" : "12/12/2018", "quality" : "high quality", "num_ppl" : 5}
 @app.route("/postTask", methods=['POST'])
@@ -184,9 +185,90 @@ def postTask():
       "num_ppl": 10
     """
 
+# NEED TO CHECK WITH KRIS WHETHER DOUBLE UPS IN POST and BIDDER ID for a bid or double up in name and email matter 
+
+# this function can cause the above^ - when getting and showing list of bids...
+# post_id is already in front end since frontend retrieves stuff from db before anything
+# and calculated postid for any posts added after that
+#expected input formaat
+#   {"post_id": 0, "bidder_id": 0, "bid_offer": 2.00, "email": "luslee@mail.com", "name": "Lucy", "phone": "0486754231" }
 @app.route("/bidTask", methods=['POST'])
 def bidTask():
+    data = request.get_json()
+    post_id = data["post_id"]
+    bidder_id = data["bidder_id"] # basically the account user id - if no account -1
+    bid_offer = data["bid_offer"]
+    email = data["email"]
+    name = data["name"]
+    phone = data["phone"]
+
+    # check whether its the same person in the db 
+    # same person = same name && same email && same phone and for that same post
+    i = -1
+    for j, d in enumerate(database['bids']):
+        print j
+        if d["name"] == name and d["email"] == email and d["phone"] == phone and d["post_id"] == post_id:
+            i = j
+            break
+
+    print(i)
+    if i == -1:
+        # new record
+        # edit the global variable - before updating the file
+        # add bid to db
+        
+        database['bids'].append({"post_id": post_id, "bidder_id": bidder_id, "bid_offer": bid_offer, "email": email, "name": name, "phone": phone })
+        
+    else:
+        # overwrite
+        #database["bids"][i]["bid_offer"] = bid_offer
+        #database["bids"].remove(i)
+        print("delete!")
+        print(database["bids"][i])
+        del database["bids"][i]
+        print(type(database["bids"]))
+        database['bids'].append({"post_id": post_id, "bidder_id": bidder_id, "bid_offer": bid_offer, "email": email, "name": name, "phone": phone })
+
+    # update lowest bid
+    lowest = bid_offer
+    # go through db of bids - find the lowest one
+    for bid in database['bids']:
+        if bid['post_id'] == post_id and bid['bid_offer'] < lowest:
+            lowest = bid['bid_offer']
+    # update it on post
+    for post in database['posts']:
+        if post['id'] == post_id:
+            post['lowest_bid'] = lowest
+
+    # to check what databaase looks like
+    newDb = json.dumps(database, indent=2) 
+
+    # write new db to file
+    with open("data.json", "w") as file:
+        json.dump(database, file, indent=2)
     
+    return jsonify({'result' : 'success'})
+
+    # if bidding with no account - bidder_id is -1
+    
+
+    # check if it is a new or overwriting for account ones - dont worry about this
+
+    """
+    {
+      "post_id": 0, 
+      "bidder_id": 0,
+      "bid_offer": "2.00", 
+      "email": "luslee@mail.com", 
+      "name": "Lucy", 
+      "phone": "0486754231"
+    }
+    """
+   
+
+    # check lowest bid and change it in db
+
+    #return bid.bid_offer
 #### should have post requests###
 # change pwd
 # del account
