@@ -1,48 +1,35 @@
-from flask import Flask
+from flask import Flask, request, jsonify # from flask_jsonpify import jsonify
+from flask_restful import Api
+from classes import *
 import json
-from flask import jsonify
-# import request
 
+# Starter code for Api found here:
+# https://www.codementor.io/sagaragarwal94/building-a-basic-restful-api-in-python-58k02xsiq
+
+# Setup
 app = Flask(__name__)
+api = Api(app)
 
-with open('data.json', 'r') as data_file:    
-    data = json.load(data_file)
-
-# NOTE: database = json file
-# return format = json format
-# from routes import app # separate into files later?
-
-# req && wbs - or kris' wbs
-
-
-# must have and should have
-
-# https://stackoverflow.com/questions/34057851/python-flask-typeerror-dict-object-is-not-callable
-"""
+# Add the end points
+api.add_resource(Login, '/login') # <username>/<password>')
+    
 @app.route("/")
 def index():
-    return "Index!"
- 
-@app.route("/hello")
-def hello():
-    return "Hello World!"
- 
-@app.route("/members")
-def members():
-    return "Members"
- 
-@app.route("/members/<string:name>/") # through routes as in like this? # or methods = GET POST? -where do those come from # or just the other function? -wouldnt work
-def getMember(name):
-    return name
-"""
-@app.route("/")
-def index():
-	return "Welcome to Lunatics' chaotic backend!"
+    return {"Init": "Welcome to Lunatics' chaotic backend!"}
 
+# Run application
+# NOTE This needs to go last in the file
+if __name__ == "__main__":
+    app.run(port=2011)
+
+
+'''
+# NOTE From here below is Tammy's drafing 
+# TODO remove it
 # post - mvp - Tammy
 # get - mvp - Kris
 # search, sort, filter (2/3) - dafny then code - Lucy
-	# minimum of 2 dafny verification
+    # minimum of 2 dafny verification
 # front end - can see mvp by next week
 
 
@@ -74,19 +61,18 @@ def index():
 # getBiddersForTask
 @app.route("")
 def getbidders():
-	# return as json object
+    # return as json object
 
 # bidTask
 
 # getAllTasks
 @app.route("/alltasks")
 def getAllTasks():
-	return jsonify(data["posts"])
+    return jsonify(data["posts"])
 
-if __name__ == "__main__":
-    app.run()
 
 # https://pythonspot.com/flask-web-app-with-python/
 
 
 # account to persist  - dodgy way global variable in front end since dont need to demo it
+'''
