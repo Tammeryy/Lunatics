@@ -5,20 +5,25 @@
   </li>
 </ul>
 
-<mat-drawer-container class="drawer">
-  <mat-drawer  mode="side" opened>
+<div class="row">
+  <div class="column left">
+    <h3>Filter By</h3>
     <br>
     <mat-checkbox>Check me!</mat-checkbox>
+    <br>
     <mat-checkbox>Check me!</mat-checkbox>
     <br>
     <mat-checkbox>Check me!</mat-checkbox>
+    <br>
     <mat-checkbox>Check me!</mat-checkbox>
     <br>
+    <h4>Price</h4>
     <mat-slider></mat-slider>
     <br>
-    <button mat-button class="btn btn-default">Apply Filter</button>
-  </mat-drawer>
-  <mat-drawer-content position="end">
+    <button mat-button class="btn btn-default btn-lg btn-block">Apply Filter</button>
+  </div>
+  <div  class="column right">
+
     <mat-list>
       <div class="search-bar">
         <input type="text" ng-model="search" placeholder="Search for a task"/>
@@ -34,27 +39,15 @@
         <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
         <p mat-line id="task-desc"> {{post.description}} </p>
         <br>
-<!--       <div class="row">
-       >
-        -->
+        <!--       <div class="row">
+               >
+                -->
         <div class="btn-group" id="bid-button">
-          <a class="btn btn-primary a-btn-slide-text bottom-btn" >
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            <span><strong>Add</strong></span>
-          </a>
-          <a  class="btn btn-primary a-btn-slide-text bottom-btn">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            <span><strong>Edit</strong></span>
-          </a>
-          <a class="btn btn-danger a-btn-slide-text bottom-btn">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <span><strong>Delete</strong></span>
-          </a>
           <button class="btn btn-warning"  (click)="openBidPopup(post)"> Bid </button>
         </div>
 
       </mat-list-item>
     </mat-list>
-  </mat-drawer-content>
-</mat-drawer-container>
+  </div>
+</div>
 

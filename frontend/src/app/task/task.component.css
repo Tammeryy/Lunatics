@@ -62,3 +62,31 @@
   -moz-box-shadow: 2px 2px 2px #000;
   box-shadow: 2px 2px 2px #000;
 }
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 20%;
+  position: relative;
+  overflow: auto;
+  border: 0;
+  margin-left: 10px;
+}
+
+.right {
+  width: 70%;
+  position: relative;
+  overflow: auto;
+  margin-right: 5px;
+}
+
+mat-slider {
+  width: 200px;
+}
+
+mat-form-field {
+  padding: 20px;
+}

@@ -7,6 +7,24 @@
     <button mat-button>Bid Now</button>
   </li>
 </ul>
+<div class="row">
+  <div class="column left">
+    <h3>Filter By</h3>
+    <br>
+    <mat-checkbox>Check me!</mat-checkbox>
+    <br>
+    <mat-checkbox>Check me!</mat-checkbox>
+    <br>
+    <mat-checkbox>Check me!</mat-checkbox>
+    <br>
+    <mat-checkbox>Check me!</mat-checkbox>
+    <br>
+    <h4>Price</h4>
+    <mat-slider></mat-slider>
+    <br>
+    <button mat-button class="btn btn-default btn-lg btn-block">Apply Filter</button>
+  </div>
+  <div  class="column right">
 <h2> Your tasks/posts </h2>
 <ul class="all-post">
   <li *ngFor="let post of userPosts">
@@ -32,3 +50,4 @@
     <button class="btn btn-warning" id="bid-button" (click)="openViewBidPopup(post)"> Bid</button>
   </mat-list-item>
 </mat-list>
+  </div>
