@@ -1,14 +1,5 @@
 import { LoginData } from './login-data';
 
-export const currentLogin: LoginData = {
-    id: 0,
-    username: '',
-    password: '',
-    name: '',
-    phone: '',
-    email: '',
-}
-
 export const Logins: LoginData[] = [
   {
     id: 1,

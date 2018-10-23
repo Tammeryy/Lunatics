@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+
+import { LoginService } from '../login.service';
 import { LoginData } from '../login-data';
 
 import { SignUpComponent } from '../sign-up/sign-up.component';
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
     password: ""
   };
 
-  constructor(public dialog: MatDialog,
+  constructor(private loginService: LoginService,
+              public dialog: MatDialog,
               public dialogRef: MatDialogRef<LoginComponent>) { }
 
   ngOnInit() {
@@ -54,19 +57,7 @@ export class LoginComponent implements OnInit {
 
   // TODO: replace code to call loginService/API to verify with backend data
   getUser(username: string, password: string) {
-    // replace with something like return this.loginService.getUser(username, password);
-    if (username === "user" && password === "pwd") {
-        const user: LoginData = {
-          id: 1,
-          username: 'user',
-          password: 'pwd',
-          name: 'user',
-          phone: '0412345678',
-          email: 'user@hotmail.com',
-        }
-        return user;
-    }
-    return null;
+      return this.loginService.getUser(username, password);
   }
 
   clearData() {

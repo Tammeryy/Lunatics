@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { Logins } from '../mock-logins';
+
+import { LoginService } from '../login.service';
 import { LoginData } from '../login-data';
 
 @Component({
@@ -10,10 +11,8 @@ import { LoginData } from '../login-data';
 })
 export class SignUpComponent implements OnInit {
 
-  logins = Logins;
-
   data: LoginData = {
-    id: Object.keys(this.logins).length+1,
+    id: 0,
     username: '',
     password: '',
     name: '',
@@ -21,9 +20,11 @@ export class SignUpComponent implements OnInit {
     email: ''
   };
 
-  constructor(public dialogRef: MatDialogRef<SignUpComponent>) { }
+  constructor(private loginService: LoginService,
+              public dialogRef: MatDialogRef<SignUpComponent>) { }
 
   ngOnInit() {
+      this.getNewLoginID();
   }
 
   exitClick(): void {
@@ -46,14 +47,16 @@ export class SignUpComponent implements OnInit {
 
   // TODO add verification code from backend
   validSignUp() {
-    // TODO replace code with something like return this.loginService.validSignUp(this.data)
-    if (this.data.username && this.data.password && this.data.name && this.data.phone && this.data.email) return true;
-    return false;
+      return this.loginService.validSignUp(this.data);
   }
 
   addAccount() {
-    // return this.loginService.addAccount(this.data);
-    this.logins.push(this.data);
+      this.loginService.addAccount(this.data);
+  }
+
+  getNewLoginID() {
+      this.loginService.getNewLoginID()
+          .subscribe(id => this.data.id = id);
   }
 
   clearData() {

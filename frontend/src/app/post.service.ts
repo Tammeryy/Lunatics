@@ -9,13 +9,19 @@ import { POSTS } from './mock-posts';
 })
 export class PostService {
 
+  posts: Post[] = POSTS;
+
   constructor() { }
 
   getPosts(): Observable<Post[]> {
-      return of(POSTS);
+      return of(this.posts);
   }
 
   getNewPostID() {
-    return Object.keys(POSTS).length+1;
+    return of(Object.keys(this.posts).length+1);
+  }
+
+  addPost(post: Post) {
+      this.posts.push(post);
   }
 }

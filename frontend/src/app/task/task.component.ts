@@ -12,7 +12,6 @@ import { ViewBidsComponent } from '../view-bids/view-bids.component'; // change 
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  selectedPost: Post; // remove?
   posts = POSTS;
   user_posts = this.posts;
 
@@ -22,12 +21,7 @@ export class TaskComponent implements OnInit {
 
    constructor(public dialog: MatDialog) {
      // need to add service so we can retrieve activeLogin details from any component
-     this.user_posts = this.posts.filter(post => post.poster_id === 1);
-   }
-
-   onSelect(post: Post): void { // remove?
-     this.selectedPost = post;
-     console.log('Selected post: ' + this.selectedPost);
+     this.user_posts = this.posts.filter(post => post.poster_id === 3);
    }
 
   ngOnInit() {
@@ -42,7 +36,7 @@ export class TaskComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '50%';
     dialogConfig.data = {
-        post: post
+        post: post,
     };
 
     // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file

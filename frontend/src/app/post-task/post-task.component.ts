@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import { PostService } from '../post.service';
 import { POSTS } from '../mock-posts';
 import { Post } from '../post';
 
@@ -10,10 +12,8 @@ import { Post } from '../post';
 })
 export class PostTaskComponent implements OnInit {
 
-  posts = POSTS;
-
   post: Post = {
-    id: Object.keys(this.posts).length+1,
+    id: 0,
     title: "",
     description: "",
     poster_id: 0,
@@ -29,12 +29,14 @@ export class PostTaskComponent implements OnInit {
     lowest_bid: 0,
   };
 
-  constructor(public dialogRef: MatDialogRef<PostTaskComponent>,
+  constructor(private postService: PostService,
+              public dialogRef: MatDialogRef<PostTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
     this.post.poster_id = data.poster_id;
   }
 
   ngOnInit() {
+      this.getNewPostID();
   }
 
   // closes the Post Task pop-up dialog box (done in html page)
@@ -48,7 +50,7 @@ export class PostTaskComponent implements OnInit {
       if (this.post.title && this.post.description && this.post.bid_close && this.post.location) {
         this.post.task_open = true;
         alert('Post details are valid. Adding post to browse list...');
-        this.addPost(this.post);
+        this.addPost();
         this.dialogRef.close(true);
       }
       else {
@@ -58,10 +60,14 @@ export class PostTaskComponent implements OnInit {
     }
   }
 
-  addPost(newPost: any) {
+  addPost() {
     console.log('Add post called');
-    this.posts.push(newPost);
-    // TODO needs to also update the user's list of own posts/tasks
+    this.postService.addPost(this.post);
+  }
+
+  getNewPostID() {
+    this.postService.getNewPostID()
+        .subscribe(id => this.post.id = id);
   }
 
   clearData() {

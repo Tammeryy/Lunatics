@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
-import {POSTS} from '../mock-posts';
-import {Post} from '../post'; // dummy data
+import { PostService } from '../post.service';
+import { POSTS } from '../mock-posts';
+import { Post } from '../post'; // dummy data
 
 import { BidTaskComponent } from '../bid-task/bid-task.component';
 
@@ -12,19 +13,17 @@ import { BidTaskComponent } from '../bid-task/bid-task.component';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  selectedPost: Post;
-  posts = POSTS;
+  posts: Post[];
 
   sortByOptions: string[] = [
      'Price', 'Location'
    ];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private postService: PostService,
+              public dialog: MatDialog) { }
 
-  onSelect(post: Post): void {
-    this.selectedPost = post;
-  }
   ngOnInit() {
+      this.getPosts();
   }
 
   openBidPopup(post: Post) {
@@ -54,6 +53,11 @@ export class PostsComponent implements OnInit {
       //   console.log("[POST BID] Bidder: " +  post.bids[i].name + " | Bid Offer: " + post.bids[i].bid_offer);
       // }
     });
+  }
+
+  getPosts() {
+      this.postService.getPosts()
+        .subscribe(posts => this.posts = posts);
   }
 
 }

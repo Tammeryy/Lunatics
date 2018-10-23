@@ -2,14 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
-import { currentLogin } from '../mock-logins'; // remove later
-import { Logins } from '../mock-logins';
 import { LoginData } from '../login-data'; // dummy data
 
 import { PostTaskComponent } from '../post-task/post-task.component';
-import { PostService } from '../post.service';
-import { Post } from '../post';
-
 import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
@@ -21,15 +16,11 @@ export class HeaderComponent implements OnInit {
     title = 'LunaWhip';
 
     activeLogin: LoginData;
-    posts: Post[];
-    logins = Logins; // remove later
     requestPostTask: boolean = false;
 
-    constructor(private postService: PostService,
-                public dialog: MatDialog) { }
+    constructor(public dialog: MatDialog) { }
 
     ngOnInit() {
-        this.getPosts();
     }
 
     openLogin() {
@@ -96,12 +87,5 @@ export class HeaderComponent implements OnInit {
 
     logOut() {
         this.activeLogin = undefined;
-    }
-
-
-    // Data Retrieval functions
-    getPosts(): void {
-        this.postService.getPosts()
-            .subscribe(posts => this.posts = posts);
     }
 }
