@@ -3,6 +3,7 @@ import { Bid } from './bid';
 export const Bids: Bid[] = [
   {
     post_id: 0,
+    bidder_id: 2,
     name: 'Steve',
     phone_no: "0401010101",
     email: 'steve@smail.com',
@@ -11,6 +12,7 @@ export const Bids: Bid[] = [
   },
   {
     post_id: 1,
+    bidder_id: 3,
     name: 'Eden Tree',
     phone_no: "3438587275",
     email: "eden.tree@fake.com",
@@ -19,6 +21,7 @@ export const Bids: Bid[] = [
   },
   {
     post_id: 3,
+    bidder_id: 1,
     name: 'Terrace Stack House',
     phone_no: "96028382",
     email: 'terrace_house@news.house.com',
@@ -27,6 +30,7 @@ export const Bids: Bid[] = [
   },
   {
     post_id: 3,
+    bidder_id: 4,
     name: 'CheapGuy',
     phone_no: "94927372",
     email: 'dirtcheapoffers@cheap.com',
@@ -35,6 +39,7 @@ export const Bids: Bid[] = [
   },
   {
     post_id: 4,
+    bidder_id: 0,
     name: 'Steve',
     phone_no: "0401010101",
     email: 'steve@smail.com',
@@ -43,6 +48,7 @@ export const Bids: Bid[] = [
   },
   {
       post_id: 4,
+      bidder_id: 4,
       name: 'CheapGuy',
       phone_no: "94927372",
       email: 'dirtcheapoffers@cheap.com',
@@ -51,6 +57,7 @@ export const Bids: Bid[] = [
   },
   {
       post_id: 2,
+      bidder_id: 0,
       name: 'Steve',
       phone_no: "0401010101",
       email: 'steve@smail.com',
@@ -59,6 +66,7 @@ export const Bids: Bid[] = [
   },
   {
       post_id: 4,
+      bidder_id: 1,
       name: 'MrChef',
       phone_no: "95727273",
       email: 'cookingfanatic@masterchef.com',
@@ -67,6 +75,7 @@ export const Bids: Bid[] = [
   },
   {
       post_id: 1,
+      bidder_id: -1,
       name: 'MrCleaner',
       phone_no: "95472673",
       email: 'supercleanfreak@germfree.com',
@@ -75,6 +84,7 @@ export const Bids: Bid[] = [
   },
   {
       post_id: 4,
+      bidder_id: -1,
       name: 'Average Fellow',
       phone_no: "95472673",
       email: 'imaverage@gmail.com',
@@ -83,6 +93,7 @@ export const Bids: Bid[] = [
   },
   {
       post_id: 4,
+      bidder_id: -1,
       name: 'Cannot Be Bothered',
       phone_no: "91232673",
       email: 'ceebs@life.com',

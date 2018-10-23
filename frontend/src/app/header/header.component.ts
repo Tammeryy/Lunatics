@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { LoginComponent } from '../login/login.component';
 import { LoginData } from '../login-data'; // dummy data
+import { LoginService } from '../login.service';
 
 import { PostTaskComponent } from '../post-task/post-task.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
     activeLogin: LoginData;
     requestPostTask: boolean = false;
 
-    constructor(public dialog: MatDialog) { }
+    constructor(private loginService: LoginService,
+                public dialog: MatDialog) { }
 
     ngOnInit() {
     }
@@ -31,11 +33,11 @@ export class HeaderComponent implements OnInit {
 
         const dialogRef = this.dialog.open(LoginComponent, dialogConfig);
 
-        // result refers to 'data' in [mat-dialog-close]
-        dialogRef.afterClosed().subscribe(result => {
+        // loginData refers to 'data' in [mat-dialog-close]
+        dialogRef.afterClosed().subscribe(loginData => {
             console.log('The dialog was closed');
-            if (result) {
-                this.activeLogin = result;
+            if (loginData) {
+                this.activeLogin = loginData;
                 if (this.requestPostTask) {
                     this.requestPostTask = false;
                     this.openPostPopup();
@@ -87,5 +89,6 @@ export class HeaderComponent implements OnInit {
 
     logOut() {
         this.activeLogin = undefined;
+        this.loginService.setActiveLogin(null);
     }
 }

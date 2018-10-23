@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { LoginData } from './login-data';
-import { Logins } from './mock-logins';
+import { ActiveLogin, Logins } from './mock-logins';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  activeLogin: LoginData;
   logins: LoginData[];
 
   constructor() {
@@ -19,6 +20,15 @@ export class LoginService {
   init() {
       // TODO replace with backend GET
       this.logins = Logins;
+      this.activeLogin = ActiveLogin;
+  }
+
+  getActiveLogin(): Observable<LoginData> {
+      return of(this.activeLogin);
+  }
+
+  setActiveLogin(login: LoginData) {
+      this.activeLogin = login;
   }
 
   getLogins(): Observable<LoginData[]> {

@@ -6,6 +6,9 @@ import { Post } from '../post';
 import { BidService } from '../bid.service';
 import { Bid } from '../bid';
 
+import { LoginService } from '../login.service';
+import { LoginData } from '../login-data';
+
 @Component({
   selector: 'app-bid-task',
   templateUrl: './bid-task.component.html',
@@ -13,8 +16,10 @@ import { Bid } from '../bid';
 })
 export class BidTaskComponent implements OnInit {
 
+  activeLogin: LoginData;
   bid: Bid = {
     post_id: 0, // TODO need to get post_id
+    bidder_id: -1,
     name: "",
     phone_no: undefined,
     email: "",
@@ -24,6 +29,7 @@ export class BidTaskComponent implements OnInit {
   post: Post;
 
   constructor(private bidService: BidService,
+              private loginService: LoginService,
               public dialogRef: MatDialogRef<BidTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
     // data refers to dialogConfig.data from Posts component in openBidPopup()
@@ -31,10 +37,24 @@ export class BidTaskComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.getActiveLogin();
+      this.autofillFields();
   }
 
   exitClick(): void {
     this.dialogRef.close();
+  }
+
+  // If this user is logged in (aka has an account), then autofill the fields already provided
+  // Fields: bidder_id, name, phone_no, email
+  autofillFields() {
+      if (this.activeLogin) {
+          console.log('[BID TASK] ActiveLogin exists: ' + this.activeLogin.id + " | username: " + this.activeLogin.username);
+          this.bid.bidder_id = this.activeLogin.id;
+          this.bid.name = this.activeLogin.name;
+          this.bid.phone_no = this.activeLogin.phone;
+          this.bid.email = this.activeLogin.email;
+      }
   }
 
   verifyBid() {
@@ -42,11 +62,12 @@ export class BidTaskComponent implements OnInit {
         alert('Bid details are valid. Adding bid to browse list...');
         console.log("[BID] Title: " + this.post.title + " | Lowest Bid: " + this.post.lowest_bid);
         this.addBid();
+        console.log('[SUCCESSFUL BID] bidder_id: ' + this.bid.bidder_id);
         this.dialogRef.close(this.bid.bid_offer);
       }
       else {
         alert('Bid details are invalid. Try again');
-        this.clearData();
+        // this.clearData();
       }
   }
 
@@ -56,6 +77,11 @@ export class BidTaskComponent implements OnInit {
     this.bid.email = "";
     this.bid.description = "";
     this.bid.bid_offer = undefined;
+  }
+
+  getActiveLogin() {
+      this.loginService.getActiveLogin()
+          .subscribe(activeLogin => this.activeLogin = activeLogin);
   }
 
   validBid() {

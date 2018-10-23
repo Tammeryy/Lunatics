@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     const user: LoginData = this.getUser(this.data.username, this.data.password);
     if (user) {
       alert('Login successful. Logging in...');
+      this.setActiveLogin(user);
       this.dialogRef.close(user);
     }
     else {
@@ -58,6 +59,10 @@ export class LoginComponent implements OnInit {
   // TODO: replace code to call loginService/API to verify with backend data
   getUser(username: string, password: string) {
       return this.loginService.getUser(username, password);
+  }
+
+  setActiveLogin(login: LoginData) {
+      this.loginService.setActiveLogin(login);
   }
 
   clearData() {
