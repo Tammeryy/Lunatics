@@ -42,6 +42,7 @@ export class PostService {
 
   deletePost(post: Post) {
       // TODO replace with backend call
+      this.posts = this.posts.filter(post_obj => post_obj !== post);
       return "success";
   }
 
