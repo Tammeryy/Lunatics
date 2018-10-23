@@ -14,7 +14,7 @@ export const POST: Post = {
   quality: "Fine Dining",
   diet: "vegetarian",
   lowest_bid: 90,
-  task_open: true
+  task_open: "true"
 }
 
 export const POSTS: Post[] = [
@@ -32,7 +32,7 @@ export const POSTS: Post[] = [
         quality: "Fine Dining",
         diet: "vegetarian",
         lowest_bid: 400,
-        task_open: true
+        task_open: "true"
     },
     {
         id: 1,
@@ -48,7 +48,7 @@ export const POSTS: Post[] = [
         quality: "Fine Dining",
         diet: "vegetarian",
         lowest_bid: 90,
-        task_open: true
+        task_open: "true"
     },
     {
         id: 2,
@@ -64,7 +64,7 @@ export const POSTS: Post[] = [
         quality: "Fast Food",
         diet: "halal",
         lowest_bid: 110,
-        task_open: true
+        task_open: "true"
     },
     {
         id: 3,
@@ -80,7 +80,7 @@ export const POSTS: Post[] = [
         quality: "Fast Food",
         diet: "halal",
         lowest_bid: 0,
-        task_open: true,
+        task_open: "true",
     },
     {
         id: 4,
@@ -96,6 +96,6 @@ export const POSTS: Post[] = [
         quality: "Homemade meals",
         diet: "healthy",
         lowest_bid: 140,
-        task_open: true,
+        task_open: "true",
     },
 ];

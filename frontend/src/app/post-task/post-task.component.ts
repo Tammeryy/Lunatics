@@ -25,7 +25,7 @@ export class PostTaskComponent implements OnInit {
     event_date: "",
     bid_close: "", // change to date variable type
     location: "",
-    task_open: true,
+    task_open: "true",
     lowest_bid: 0,
   };
 
@@ -46,7 +46,7 @@ export class PostTaskComponent implements OnInit {
 
   verifyPost() {
       if (this.validPost()) {
-        this.post.task_open = true;
+        this.post.task_open = "true";
         alert('Post details are valid. Adding post to browse list...');
         const success = this.addPost(); // TODO replace with if (this.add)
         this.dialogRef.close(success);

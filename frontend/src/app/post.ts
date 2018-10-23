@@ -13,6 +13,6 @@ export class Post {
   bid_close: string;; // change to date variable type
   event_date: string;
   location: any; // change to location type
-  task_open: boolean;
+  task_open: string;
   lowest_bid: number;
 }
