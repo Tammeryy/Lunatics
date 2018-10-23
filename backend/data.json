@@ -28,7 +28,7 @@
   "posts": [
     {
       "cuisine": "chinese", 
-      "task_open": true, 
+      "task_open": "true", 
       "description": "Cater for a wedding event with various options (vegan, vegetarian, etc..)", 
       "title": "Cook for 50-people event", 
       "bid_close": "10/10/2018", 
