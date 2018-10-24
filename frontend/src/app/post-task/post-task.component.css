@@ -12,8 +12,26 @@
   display: inline;
 }
 
+.content {
+  width: 350px;
+  margin: 3px;
+}
+.buttonDiv {
+  /* need to align buttons in center - currently doesn't work */
+  position: relative;
+}
+
+
+.btn-mine-right{
+  right: 0;
+  bottom: 5px;
+  position: absolute;
+}
+
+
 mat-form-field {
   width: 80%;
+  margin: 3px;
 }
 
 mat-dialog-actions {

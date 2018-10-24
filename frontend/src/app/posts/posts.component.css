@@ -3,7 +3,7 @@
   padding: 5px;
 }
 .search-bar input {
-  width: 70%;
+  width: 55%;
   margin-bottom: 1em;
 }
 #task-list {
@@ -34,8 +34,8 @@
   font-family: Helvetica, sans-serif;
 }
 #bid-button {
-  position: absolute;
   bottom: 5px;
+  position: absolute;
   right: 5px;
   margin-top: 1em;
 }
@@ -49,19 +49,6 @@
   line-height: 190px;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
-}
-#container {
-  /*Change colour so it looks good*/
-  outline: 1px dashed #98abb9;
-  outline-offset: -5px;
-  background-color: #556068;
-  height: 350px;
-  width: 90%;
-  margin: auto;
-  /*shadow*/
-  -webkit-box-shadow: 2px 2px 2px #000;
-  -moz-box-shadow: 2px 2px 2px #000;
-  box-shadow: 2px 2px 2px #000;
 }
 
 mat-checkbox + mat-checkbox {
@@ -109,4 +96,8 @@ mat-slider {
 
 mat-form-field {
   padding: 20px;
+}
+
+.well{
+  position: relative;
 }
