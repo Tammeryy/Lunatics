@@ -9,6 +9,9 @@ import { POSTS } from './mock-posts';
 })
 export class PostService {
 
+  // when user logs in, this is filled and then updated every time the user posts or deletes a post
+  activeUserPosts: Post[];
+
   newPostID: number;
   posts: Post[];
 
@@ -23,6 +26,14 @@ export class PostService {
       this.newPostID = this.posts.length;
   }
 
+  initActiveUserPosts(user_id) {
+      this.getPosts().subscribe(posts => this.activeUserPosts = posts.filter(post => post.poster_id === user_id));
+  }
+
+  getActiveUserPosts(): Observable<Post[]> {
+      return of(this.activeUserPosts);
+  }
+
   getPosts(): Observable<Post[]> {
       return of(this.posts);
   }
@@ -35,6 +46,7 @@ export class PostService {
   addPost(post: Post) {
       // TODO: replace with backend (return_value = { result: 'success/fail'})
       this.posts.push(post);
+      this.activeUserPosts.push(post);
       this.newPostID++;
       return true;
   }
@@ -46,7 +58,11 @@ export class PostService {
 
   deletePost(post: Post) {
       // TODO replace with backend call
-      this.posts = this.posts.filter(post_obj => post_obj !== post);
+      let index = this.posts.findIndex(post_obj => post_obj.id === post.id);
+      this.posts.splice(index, 1);
+
+      index = this.activeUserPosts.findIndex(post_obj => post_obj.id === post.id);
+      this.activeUserPosts.splice(index, 1);
       return "success";
   }
 

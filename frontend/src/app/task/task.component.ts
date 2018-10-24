@@ -31,7 +31,7 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
       this.getActiveLogin();
-      this.getUserPosts();
+      this.getActiveUserPosts();
   }
 
   openEditPopup(post: Post) {
@@ -55,8 +55,9 @@ export class TaskComponent implements OnInit {
   deletePost(post: Post) {
     console.log('Delete Post popup called');
     if (confirm('Delete post?')) {
-        this.userPosts = this.userPosts.filter(post_obj => post_obj !== post);
-        this.postService.deletePost(post);
+        const result = this.postService.deletePost(post);
+        if (result === "success") alert('Post deleted successfully');
+        else alert('Post deletion was unsuccessful');
     }
   }
 
@@ -81,9 +82,9 @@ export class TaskComponent implements OnInit {
           .subscribe(activeLogin => this.activeLogin = activeLogin);
   }
 
-  getUserPosts() {
+  getActiveUserPosts() {
       // let allPosts: Post[];
-      this.postService.getPosts().subscribe(posts => this.userPosts = posts.filter(post => post.poster_id === this.activeLogin.id));
+      this.postService.getActiveUserPosts().subscribe(posts => this.userPosts = posts);
       // console.log('ALLPOSTSS: ');
       // console.log(allPosts);
       // this.userPosts = allPosts.filter(post => post.poster_id === this.activeLogin.id);

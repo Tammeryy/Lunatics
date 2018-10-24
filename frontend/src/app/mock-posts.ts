@@ -1,22 +1,5 @@
 import { Post } from './post';
 
-export const activeUserPost: Post = {
-  id: 0,
-  title: "Cook for 50-people event",
-  description: "Cater for a wedding event with various options (vegan, vegetarian, etc..)",
-  poster_id: 1,
-  budget: 88.88,
-  location: "cabramatta",
-  num_ppl: 10,
-  bid_close: "10/10/2018",
-  event_date: "24/11/2018",
-  cuisine: "chinese",
-  quality: "Fine Dining",
-  diet: "vegetarian",
-  lowest_bid: 90,
-  task_open: "true"
-}
-
 export const POSTS: Post[] = [
     {
         id: 0,

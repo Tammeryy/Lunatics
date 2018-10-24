@@ -70,6 +70,7 @@ export class HeaderComponent implements OnInit {
 
             // result refers to 'data' in [mat-dialog-close]
             dialogRef.afterClosed().subscribe(result => {
+                if (result === "success") alert('Post added successfully');
                 this.requestPostTask = false;
             });
         }
