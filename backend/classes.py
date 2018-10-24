@@ -53,7 +53,7 @@ class Logout(Resource):
             if i[1] == token:
                 sessions.remove(i)
                 return jsonify({"Success": "Logged out."})
-        return jsonify({'Error': 'Session doesn\'t exist.'}), 404
+        return jsonify({'result': 'Failure', 'error': 'Session doesn\'t exist.'}), 404
 
 class PasswordChange(Resource):
     def post(self, user_id):
@@ -162,7 +162,7 @@ class EditAccount(Resource):
         return jsonify({'result' : 'Success'})
 
 class DeleteAccount(Resource):
-    def post(self, user_id):
+    def get(self, user_id):
         # del account
         # NOTE: We don't check passwords
 
@@ -175,7 +175,7 @@ class DeleteAccount(Resource):
         with open("data.json", "w") as file:
             json.dump(database, file, indent=2)
         
-        return jsonify({'result': 'success'})
+        return jsonify({'result': 'Success'})
 
 ##### Tasks #####
 ### Get and post tasks ###
@@ -328,7 +328,7 @@ class EditPost(Resource):
         return jsonify({'result' : 'success'})
 
 class DeletePost(Resource):
-    def post(self, post_id):
+    def get(self, post_id):
         # Remove
         for post in database["posts"]:
             if post["id"] == post_id:
@@ -459,7 +459,7 @@ class EditBid(Resource):
         return jsonify({'result' : 'success'})
 
 class DeleteBid(Resource):
-    def post(self):
+    def get(self, post_id, bidder_id):
         data = request.get_json()
         if not data:
             return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
