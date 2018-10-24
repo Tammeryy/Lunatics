@@ -13,10 +13,19 @@ app = Flask(__name__)
 api = Api(app)
 
 # Add the end points
-api.add_resource(Login, '/login') 
+api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout/<token>')
+api.add_resource(Account, '/account/create')
+api.add_resource(PasswordChange, '/account/change_pwd/<user_id>')
+api.add_resource(EditProfile, '/account/edit/<user_id>')
+api.add_resource(DeleteAccount, '/account/delete/<user_id>')
 api.add_resource(Posts, '/tasks')
-api.add_resource(PostsByUser, '/tasks/user/<user_id>')
+api.add_resource(EditPost, '/tasks/edit/<post_id>')
+api.add_resource(DeletePost, '/tasks/delete/<post_id>')
+api.add_resource(Bid, '/bids/create/<post_id>')
+api.add_resource(EditBid, '/bids/edit')
+api.add_resource(DeleteBid, '/bids/delete/<post_id>/<bidder_id>')
+# api.add_resource(PostsByUser, '/tasks/user/<user_id>')
     
 @app.route("/")
 def index():
