@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 
+import { ApiService } from './api.service';
 import { Bid } from './bid';
 import { Bids } from './mock-bids';
 
@@ -15,7 +15,7 @@ export class BidService {
   bids: Bid[];
   newBidID: number;
 
-  constructor() {
+  constructor(private apiService: ApiService) {
       this.init();
   }
 
@@ -35,6 +35,9 @@ export class BidService {
   }
 
   getBids(): Observable<Bid[]> {
+/*
+      return this.apiService.getBids();
+*/
       return of(this.bids);
   }
 
@@ -44,7 +47,7 @@ export class BidService {
 
   // Returns true if bid added successfully, else false
   addBid(bid: Bid) {
-      // TODO: add backend push function call (return_value = { result: 'success/fail'})
+      // return this.apiService.makeBid(bid);
       this.bids.push(bid);
       this.activeUserBids.push(bid);
       this.newBidID++;

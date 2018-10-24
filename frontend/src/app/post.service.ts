@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
+import { ApiService } from './api.service';
 import { Post } from './post';
 import { POSTS } from './mock-posts';
 
@@ -17,14 +15,14 @@ export class PostService {
   posts: Post[];
   newPostID: number;
 
-  constructor(private http: HttpClient) {
+  constructor(private apiService: ApiService) {
       this.init();
   }
 
   // Grab initial posts data from backend
   init() {
       // TODO replace with backend GET
-      this.posts = POSTS;
+      this.posts = POSTS; // TODO replace with this.getPosts().subscribe(all_posts = this.posts = all_posts);
       this.newPostID = this.posts.length;
   }
 
@@ -37,6 +35,9 @@ export class PostService {
   }
 
   getPosts(): Observable<Post[]> {
+/*
+      return this.apiService.getPosts();
+*/
       return of(this.posts);
   }
 
@@ -44,9 +45,9 @@ export class PostService {
       return of(this.newPostID);
   }
 
+  // TODO backend?
   // Returns true if post added successfully, else false
   addPost(post: Post) {
-      // TODO: replace with backend (return_value = { result: 'success/fail'})
       this.posts.push(post);
       this.activeUserPosts.push(post);
       this.newPostID++;
@@ -55,7 +56,9 @@ export class PostService {
 
   editPost(post: Post) {
       // this.posts already gets updated via reference in edit-task updatePost()
-      // TODO call backend function
+/*
+      return this.apiService.editTask();
+*/
       return "success";
   }
 
@@ -66,6 +69,9 @@ export class PostService {
 
       index = this.activeUserPosts.findIndex(post => post.id === post_id);
       this.activeUserPosts.splice(index, 1);
+/*
+      return this.apiService.deleteTask(post_id);
+*/
       return "success";
   }
 
