@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '30%';
     dialogConfig.data = {
-        account: this.activeLogin,
+        activeLogin: this.activeLogin,
     };
 
     // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file

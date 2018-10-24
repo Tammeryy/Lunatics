@@ -1,6 +1,6 @@
 import { Post } from './post';
 
-export const POST: Post = {
+export const activeUserPost: Post = {
   id: 0,
   title: "Cook for 50-people event",
   description: "Cater for a wedding event with various options (vegan, vegetarian, etc..)",
