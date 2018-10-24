@@ -2,7 +2,8 @@
   <div class="profile-popup-header">
     <!-- the "x" text represents the exit button on top right corner of activeLogin task popup box -->
     <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
-    <h1 mat-dialog-title>Edit Profile</h1><p id="exit-button" (click)="exitClick()">x</p>
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
+    <h1 mat-dialog-title>Edit Profile</h1>
   </div>
   <br>
   <div mat-dialog-content>
@@ -14,8 +15,8 @@
         <textarea matInput [value]="activeLogin.skills_exp" (input)="updatedLogin.skills_exp=$event.target.value" placeholder="Skills/Experience"></textarea>
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
-    <!-- dialog box will only close if "activeLogin" list is not empty ([mat-dialog-close]="activeLogin")-->
-    <button mat-button (click)="editProfile()" cdkFocusInitial>Edit Profile</button>
+  <div mat-dialog-actions class="buttonDiv">
+    <button mat-button (click)="editProfile()" cdkFocusInitial class="btn btn-default btn-mine-right">Edit Profile</button>
   </div>
+
 </div>

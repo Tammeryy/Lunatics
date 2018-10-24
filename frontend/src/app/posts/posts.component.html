@@ -4,58 +4,73 @@
     Title: {{post.title}} | Id: {{post.id}}
   </li>
 </ul>
-
-<div class="row">
-  <div class="column left">
-    <h3>Filter By</h3>
-    <br>
-    <h4>Cuisine</h4>
-    <mat-checkbox>Korean</mat-checkbox>
-    <br>
-    <mat-checkbox>Japanese</mat-checkbox>
-    <br>
-    <mat-checkbox>Chinese</mat-checkbox>
-    <br>
-    <h4>Event Type</h4>
-    <mat-checkbox>Formal</mat-checkbox>
-    <br>
-    <mat-checkbox>Casual</mat-checkbox>
-    <br>
-    <h4>Dietary Requirement</h4>
-    <mat-checkbox>No nuts</mat-checkbox>
-    <br>
-    <mat-checkbox>No Milk</mat-checkbox>
-    <br>
-    <h4>Price</h4>
-    <mat-slider></mat-slider>
-    <br>
-    <button mat-button class="btn btn-default btn-lg btn-block">Apply Filter</button>
-  </div>
-  <div  class="column right">
-
-    <mat-list>
-      <div class="search-bar">
-        <input type="text" ng-model="search" placeholder="Search for a task"/>
-        <mat-form-field>
-          <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
-          <mat-select placeholder="Sort by">
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <mat-list-item *ngFor="let post of posts" id="container">
-        <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
-        <p mat-line id="task-desc"> {{post.description}} </p>
-        <br>
-        <!--       <div class="row">
-               >
-                -->
-        <div class="btn-group" id="bid-button">
-          <button class="btn btn-warning"  (click)="openBidPopup(post)"> Bid </button>
+    <div class="container">
+  <div class="row">
+    <div class="column left">
+      <h3>Filter By</h3>
+      <br>
+      <h4>Cuisine</h4>
+      <mat-checkbox>Korean</mat-checkbox>
+      <br>
+      <mat-checkbox>Japanese</mat-checkbox>
+      <br>
+      <mat-checkbox>Chinese</mat-checkbox>
+      <br>
+      <h4>Event Type</h4>
+      <mat-checkbox>Formal</mat-checkbox>
+      <br>
+      <mat-checkbox>Casual</mat-checkbox>
+      <br>
+      <h4>Dietary Requirement</h4>
+      <mat-checkbox>No nuts</mat-checkbox>
+      <br>
+      <mat-checkbox>No Milk</mat-checkbox>
+      <br>
+      <h4>Price</h4>
+      <mat-checkbox>$0 ~ $50</mat-checkbox>
+      <br>
+      <mat-checkbox>$51 ~ $100</mat-checkbox>
+      <br>
+      <mat-checkbox>$101 ~ $150</mat-checkbox>
+      <br>
+      <button mat-button class="btn btn-default btn-lg btn-block">Apply Filter</button>
+    </div>
+    <div  class="column right">
+      <mat-list>
+        <div class="search-bar">
+          <input type="text" ng-model="search" placeholder="Search for a task"/>
+          <mat-form-field>
+            <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
+            <mat-select placeholder="Sort by">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
 
-      </mat-list-item>
-    </mat-list>
+
+          <div class="well" *ngFor="let post of posts">
+            <div class="media">
+              <div class="media-body">
+                <h4 class="media-heading">{{post.title}}</h4>
+                <p class="text-right"> {{post.lowest_bid | currency}} </p>
+                <p> {{post.description}}</p>
+                <ul class="list-inline list-unstyled">
+                  <!-- change to due date -->
+                  <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+                  <li>
+                    <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+                    <span><i class="fa fa-facebook-square"></i></span>
+                    <span><i class="fa fa-twitter-square"></i></span>
+                    <span><i class="fa fa-google-plus-square"></i></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="bid-button" (click)="openBidPopup(post)"> Bid </button>
+          </div>
+          <br>
+      </mat-list>
+    </div>
   </div>
 </div>

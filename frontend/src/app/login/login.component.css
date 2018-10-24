@@ -1,12 +1,15 @@
 mat-form-field {
   width: 80%;
+  margin: 3px;
 }
 
-btn {
-  padding: 30px;
-}
-
-mat-dialog-actions {
+.buttonDiv {
   /* need to align buttons in center - currently doesn't work */
-  align-items: center;
+  position: relative;
+}
+
+
+.btn-mine-right{
+  right: 0;
+  position: absolute;
 }

@@ -4,7 +4,7 @@
     <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
   </div>
   <br>
-  <div mat-dialog-content>
+  <div mat-dialog-content class="buttonDiv">
     <!-- <b>Username: </b> -->
     <mat-form-field>
       <input matInput [(ngModel)]="data.username" placeholder="Username*" type="text"/>
@@ -15,8 +15,10 @@
         <input matInput [(ngModel)]="data.password" placeholder="Password*" type="text"/>
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
+  <div mat-dialog-actions class="buttonDiv">
+
     <button mat-button [mat-dialog-close] (click)="signUp()" class="btn btn-default">Create an account</button>
-    <button mat-button (click)="verifyLogin()" cdkFocusInitial class="btn btn-primary">Login</button>
+    <button mat-button (click)="verifyLogin()" class="btn btn-primary btn-mine-right">Login</button>
   </div>
+
 </div>

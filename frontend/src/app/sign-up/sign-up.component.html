@@ -23,7 +23,8 @@
         <input matInput [(ngModel)]="data.email" placeholder="email*" type="text"/>
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="verifyDetails()" cdkFocusInitial  class="btn btn-primary">Create an account</button>
+  <br>
+  <div mat-dialog-actions class="buttonDiv">
+    <button (click)="verifyDetails()" class="btn btn-primary btn-mine-right">Create an account</button>
   </div>
 </div>
