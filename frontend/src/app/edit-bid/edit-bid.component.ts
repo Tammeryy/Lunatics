@@ -38,7 +38,10 @@ export class EditBidComponent implements OnInit {
   }
 
   deepCopyBid() {
+      console.log('Deep copy bid');
       for (var i in this.bid) this.updatedBid[i] = this.bid[i];
+      console.log(this.bid);
+      console.log(this.updatedBid);
   }
 
   getPost() {
@@ -64,6 +67,7 @@ export class EditBidComponent implements OnInit {
           this.dialogRef.close();
       }
       else {
+          alert('Bid failed to update');
           this.dialogRef.close();
       }
   }
@@ -73,7 +77,6 @@ export class EditBidComponent implements OnInit {
   }
 
   updateBid() {
-      console.log(this.updatedBid);
       for (var i in this.updatedBid) {
           if (this.bid[i] !== this.updatedBid[i]) this.bid[i] = this.updatedBid[i];
       }
