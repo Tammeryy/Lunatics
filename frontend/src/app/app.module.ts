@@ -28,6 +28,8 @@ import { ViewBidsComponent } from './view-bids/view-bids.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { BidPageComponent } from './bid-page/bid-page.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditBidComponent } from './edit-bid/edit-bid.component';
+import { ViewBidDetailsComponent } from './view-bid-details/view-bid-details.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -51,7 +53,9 @@ const appRoutes: Routes = [
     ViewBidsComponent,
     EditTaskComponent,
     BidPageComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    EditBidComponent,
+    ViewBidDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +81,6 @@ const appRoutes: Routes = [
   ],
   providers: [AppComponent, HeaderComponent],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent, ViewBidsComponent, EditTaskComponent, EditProfileComponent]
+  entryComponents: [LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent, ViewBidsComponent, EditTaskComponent, EditProfileComponent, ViewBidDetailsComponent, EditBidComponent]
 })
 export class AppModule { }

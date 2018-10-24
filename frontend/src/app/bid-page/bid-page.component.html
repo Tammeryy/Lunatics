@@ -1,8 +1,18 @@
+<!-- TODO SAME CODE AS POST-->
+<ul class="all-post">
+  <li *ngFor="let bid of bids">
+    Title: {{bid.title}}
+    <!-- TODO add bid details here -->
+    <button mat-button>Bid Now</button>
+  </li>
+</ul>
 <div class="container">
-  <h1>Your Bids </h1>
-  <div class="row">
+
+<div class="row">
+
     <div class="column left" >
-      <h3>Filter By:</h3>
+      <br>
+      <h4 class="filter">Filter By:</h4>
       <hr>
       <h4>Cuisine</h4>
       <mat-checkbox>Chinese</mat-checkbox>
@@ -42,15 +52,54 @@
       <br>
       <button mat-button class="btn btn-primary btn-lg btn-block">Apply Filter</button>
     </div>
-    <div  class="column right">
-      <mat-list>
-      <!-- ADD HTML AFTER TS is added-->
-        <a class="btn btn-warning btn-mine-right" (click)="openViewBidPopup(post)">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          <span>View Post</span>
+  <div  class="column right">
+<h2> Your bids </h2>
+<mat-list>
+  <div>
+    <input type="text" ng-model="search" placeholder="Search for a task" class="search-bar"/>
+    <mat-form-field>
+      <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
+      <mat-select placeholder="Sort by">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="well" *ngFor="let bid of userBids">
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading task-title">Post ID: {{bid.post_id}} BIDDER ID: {{bid.bidder_id}}</h4>
+        <p class="text-right"> {{bid.lowest_bid | currency}} </p>
+        <p> {{bid.description}}</p>
+        <ul class="list-inline list-unstyled">
+          <!-- change to due date -->
+          <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+          <li>
+            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+            <span><i class="fa fa-facebook-square"></i></span>
+            <span><i class="fa fa-twitter-square"></i></span>
+            <span><i class="fa fa-google-plus-square"></i></span>
+          </li>
+        </ul>
+      </div>
+      <div id="right-btn" class="bid-button">
+        <a class="btn btn-primary btn-mine-right " (click)="openEditPopup(bid)">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          <span>Edit</span>
         </a>
-      </mat-list>
+        <a class="btn btn-danger btn-mine-right" (click)="deleteBid(bid.id)">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          <span>Delete</span>
+        </a>
+        <a class="btn btn-warning btn-mine-right" (click)="openViewBidDetailsPopup(bid)">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          <span>View Details</span>
+        </a>
+      </div>
     </div>
   </div>
+</mat-list>
+  </div>
+</div>
 </div>
 <router-outlet></router-outlet>

@@ -3,23 +3,23 @@
     <!-- the "x" text represents the exit button on top right corner of bid task popup box -->
     <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
     <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
-    <h1 mat-dialog-title> Make A Bid</h1>
+    <h1 mat-dialog-title>Edit Bid</h1>
     <hr>
   </div>
 
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput [(ngModel)]="bid.name" placeholder="Name*" type="text"/>
+      <input matInput [value]="bid.name" placeholder="Name*" type="text"/>
     </mat-form-field>
     <div>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="bid.phone_no" placeholder="Phone number*"></textarea>
+        <input matInput [value]="bid.phone_no" placeholder="Phone number*">
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="bid.email" placeholder="Email*"></textarea>
+        <input matInput [value]="bid.email" placeholder="Email*">
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="bid.description" placeholder="Description"></textarea>
+        <textarea matInput [value]="bid.description" (input)="updatedBid.description=$event.target.value" placeholder="Description"></textarea>
     </mat-form-field>
     </div>
   </div>
@@ -36,11 +36,11 @@
     </table>
     <mat-form-field>
       <h4> Your bid </h4>
-      <input matInput [(ngModel)]="bid.bid_offer" type="text"/>
+      <input matInput [value]="bid.bid_offer" (input)="updatedBid.bid_offer=$event.target.value" type="text"/>
     </mat-form-field>
   </div>
   <br>
   <div mat-dialog-actions class="buttonDiv">
-    <button mat-button (click)="addBid()"  cdkFocusInitial class="btn btn-primary btn-mine-right">Bid Task</button>
+    <button mat-button (click)="editBid()"  cdkFocusInitial class="btn btn-primary btn-mine-right">Update Bid</button>
   </div>
 </div>

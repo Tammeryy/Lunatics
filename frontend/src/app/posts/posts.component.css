@@ -20,13 +20,6 @@ mat-select
   text-align: center;
 }
 
-
-.btn-primary{
-  background-color: #a7f6ee;
-  color: white;
-  border-color: #75bbbb;
-}
-
 #budget {
   position: relative;
   top: 0;

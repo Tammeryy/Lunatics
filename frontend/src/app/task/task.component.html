@@ -1,17 +1,14 @@
 <!-- TODO SAME CODE AS POST-->
-<h2> All posts </h2>
 <ul class="all-post">
   <li *ngFor="let post of posts">
     Title: {{post.title}}
-    <!-- TODO add post details here -->
-    <button mat-button>Bid Now</button>
   </li>
 </ul>
 <div class="container">
-  <h1> Your tasks </h1>
 <div class="row">
   <div class="column left" >
-    <h3>Filter By:</h3>
+    <br>
+    <h4 class="filter">Filter By:</h4>
     <hr>
     <h4>Cuisine</h4>
     <mat-checkbox>Chinese</mat-checkbox>
@@ -53,8 +50,8 @@
   </div>
   <div  class="column right">
     <mat-list>
-      <div class="search-bar">
-        <input type="text" ng-model="search" placeholder="Search for a task"/>
+      <div>
+        <input type="text" ng-model="search" placeholder="Search for a task" class="search-bar"/>
         <mat-form-field>
           <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
           <mat-select placeholder="Sort by">
@@ -63,7 +60,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="posts.length > 0" >
+      <div *ngIf="userPosts.length > 0" >
         <div class="well" *ngFor="let post of userPosts">
           <div class="media">
             <div class="media-body">
@@ -92,14 +89,14 @@
               </a>
               <a class="btn btn-warning btn-mine-right" (click)="openViewBidPopup(post)">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <span>  View Task</span>
+                <span>View Bids</span>
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <div *ngIf="posts.length === 0">
+      <div *ngIf="userPosts.length === 0">
         <p>You haven't bid in any tasks yet</p>
       </div>
     </mat-list>

@@ -18,7 +18,7 @@ export class BidTaskComponent implements OnInit {
 
   activeLogin: LoginData;
   bid: Bid = {
-    post_id: 0, // TODO need to get post_id
+    post_id: -1, // TODO need to get post_id
     bidder_id: -1,
     name: "",
     phone_no: undefined,
@@ -34,6 +34,7 @@ export class BidTaskComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) data) {
     // data refers to dialogConfig.data from Posts component in openBidPopup()
     this.post = data.selected_post;
+    this.bid.post_id = this.post.id;
   }
 
   ngOnInit() {
@@ -57,13 +58,21 @@ export class BidTaskComponent implements OnInit {
       }
   }
 
-  verifyBid() {
+  // Adds bid to bids list.
+  // If adding bid to backend is successful, make success alert popup
+  addBid() {
       if (this.validBid()) {
-        alert('Bid details are valid. Adding bid to browse list...');
-        console.log("[BID] Title: " + this.post.title + " | Lowest Bid: " + this.post.lowest_bid);
-        this.addBid();
-        console.log('[SUCCESSFUL BID] bidder_id: ' + this.bid.bidder_id);
-        this.dialogRef.close(this.bid.bid_offer);
+          alert('Bid details are valid. Adding bid to browse list...');
+          console.log("[BID] Title: " + this.post.title + " | Lowest Bid: " + this.post.lowest_bid);
+          const result = this.bidService.addBid(this.bid);
+          if (result === "success") {
+              alert('Bid added successfully!');
+              this.dialogRef.close(this.bid.bid_offer);
+          }
+          else {
+              alert('Bid could not be added.');
+              this.dialogRef.close();
+          }
       }
       else {
         alert('Bid details are invalid. Try again');
@@ -76,13 +85,10 @@ export class BidTaskComponent implements OnInit {
   }
 
   validBid() {
-      return this.bidService.validBid(this.bid);
-  }
-
-  // Adds bid to bids list.
-  // If adding bid to backend is successful, make success alert popup
-  addBid() {
-      this.bidService.addBid(this.bid);
+      if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.description && this.bid.bid_offer) {
+          return true;
+      }
+      return false;
   }
 
 }

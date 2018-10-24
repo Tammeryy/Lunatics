@@ -3,10 +3,6 @@
 html, body { height: 100%; }
 
 
-btn-primary{
-  background-color: #a7f6ee;
-  color: #a7f6ee;
-}
 .popup-header {
   display: inline;
 }
@@ -20,3 +16,5 @@ btn-primary{
   font-size: 1.5em;
   display: inline;
 }
+
+

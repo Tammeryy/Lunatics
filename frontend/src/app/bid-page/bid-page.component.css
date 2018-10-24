@@ -1,11 +1,18 @@
 .search-bar {
-  text-align: center;
-  padding: 5px;
+  text-align: left;
+  width: 575px;
+  margin-bottom: 15px;
 }
-.search-bar input {
-  width: 55%;
-  margin-bottom: 1em;
+
+* {
+  font-family: Helvetica;
 }
+
+.container
+{
+  width: 95%;
+}
+
 #task-list {
   text-align: center;
 }

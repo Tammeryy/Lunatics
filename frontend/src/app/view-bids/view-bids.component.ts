@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { BidService } from '../bid.service';
 import { Bid } from '../bid';
 import { Bids } from '../mock-bids';
 
@@ -11,20 +12,28 @@ import { Bids } from '../mock-bids';
 })
 export class ViewBidsComponent implements OnInit {
 
-  bids: Bid[] = Bids;
+  bids: Bid[];
   post: any;
 
-  constructor(public dialogRef: MatDialogRef<ViewBidsComponent>,
+  constructor(private bidService: BidService,
+              public dialogRef: MatDialogRef<ViewBidsComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
     // data refers to dialogConfig.data from Posts component in openBidPopup()
     this.post = data.post;
-    this.bids = this.bids.filter(bid => bid.post_id === this.post.id);
   }
 
   ngOnInit() {
+      this.getBids();
   }
 
   exitClick(): void {
     this.dialogRef.close();
+  }
+
+  getBids() {
+      this.bidService.getBids().subscribe(bids => this.bids = bids);
+      this.bids = this.bids.filter(bid => bid.post_id === this.post.id);
+      console.log('[VIEW BIDS] Post ID: ' + this.post.id);
+       console.log(this.bids);
   }
 }
