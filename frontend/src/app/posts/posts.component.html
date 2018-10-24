@@ -6,32 +6,45 @@
 </ul>
     <div class="container">
   <div class="row">
-    <div class="column left">
-      <h3>Filter By</h3>
+    <div class="column left" >
+      <h3>Filter By:</h3>
+      <hr>
       <br>
       <h4>Cuisine</h4>
-      <mat-checkbox>Korean</mat-checkbox>
+      <mat-checkbox>Chinese</mat-checkbox>
+      <br>
+      <mat-checkbox>Indian</mat-checkbox>
+      <br>
+      <mat-checkbox>Italian</mat-checkbox>
       <br>
       <mat-checkbox>Japanese</mat-checkbox>
       <br>
-      <mat-checkbox>Chinese</mat-checkbox>
+      <mat-checkbox>Korean</mat-checkbox>
       <br>
       <h4>Event Type</h4>
-      <mat-checkbox>Formal</mat-checkbox>
-      <br>
       <mat-checkbox>Casual</mat-checkbox>
       <br>
+      <mat-checkbox>Formal</mat-checkbox>
+      <br>
+      <mat-checkbox>Party</mat-checkbox>
+      <br>
       <h4>Dietary Requirement</h4>
-      <mat-checkbox>No nuts</mat-checkbox>
+      <mat-checkbox>Halal</mat-checkbox>
+      <br>
+      <mat-checkbox>Pescetarians</mat-checkbox>
+      <br>
+      <mat-checkbox>Vegan</mat-checkbox>
+      <br>
+      <mat-checkbox>No Nuts</mat-checkbox>
       <br>
       <mat-checkbox>No Milk</mat-checkbox>
       <br>
-      <h4>Price</h4>
-      <mat-checkbox>$0 ~ $50</mat-checkbox>
+      <h4>Task Budget</h4>
+      <mat-checkbox>Less Than $50</mat-checkbox>
       <br>
-      <mat-checkbox>$51 ~ $100</mat-checkbox>
+      <mat-checkbox>$51 ~ $250</mat-checkbox>
       <br>
-      <mat-checkbox>$101 ~ $150</mat-checkbox>
+      <mat-checkbox>More than $250</mat-checkbox>
       <br>
       <button mat-button class="btn btn-default btn-lg btn-block">Apply Filter</button>
     </div>
@@ -52,7 +65,7 @@
           <div class="well" *ngFor="let post of posts">
             <div class="media">
               <div class="media-body">
-                <h4 class="media-heading">{{post.title}}</h4>
+                <h4 class="media-heading task-title">{{post.title}}</h4>
                 <p class="text-right"> {{post.lowest_bid | currency}} </p>
                 <p> {{post.description}}</p>
                 <ul class="list-inline list-unstyled">

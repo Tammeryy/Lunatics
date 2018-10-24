@@ -16,15 +16,14 @@
   text-align: right;
   margin-top: -5em;
 }
-#task-title, #task-desc {
+.task-title, #task-desc {
   text-align: left;
 }
-#task-title {
+.task-title {
   position: absolute;
-  top: 5px;
-  font-size: 25px;
-  color: #ffffff;
-  font-family: Helvetica, sans-serif;
+  top: 7px;
+  font-size: 18px;
+  font-family: Helvetica;
   font-weight: bold;
 }
 #task-desc {
@@ -54,6 +53,11 @@
 mat-checkbox + mat-checkbox {
   margin-left: 10px;
 }
+
+mat-checkbox{
+  font-weight: normal;
+}
+
 #a-btn-slide-text
 {
   position: absolute;
@@ -107,4 +111,9 @@ mat-form-field {
   bottom: 5px;
   right: 5px;
   margin-top: 1em;
+}
+
+.btn
+{
+  margin: 2px;
 }

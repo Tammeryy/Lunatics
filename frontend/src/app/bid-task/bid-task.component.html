@@ -34,16 +34,13 @@
         <td>{{post.budget}}</td>
       </tr>
     </table>
-
-    <br>
     <mat-form-field>
       <h4> Your bid </h4>
       <input matInput [(ngModel)]="bid.bid_offer" type="text"/>
     </mat-form-field>
   </div>
   <br>
-  <div mat-dialog-actions  class="buttonDiv">
-    <!-- dialog box will only close if "bid" list is not empty ([mat-dialog-close]="bid")-->
-    <button (click)="verifyDetails()" class="btn btn-primary btn-mine-right">Create an account</button>
+  <div mat-dialog-actions class="buttonDiv">
+    <button mat-button (click)="verifyBid()"  cdkFocusInitial class="btn btn-primary btn-mine-right">Bid Task</button>
   </div>
 </div>

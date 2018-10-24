@@ -19,19 +19,17 @@
 #task-title, #task-desc {
   text-align: left;
 }
-#task-title {
+.task-title {
   position: absolute;
-  top: 5px;
-  font-size: 25px;
-  color: #ffffff;
-  font-family: Helvetica, sans-serif;
+  top: 7px;
+  font-size: 18px;
+  font-family: Helvetica;
   font-weight: bold;
 }
-#task-desc {
+.task-desc {
   position: absolute;
-  font-size: 18px;
-  color: #f7f7f7;
-  font-family: Helvetica, sans-serif;
+  font-size: 13px;
+  font-family: Helvetica;
 }
 #bid-button {
   bottom: 5px;
@@ -54,6 +52,9 @@
 mat-checkbox + mat-checkbox {
   margin-left: 10px;
 }
+
+
+
 #a-btn-slide-text
 {
   position: absolute;
@@ -80,19 +81,16 @@ mat-checkbox + mat-checkbox {
   position: relative;
   overflow: auto;
   border: 0;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .right {
   width: 70%;
   position: relative;
   overflow: auto;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
-mat-slider {
-  width: 200px;
-}
 
 mat-form-field {
   padding: 20px;
@@ -101,3 +99,9 @@ mat-form-field {
 .well{
   position: relative;
 }
+
+#left-column{
+  display: table-cell;
+  border: 1px solid #6c757d;
+}
+
