@@ -1,0 +1,119 @@
+.search-bar {
+  text-align: center;
+  padding: 5px;
+}
+.search-bar input {
+  width: 55%;
+  margin-bottom: 1em;
+}
+#task-list {
+  text-align: center;
+}
+
+#budget {
+  position: relative;
+  top: 0;
+  text-align: right;
+  margin-top: -5em;
+}
+.task-title, #task-desc {
+  text-align: left;
+}
+.task-title {
+  position: absolute;
+  top: 7px;
+  font-size: 18px;
+  font-family: Helvetica;
+  font-weight: bold;
+}
+#task-desc {
+  position: absolute;
+  font-size: 18px;
+  color: #f7f7f7;
+  font-family: Helvetica, sans-serif;
+}
+#bid-button {
+  bottom: 5px;
+  position: absolute;
+  right: 5px;
+  margin-top: 1em;
+}
+#budget {
+  font-size: 18px;
+  color: #f7f7f7;
+  font-family: Helvetica, sans-serif;
+}
+#h2 {
+  font-size: 45px;
+  line-height: 190px;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+mat-checkbox + mat-checkbox {
+  margin-left: 10px;
+}
+
+mat-checkbox{
+  font-weight: normal;
+}
+
+#a-btn-slide-text
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-top: 1em;
+}
+
+#bottom-btn
+{
+  position: absolute;
+  bottom: 10px;
+  margin-top: 1em;
+}
+
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 20%;
+  position: relative;
+  overflow: auto;
+  border: 0;
+  margin-left: 10px;
+}
+
+.right {
+  width: 70%;
+  position: relative;
+  overflow: auto;
+  margin-right: 5px;
+}
+
+mat-slider {
+  width: 200px;
+}
+
+mat-form-field {
+  padding: 20px;
+}
+
+.well{
+  position: relative;
+}
+
+.bid-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  margin-top: 1em;
+}
+
+.btn
+{
+  margin: 2px;
+}

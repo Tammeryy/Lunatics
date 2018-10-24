@@ -58,9 +58,9 @@ export const Bids: Bid[] = [
   {
       post_id: 2,
       bidder_id: 0,
-      name: 'Steve',
-      phone_no: "0401010101",
-      email: 'steve@smail.com',
+      name: 'user',
+      phone_no: "0412345678",
+      email: 'user@hotmail.com',
       description: "a nice deal",
       bid_offer: 7
   },

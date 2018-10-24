@@ -48,6 +48,7 @@ export class BidService {
       this.bids.push(bid);
       this.activeUserBids.push(bid);
       this.newBidID++;
+      return "success";
   }
 
   editBid(bid: Bid) {
@@ -66,11 +67,4 @@ export class BidService {
       return "success";
   }
 
-  // TODO replace with backend call to check for valid bid
-  validBid(bid: Bid) {
-      if (bid.name && bid.phone_no && bid.email && bid.description && bid.bid_offer) {
-          return true;
-      }
-      return false;
-  }
 }

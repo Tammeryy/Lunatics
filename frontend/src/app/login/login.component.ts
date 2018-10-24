@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 
 import { PostService } from '../post.service';
+import { BidService } from '../bid.service';
 import { LoginService } from '../login.service';
 import { LoginData } from '../login-data';
 
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private postService: PostService,
+              private bidService: BidService,
               public dialog: MatDialog,
               public dialogRef: MatDialogRef<LoginComponent>) { }
 
@@ -74,6 +76,7 @@ export class LoginComponent implements OnInit {
   setActiveLogin(login: LoginData) {
       this.loginService.setActiveLogin(login);
       this.postService.initActiveUserPosts(login.id);
+      this.bidService.initActiveUserBids(login.id);
   }
 
   clearData() {

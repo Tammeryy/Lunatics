@@ -46,7 +46,6 @@ export class PostTaskComponent implements OnInit {
 
   addPost() {
       if (this.validPost()) {
-        this.post.task_open = "true";
         alert('Post details are valid. Adding post to browse list...');
         const result = this.postService.addPost(this.post);// TODO replace with if (this.add)
         this.dialogRef.close(result);
