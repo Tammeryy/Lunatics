@@ -34,7 +34,6 @@ class Login(Resource):
                     # Generate a session token and add it to the sessions
                     token = md5(str(username) + str(time())).hexdigest()
                     print(token)
-                    # TODO Do we want to do security? I ceebs atm.
                     sessions.append((username, token))
                     # Return the token
                     return {'Result': 'Success', 'Token': token}
@@ -54,51 +53,7 @@ class Logout(Resource):
             if i[1] == token:
                 sessions.remove(i)
                 return {"Success": "Logged out."}
-        return {'Error': 'Session doesn\'t exist.'}
-
-
-### Account handler ###
-class Account(Resource):
-    def get(self):
-        return {'TODO': 'Not implemented yet.'}
-
-    def post(self):
-        data = request.get_json()
-        if not data:
-            return {'result': 'Failure', 'error': 'No data found'}, 400
-        try:
-            username = data["username"]
-            password = data["password"]
-            name = data["name"]
-            phone = data["phone"]
-            email = data["email"]
-            about_me = ""
-            skills_exp = ""
-        except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
-
-        # check if username is taken
-        for account in database['users']:
-            if account['username'] == username:
-                return {'result': 'Failure', 'error': 'Username already exists.'}, 400
-
-        # calculate new ID
-        newId = 0
-        for account in database['users']:
-            if account['id'] > newId:
-                newId = account['id']
-        # ID is one more than the largest
-        newId += 1
-
-        # edit the global variable - before updating the file
-        database['users'].append({'id' : newId, 'username' : username, 'password' : password, 'name' : name, 'phone' : phone, 'email' : email, 'about_me' : about_me, 'skills_exp' : skills_exp})
-
-        # write new db to file
-        with open("data.json", "w") as file:
-            json.dump(database, file, indent=2)
-
-        # TODO check all the return variables
-        return {'result': 'Success', 'username': username}
+        return {'Error': 'Session doesn\'t exist.'}, 404
 
 class PasswordChange(Resource):
     def post(self, user_id):
@@ -124,9 +79,19 @@ class PasswordChange(Resource):
                     return {'result': 'Failure', 'error': 'Passwords don\'t match'}, 403
 
         # when it does not find the user id
-        return {'result': 'Failure', 'error': 'User account doesn\'t exist'}, 400
+        return {'result': 'Failure', 'error': 'User account doesn\'t exist'}, 404
+
 
 ##### User interaction #####
+### Account handler ###
+class GetAccount(Resource):
+    def get(self, account_id):
+        for acc in database['users']:
+            if acc['id'] == int(account_id):
+                return acc
+
+        return {'result': 'Failure', 'error': 'Account ID doesn\'t exist'}, 404
+
 class EditProfile(Resource):
     def post(self, user_id):
         data = request.get_json()
@@ -166,7 +131,6 @@ class DeleteAccount(Resource):
         # if not data:
         #     return {'result': 'Failure', 'error': 'No data found.'}, 400
 
-        # TODO Check this and show Tammy
         for user in database["users"]:
             if user["id"] == user_id:
                 database["users"].remove(user)
@@ -178,12 +142,95 @@ class DeleteAccount(Resource):
         
         return {'result': 'success'}
 
+class CreateAccount(Resource):
+    def post(self):
+        data = request.get_json()
+        if not data:
+            return {'result': 'Failure', 'error': 'No data found'}, 400
+        try:
+            username = data["username"]
+            password = data["password"]
+            name = data["name"]
+            phone = data["phone"]
+            email = data["email"]
+            about_me = ""
+            skills_exp = ""
+        except:
+            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
+
+        # check if username is taken
+        for account in database['users']:
+            if account['username'] == username:
+                return {'result': 'Failure', 'error': 'Username already exists.'}, 400
+
+        # calculate new ID
+        newId = 0
+        for account in database['users']:
+            if account['id'] > newId:
+                newId = account['id']
+        # ID is one more than the largest
+        newId += 1
+
+        # edit the global variable - before updating the file
+        database['users'].append({'id' : newId, 'username' : username, 'password' : password, 'name' : name, 'phone' : phone, 'email' : email, 'about_me' : about_me, 'skills_exp' : skills_exp})
+
+        # write new db to file
+        with open("data.json", "w") as file:
+            json.dump(database, file, indent=2)
+
+        # TODO check all the return variables
+        return {'result': 'Success', 'username': username}
+
 
 ##### Tasks #####
-### Get and post tasks
+### Get and post tasks ###
 class Posts(Resource):
     def get(self):
-        # TODO 
+        req = request.get_json()
+        if not req
+            return database['posts']
+        
+        ret = []
+        # TODO Make this the same as the verified Dafny code
+        # Search
+        # Search query example:
+        # {"search": [{"key": "user_id", "value": "0"}, {"key": "location", "value": "cabramatta"}]}
+        if "search" in req:
+            # Go through each of the posts
+            for p in database["posts"]:
+                app = True
+                for s in req["search"]:
+                    # If each query in the given request matches, append
+                    if p[s['key']] != s['value']:
+                        app = False
+                        break
+                if app:
+                    ret.append(p)
+        else:
+            ret = database['posts']
+
+        # Filter
+        # Filter query example:
+        # {"filter": [{"key": "user_id", "value": "1"}, {"key": "location", "value": "parramatta"}]}
+        if "filter" in req:
+            for p in ret:
+                rem = False
+                for s in req['filter']:
+                    # If each query in the given request matches, remove
+                    if p[s['key']] != s['value']:
+                        app = True
+                        break
+                if app:
+                    ret.remove(p)
+
+        # TODO Make this the same as the verified Dafny code
+        # Sort
+        # Sort query example:
+        # {"sort": [{"key": "user_id"}, {"key": "location"}]}
+        if 'sort' in req:
+            quicksort(ret, 0, len(ret), 'poster_id')
+
+        return ret
 
     def post(self):
         data = request.get_json()
@@ -266,11 +313,6 @@ class EditPost(Resource):
 
 class DeletePost(Resource):
     def post(self, post_id):
-        # del task TODO There won't be any data here
-        data = request.get_json()
-        if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
-
         # Remove
         for post in database["posts"]:
             if post["id"] == post_id:
@@ -285,12 +327,15 @@ class DeletePost(Resource):
 
 class PostsByUser(Resource):
     def get(self, user_id):
-        return {'This is': 'A placeholder'}
+        ret = []
+        for p in database["posts"]:
+            if p['poster_id'] == int(user_id):
+                ret.append(p)
+        return jsonify(p)
 
 
 ##### Bids #####
 class Bid(Resource):
-    # TODO what is the deal with finding foreign keys???
     def post(self, post_id):
         data = request.get_json()
         if not data:
@@ -397,6 +442,30 @@ class DeleteBid(Resource):
         return jsonify({'result' : 'success'})
 
 
+# NOTE key passed in here as Dafny verifies the sorting algorithm, but
+# only on ints. As we're sorting an array on a key, we need to know 
+# what the key is.
+def partition(a, start, end, key):
+    pivot = start
+    i = start + 1
+    while i < end:
+        if a[i][key] < a[start][key]:
+            pivot += 1
+            temp = a[i]
+            a[i] = a[pivot]
+            a[pivot] = temp
+        i += 1
+    temp = a[start]
+    a[start] = a[pivot]
+    a[pivot] = temp
+
+def quicksort(arr, start, end, key):
+    if end <= start:
+        return
+    else:
+        pivot = partition(arr, start, end, key)
+        quicksort(arr, start, pivot)
+        quicksort(arr, pivot + 1, end)
 
 
 
