@@ -17,7 +17,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="!activeLogin"><a (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>  Sign Up</a></li>
       <li *ngIf="!activeLogin"><a (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>  Login</a></li>
-      <li *ngIf="activeLogin"><a (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+      <li *ngIf="activeLogin" routerLink=""><a (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
 
     </ul>
   </div><!-- /.navbar-collapse -->

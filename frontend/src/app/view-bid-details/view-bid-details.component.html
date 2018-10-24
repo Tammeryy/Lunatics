@@ -1,3 +1,30 @@
-<p>
-  view-bid-details works!
-</p>
+<div class="bid-popup">
+  <div class="bid-popup-header">
+    <!-- the "x" text represents the exit button on top right corner of bid task popup box -->
+    <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
+  </div>
+  <br>
+  <div mat-dialog-content class="center">
+   <!-- TODO inside header here-->
+    <br>
+    <!--TODO inside descrption here-->
+  </div>
+
+  <div mat-dialog-content>
+
+    <br>
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th><!-- TODO Table headers--></th>
+      </tr>
+      </thead>
+      <tbody <!-- TODO insert forloop here -->>
+      <tr>
+        <td> <!-- TODO details ofr the bidders--> </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
