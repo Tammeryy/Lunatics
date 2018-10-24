@@ -32,7 +32,7 @@ export class PostTaskComponent implements OnInit {
   constructor(private postService: PostService,
               public dialogRef: MatDialogRef<PostTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
-    this.post.poster_id = data.poster_id;
+      this.post.poster_id = data.poster_id;
   }
 
   ngOnInit() {
@@ -44,16 +44,15 @@ export class PostTaskComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  verifyPost() {
+  addPost() {
       if (this.validPost()) {
         this.post.task_open = "true";
         alert('Post details are valid. Adding post to browse list...');
-        const success = this.addPost(); // TODO replace with if (this.add)
-        this.dialogRef.close(success);
+        const result = this.postService.addPost(this.post);// TODO replace with if (this.add)
+        this.dialogRef.close(result);
       }
       else {
         alert('Post details are invalid. Try again');
-        // this.clearData();
       }
   }
 
@@ -62,25 +61,8 @@ export class PostTaskComponent implements OnInit {
       return this.postService.validPost(this.post);
   }
 
-  addPost() {
-    console.log('Add post called');
-    return this.postService.addPost(this.post);
-  }
-
   getNewPostID() {
     this.postService.getNewPostID()
         .subscribe(id => this.post.id = id);
-  }
-
-  clearData() {
-    this.post.title ="";
-    this.post.description = "";
-    this.post.cuisine = "";
-    this.post.quality = "";
-    this.post.diet = "";
-    this.post.budget = 0;
-    this.post.event_date = "";
-    this.post.bid_close = "";
-    this.post.location = "";
   }
 }

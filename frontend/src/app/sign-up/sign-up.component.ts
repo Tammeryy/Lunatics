@@ -43,7 +43,6 @@ export class SignUpComponent implements OnInit {
     }
     else {
       alert('Invalid sign up details. Try again.');
-      this.clearData();
     }
   }
 
@@ -59,13 +58,5 @@ export class SignUpComponent implements OnInit {
   getNewLoginID() {
       this.loginService.getNewLoginID()
           .subscribe(id => this.data.id = id);
-  }
-
-  clearData() {
-    this.data.username = "";
-    this.data.password = "";
-    this.data.name = "";
-    this.data.phone = "";
-    this.data.email = "";
   }
 }

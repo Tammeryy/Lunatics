@@ -26,7 +26,8 @@ export class EditProfileComponent implements OnInit {
   constructor(private loginService: LoginService,
               public dialogRef: MatDialogRef<EditProfileComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
-      this.activeLogin = data;
+      this.activeLogin = data.activeLogin;
+      console.log('Active Login: ' + this.activeLogin);
   }
 
   ngOnInit() {

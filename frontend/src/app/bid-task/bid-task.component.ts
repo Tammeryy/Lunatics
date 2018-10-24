@@ -67,16 +67,7 @@ export class BidTaskComponent implements OnInit {
       }
       else {
         alert('Bid details are invalid. Try again');
-        // this.clearData();
       }
-  }
-
-  clearData() {
-    this.bid.name = "";
-    this.bid.phone_no = undefined;
-    this.bid.email = "";
-    this.bid.description = "";
-    this.bid.bid_offer = undefined;
   }
 
   getActiveLogin() {

@@ -8,11 +8,11 @@
   <br>
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput [value]="activeLogin.about_me" (input)="updatedLogin.about_me=$event.target.value"  placeholder="Task Title" type="text"/>
+      <input matInput [value]="activeLogin.about_me" (input)="updatedLogin.about_me=$event.target.value"  placeholder="About me" type="text"/>
     </mat-form-field>
     <br>
     <mat-form-field>
-        <textarea matInput [value]="activeLogin.skills_exp" (input)="updatedLogin.skills_exp=$event.target.value" placeholder="Description"></textarea>
+        <textarea matInput [value]="activeLogin.skills_exp" (input)="updatedLogin.skills_exp=$event.target.value" placeholder="Skills/Experience"></textarea>
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="buttonDiv">
