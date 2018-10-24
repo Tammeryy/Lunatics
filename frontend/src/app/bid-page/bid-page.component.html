@@ -1,1 +1,56 @@
+<div class="container">
+  <h1>Your Bids </h1>
+  <div class="row">
+    <div class="column left" >
+      <h3>Filter By:</h3>
+      <hr>
+      <h4>Cuisine</h4>
+      <mat-checkbox>Chinese</mat-checkbox>
+      <br>
+      <mat-checkbox>Indian</mat-checkbox>
+      <br>
+      <mat-checkbox>Italian</mat-checkbox>
+      <br>
+      <mat-checkbox>Japanese</mat-checkbox>
+      <br>
+      <mat-checkbox>Korean</mat-checkbox>
+      <br>
+      <h4>Event Type</h4>
+      <mat-checkbox>Casual</mat-checkbox>
+      <br>
+      <mat-checkbox>Formal</mat-checkbox>
+      <br>
+      <mat-checkbox>Party</mat-checkbox>
+      <br>
+      <h4>Dietary Requirement</h4>
+      <mat-checkbox>Halal</mat-checkbox>
+      <br>
+      <mat-checkbox>Pescetarians</mat-checkbox>
+      <br>
+      <mat-checkbox>Vegan</mat-checkbox>
+      <br>
+      <mat-checkbox>No Nuts</mat-checkbox>
+      <br>
+      <mat-checkbox>No Milk</mat-checkbox>
+      <br>
+      <h4>Task Budget</h4>
+      <mat-checkbox>Less Than $50</mat-checkbox>
+      <br>
+      <mat-checkbox>$51 ~ $250</mat-checkbox>
+      <br>
+      <mat-checkbox>More than $250</mat-checkbox>
+      <br>
+      <button mat-button class="btn btn-primary btn-lg btn-block">Apply Filter</button>
+    </div>
+    <div  class="column right">
+      <mat-list>
+      <!-- ADD HTML AFTER TS is added-->
+        <a class="btn btn-warning btn-mine-right" (click)="openViewBidPopup(post)">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          <span>View Post</span>
+        </a>
+      </mat-list>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
