@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
+import { LoginData } from '../login-data';
+import { LoginService } from '../login.service';
+
 import { PostService } from '../post.service';
 import { POSTS } from '../mock-posts';
 import { Post } from '../post'; // dummy data
@@ -16,15 +19,18 @@ export class PostsComponent implements OnInit {
 
   // Used to display all posts on home page
   posts: Post[];
+  // activeLogin: LoginData;
 
   sortByOptions: string[] = [
      'Price', 'Location'
   ];
 
   constructor(private postService: PostService,
+              private loginService: LoginService,
               public dialog: MatDialog) { }
 
   ngOnInit() {
+      // this.getActiveLogin();
       this.getPosts();
   }
 
@@ -55,6 +61,10 @@ export class PostsComponent implements OnInit {
   getPosts() {
       this.postService.getPosts()
         .subscribe(posts => this.posts = posts);
+  }
+
+  getActiveLogin() {
+      this.loginService.getActiveLogin().subscribe(activeLogin => this.activeLogin = activeLogin);
   }
 
 }
