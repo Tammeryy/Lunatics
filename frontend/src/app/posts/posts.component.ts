@@ -64,7 +64,7 @@ export class PostsComponent implements OnInit {
   }
 
   getActiveLogin() {
-      this.loginService.getActiveLogin().subscribe(activeLogin => this.activeLogin = activeLogin);
+      // this.loginService.getActiveLogin().subscribe(activeLogin => this.activeLogin = activeLogin);
   }
 
 }

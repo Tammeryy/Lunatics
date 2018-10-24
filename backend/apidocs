@@ -1,0 +1,183 @@
+Name: Login
+Function: Logs in a user
+Endpoint: '/login'
+Requests:
+    POST:
+    Requires: {"username": uname, "password": pwd}
+    Returns:
+        On success: {"token"}
+        On fail: {"result": "Failure", "error": error_reason}
+
+
+Name: Logout
+Function: Logs out a user
+Endpoint: '/logout/<token>'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: {"Success": "Logged out."}
+        On fail: {'result': 'Failure', 'error': 'Session doesn\'t exist.'}
+
+
+Name: Change Password
+Function: Changes a user's password
+Endpoint: '/account/change_pwd/<user_id>'
+Requests:
+    POST:
+    Requires: {"old_password": old, "new_password": new}
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: {'result': 'Failure', 'error': 'Passwords don\'t match'}
+
+
+Name: Get Account by Id
+Function: Changes a user's password
+Endpoint: '/account/<account_id>'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: account_data
+        On fail: {'result': 'Failure', 'error': 'Account ID doesn\'t exist'}
+
+
+Name: Create account
+Function: Creates an account
+Endpoint: '/account/create'
+Requests:
+    POST:
+    Requires: {"username": uname, "password": passwd, "name": n, "phone": p, "email" = e}
+    Returns:
+        On success: {'result': 'Success', 'username': username}
+        On fail: {'result': 'Failure', 'error': 'Not all data provided'}
+
+
+Name: Edit account
+Function: Changes an account's details
+Endpoint: '/account/edit/<user_id>'
+Requests:
+    POST:
+    Requires: {"username": uname, "password": passwd, "name": n, "phone": p, "email" = ej, 'about_me': a, 'skills_exp': s}
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: {'result': 'Failure', 'error': 'Not all data provided'}
+
+
+Name: Delete account
+Function: Makes you tea
+Endpoint: '/account/delete/<user_id>'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: This doesn't fail. Use this wisely.
+
+
+Name: Get Posts
+Function: Returns all posts matching search, sort, and filter requirements
+Endpoint: '/tasks'
+Requests:
+    GET:
+    Requires: 
+    	{"search": [{"key": "user_id", "value": "0"}, {"key": "location", "value": "cabramatta"}]} 
+    	OR
+    	{"sort": [{"key": "user_id"}]}
+    	OR
+    	{"filter": [{"key": "price", "expression": "gt", "value": "1"}, {"key": "location", "value": "parramatta"}]}
+    	or any combination of these.
+    Returns:
+        On success: The posts matching the criteria.
+        On fail: Lol, TODO but low priority.
+
+    POST:
+    Requires:
+    	{'cuisine': a, 'description': b, 'title': c, 'bid_close': d, 'budget': e, 'diet': f, 'poster_id': g, 'location': h, 'event_date': i, 'quality': j, 'num_ppl': k}
+    Returns:
+    	On success: {'result' : 'success'}
+        On fail: {'result': 'Failure', 'error': 'Not all required data provided.'}
+
+
+Name: Edit post
+Function: Changes a posts details
+Endpoint: '/tasks/edit/<post_id>'
+Requests:
+    POST:
+    Requires:
+    	{'cuisine': a, 'description': b, 'title': c, 'bid_close': d, 'budget': e, 'diet': f, 'poster_id': g, 'location': h, 'event_date': i, 'quality': j, 'num_ppl': k}
+    Returns:
+    	On success: {'result' : 'success'}
+        On fail: {'result': 'Failure', 'error': 'Not all required data provided.'}
+
+
+Name: Delete post
+Function: Makes you coffee
+Endpoint: '/tasks/delete/<post_id>'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: This doesn't fail. Use this wisely.
+
+
+Name: Get Posts by User
+Function: Returns all posts made only by a specific user
+Endpoint: '/tasks/<user_id>'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: Doesn't fail.
+
+
+Name: Get or make a bid
+Function: Makes or gets all bids
+Endpoint: '/bids/<post_id>'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: Doesn't fail.
+
+    POST: 
+    Requires: {'bidder_id': a, 'bid_offer': b, 'email': c, 'name': d, 'phone': e}
+    Returns:
+        On success: {'result': 'success'}
+        On fail: {'result': 'Failure', 'error': 'Not all required data provided.'}
+
+
+Name: Get Lowest Bid for Task
+Function: Returns the details of the lowest bid for a specific task
+Endpoint: '/bids/<post_id>/lowest'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: Doesn't fail.
+
+
+Name: Edit a bid
+Function: Changes a bid's details
+Endpoint: '/bids/edit'
+Requests:
+    POST: 
+    Requires: {'bidder_id': a, 'bid_offer': b, 'email': c, 'name': d, 'phone': e, 'post_id': f}
+    Returns:
+        On success: {'result': 'success'}
+        On fail: {'result': 'Failure', 'error': 'Not all required data provided.'}
+
+
+Name: Delete bid
+Function: Makes you a red head. *shudders*
+Endpoint: '/bids/delete/<post_id>/<bidder_id>'
+Requests:
+    GET:
+    Requires: None
+    Returns:
+        On success: {'result': 'Success'}
+        On fail: This doesn't fail. Use this wisely.

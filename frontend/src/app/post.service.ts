@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Post } from './post';
 import { POSTS } from './mock-posts';
@@ -15,7 +17,7 @@ export class PostService {
   posts: Post[];
   newPostID: number;
 
-  constructor() {
+  constructor(private http: HttpClient) {
       this.init();
   }
 

@@ -1,92 +1,42 @@
-from flask import Flask
+from flask import Flask, request, jsonify # from flask_jsonpify import jsonify
+from flask_restful import Api
+from classes import *
 import json
-from flask import jsonify
-# import request
 
+# Starter code for Api found here:
+# https://www.codementor.io/sagaragarwal94/building-a-basic-restful-api-in-python-58k02xsiq
+# More found here
+# https://www.codementor.io/dongido/how-to-build-restful-apis-with-python-and-flask-fh5x7zjrx
+
+# Setup
 app = Flask(__name__)
+api = Api(app)
 
-with open('data.json', 'r') as data_file:    
-    data = json.load(data_file)
-
-# NOTE: database = json file
-# return format = json format
-# from routes import app # separate into files later?
-
-# req && wbs - or kris' wbs
-
-
-# must have and should have
-
-# https://stackoverflow.com/questions/34057851/python-flask-typeerror-dict-object-is-not-callable
-"""
+# Add the end points
+api.add_resource(Login, '/login')
+api.add_resource(Logout, '/logout/<token>')
+api.add_resource(PasswordChange, '/account/change_pwd/<user_id>')
+api.add_resource(GetAccount, '/account/<account_id>')
+api.add_resource(CreateAccount, '/account/create')
+api.add_resource(EditAccount, '/account/edit/<user_id>')
+api.add_resource(DeleteAccount, '/account/delete/<user_id>')
+api.add_resource(Posts, '/tasks')
+api.add_resource(EditPost, '/tasks/edit/<post_id>')
+api.add_resource(DeletePost, '/tasks/delete/<post_id>')
+api.add_resource(PostsByUser, '/tasks/<user_id>')
+api.add_resource(Bid, '/bids/<post_id>')
+api.add_resource(LowestBid, '/bids/<post_id>/lowest')
+api.add_resource(EditBid, '/bids/edit')
+api.add_resource(DeleteBid, '/bids/delete/<post_id>/<bidder_id>')
+    
 @app.route("/")
 def index():
-    return "Index!"
- 
-@app.route("/hello")
-def hello():
-    return "Hello World!"
- 
-@app.route("/members")
-def members():
-    return "Members"
- 
-@app.route("/members/<string:name>/") # through routes as in like this? # or methods = GET POST? -where do those come from # or just the other function? -wouldnt work
-def getMember(name):
-    return name
-"""
-@app.route("/")
-def index():
-	return "Welcome to Lunatics' chaotic backend!"
+    print(sessions)
+    return jsonify({"Init": "Welcome to Lunatics' chaotic backend!"})
 
-# post - mvp - Tammy
-# get - mvp - Kris
-# search, sort, filter (2/3) - dafny then code - Lucy
-	# minimum of 2 dafny verification
-# front end - can see mvp by next week
-
-
-
-
-
-
-# request.json - getting params from frontend
-
-
-# editing json files in python?
-
-
-# passin gin params through routes bit? or a separate function?
-
-
-# createAccount - unsure about the ones that need to pass in a parameter
-
-
-# authenticate - unsure how authentications work?
-
-
-# postTask -how to edit json files?
-
-
-# getPostedTasks
-
-
-# getBiddersForTask
-@app.route("")
-def getbidders():
-	# return as json object
-
-# bidTask
-
-# getAllTasks
-@app.route("/alltasks")
-def getAllTasks():
-	return jsonify(data["posts"])
-
+# Run application
+# NOTE This needs to go last in the file
 if __name__ == "__main__":
-    app.run()
-
-# https://pythonspot.com/flask-web-app-with-python/
+    app.run(port=2011, debug=True)
 
 
-# account to persist  - dodgy way global variable in front end since dont need to demo it
