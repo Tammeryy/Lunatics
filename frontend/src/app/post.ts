@@ -10,7 +10,7 @@ export class Post {
   diet: string;
   num_ppl: number;
   budget: number;
-  bid_close: string;; // change to date variable type
+  bid_close: string; // change to date variable type
   event_date: string;
   location: any; // change to location type
   task_open: string;

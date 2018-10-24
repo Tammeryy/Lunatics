@@ -6,21 +6,21 @@
   <br>
   <div mat-dialog-content>
     <mat-form-field>
-        <input matInput [(ngModel)]="data.name" placeholder="Name*" type="text"/>
+        <input matInput [(ngModel)]="data.name" placeholder="Name" type="text" required="required"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="data.username" placeholder="Username*" type="text"/>
+      <input matInput [(ngModel)]="data.username" placeholder="Username" type="text" required="required"/>
     </mat-form-field>
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="data.password" placeholder="Password*" type="text"/>
+        <input matInput [(ngModel)]="data.password" placeholder="Password" type="password" required="required"/>
     </mat-form-field>
     <mat-form-field>
-        <input matInput [(ngModel)]="data.phone" placeholder="Phone number*" type="text"/>
+        <input matInput [(ngModel)]="data.phone" placeholder="Phone number" type="tel" required="required"/>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [(ngModel)]="data.email" placeholder="email*" type="text"/>
+        <input matInput [(ngModel)]="data.email" placeholder="Email" type="email" required="required"/>
     </mat-form-field>
   </div>
   <br>

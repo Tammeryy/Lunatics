@@ -12,4 +12,8 @@ export class ViewBidDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  exitClick(): void {
+    this.dialogRef.close();
+  }
+
 }

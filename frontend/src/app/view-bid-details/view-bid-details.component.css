@@ -1,0 +1,14 @@
+.bid-popup {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.table{
+  width: 100%;
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
