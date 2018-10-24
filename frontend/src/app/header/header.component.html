@@ -14,7 +14,7 @@
       <!--TODO change li's class to class="active" when it's active-->
       <li><a routerLink="" routerLinkActive="active">Browse</a></li>
       <li *ngIf="this.activeLogin" routerLink="/task" routerLinkActive="active"><a>My Tasks</a></li>
-      <li *ngIf="this.activeLogin" routerLink="/bidpage" routerLinkActive="active"><a>My Posts</a></li>
+      <li *ngIf="this.activeLogin" routerLink="/bidpage" routerLinkActive="active"><a>My Bids</a></li>
       <li *ngIf="this.activeLogin" routerLink="/profile" routerLinkActive="active"><a>Profile</a></li>
       <!-- CHANGE STYLING OF THIS -->
       <li><a (click)="openPostPopup()">Post a Task</a></li>

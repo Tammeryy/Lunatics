@@ -3,8 +3,6 @@
 <ul class="all-post">
   <li *ngFor="let post of posts">
     Title: {{post.title}}
-    <!-- TODO add post details here -->
-    <button mat-button>Bid Now</button>
   </li>
 </ul>
 <div class="container">
@@ -63,7 +61,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="posts.length > 0" >
+      <div *ngIf="userPosts.length > 0" >
         <div class="well" *ngFor="let post of userPosts">
           <div class="media">
             <div class="media-body">
@@ -92,14 +90,14 @@
               </a>
               <a class="btn btn-warning btn-mine-right" (click)="openViewBidPopup(post)">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <span>View Task</span>
+                <span>View Bids</span>
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <div *ngIf="posts.length === 0">
+      <div *ngIf="userPosts.length === 0">
         <p>You haven't bid in any tasks yet</p>
       </div>
     </mat-list>
