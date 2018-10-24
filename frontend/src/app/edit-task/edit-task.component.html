@@ -39,6 +39,10 @@
         <textarea matInput [value]="post.location" (input)="updatedPost.location=$event.target.value" placeholder="Location"></textarea>
     </mat-form-field>
   </div>
+  <div mat-dialog-actions class="buttonDiv">
+    <button mat-button (click)="editTask()" cdkFocusInitial class="btn btn-primary btn-mine-right">Edit Task</button>
+  </div>
+
   <div mat-dialog-actions>
     <!-- dialog box will only close if "post" list is not empty ([mat-dialog-close]="post")-->
     <button mat-button (click)="editTask()" cdkFocusInitial class="btn btn-primary">Edit Task</button>

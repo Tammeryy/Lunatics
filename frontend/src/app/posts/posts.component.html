@@ -1,15 +1,15 @@
-<h2>All Posts</h2>
+
 <ul class="all-post">
   <li *ngFor="let post of posts">
     Title: {{post.title}} | Id: {{post.id}}
   </li>
 </ul>
-    <div class="container">
+<div class="container">
+  <h1>All Posts</h1>
   <div class="row">
     <div class="column left" >
       <h3>Filter By:</h3>
       <hr>
-      <br>
       <h4>Cuisine</h4>
       <mat-checkbox>Chinese</mat-checkbox>
       <br>
@@ -46,7 +46,7 @@
       <br>
       <mat-checkbox>More than $250</mat-checkbox>
       <br>
-      <button mat-button class="btn btn-default btn-lg btn-block">Apply Filter</button>
+      <button mat-button class="btn btn-primary btn-lg btn-block">Apply Filter</button>
     </div>
     <div  class="column right">
       <mat-list>
@@ -61,7 +61,7 @@
           </mat-form-field>
         </div>
 
-
+        <div *ngIf="posts.length > 0">
           <div class="well" *ngFor="let post of posts">
             <div class="media">
               <div class="media-body">
@@ -83,6 +83,8 @@
             <button class="btn btn-primary" id="bid-button" (click)="openBidPopup(post)"> Bid </button>
           </div>
           <br>
+        </div>
+        <div  *ngIf="posts.length === 0"><p>There is no post at this moment</p></div>
       </mat-list>
     </div>
   </div>
