@@ -52,24 +52,6 @@ export class BidPageComponent implements OnInit {
       });
   }
 
-  openViewBidDetailsPopup(bid) {
-      console.log('Edit Bid popup called');
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.width = '30%';
-      dialogConfig.data = {
-          bid: bid,
-      };
-
-      // opens a dialog box/pop-up displaying contents from BidBidComponent's html file
-      const dialogRef = this.dialog.open(ViewBidDetailsComponent, dialogConfig);
-
-      // result refers to 'data' in [mat-dialog-close]
-      dialogRef.afterClosed().subscribe(result => {
-      });
-  }
-
   deleteBid(post_id, bid_id) {
     console.log('Delete Bid popup called');
     if (confirm('Delete bid?')) {
