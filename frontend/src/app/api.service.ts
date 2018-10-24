@@ -18,19 +18,19 @@ export class ApiService {
 
     let params = new HttpParams();
 
-    return this.http.get(`${API_URL}/tasks`, { headers: headers, params: params });
+    return this.http.get(`${this.API_URL}/tasks`, { headers: headers, params: params });
   }
 
-  getBids() {
-      const url: string = `${API_URL}/bids/${post.id}'`;
+  getBids(post) {
+      const url: string = `${this.API_URL}/bids/${post.id}`;
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
 
       return this.http.get(url, { headers: headers });
   }
 
-  makeBid(bid: Bid) {
-      const url: string = `${API_URL}/bids/${bid.post_id}'`;
+  makeBid(bid) {
+      const url: string = `${this.API_URL}/bids/${bid.post_id}`;
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
 
@@ -44,8 +44,8 @@ export class ApiService {
 
   }
 
-  editTask(task) {
-      const url: string = `${API_URL}/tasks/edit/${post.id}'`;
+  editTask(post) {
+      const url: string = `${this.API_URL}/tasks/edit/${post.id}`;
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
 
@@ -67,7 +67,7 @@ export class ApiService {
   }
 
   deleteTask(post_id) {
-      const url: string = `${API_URL}/tasks/edit/${post_id}'`;
+      const url: string = `${this.API_URL}/tasks/edit/${post_id}`;
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
 
