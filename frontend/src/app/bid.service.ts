@@ -67,4 +67,11 @@ export class BidService {
       return "success";
   }
 
+  validBid(bid: Bid) {
+      if (bid.description && bid.bid_offer) {
+          return true;
+      }
+      return false;
+  }
+
 }
