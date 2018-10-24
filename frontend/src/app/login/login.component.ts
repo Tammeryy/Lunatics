@@ -33,18 +33,26 @@ export class LoginComponent implements OnInit {
 
   // Check if user w/ username and password exists.
   // Returns matching LoginData object to dialogRef if user exists.
-  verifyLogin() {
-    // TODO: add/replace with verification code
-    const user: LoginData = this.getUser(this.data.username, this.data.password);
-    if (user) {
-      alert('Login successful. Logging in...');
-      this.setActiveLogin(user);
-      this.dialogRef.close(user);
-    }
-    else {
-      alert('Login failed. Try again.');
-      this.clearData();
-    }
+  checkLogin() {
+      if (this.validLogin()) {
+          const user: LoginData = this.getUser(this.data.username, this.data.password);
+          if (user) {
+              alert('Login successful. Logging in...');
+              this.setActiveLogin(user);
+              this.dialogRef.close(user);
+          }
+          else {
+              alert('Login failed. Try again.');
+              this.clearData();
+          }
+      }
+      else {
+          alert('Invalid login. Please fill out all fields');
+      }
+  }
+
+  validLogin() {
+      return (this.data && this.data.username && this.data.password);
   }
 
   signUp(): void {
@@ -69,8 +77,8 @@ export class LoginComponent implements OnInit {
   }
 
   clearData() {
-    this.data.username = "";
-    this.data.password = "";
+      this.data.username = "";
+      this.data.password = "";
   }
 
 }
