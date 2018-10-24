@@ -21,12 +21,12 @@ class Login(Resource):
     def post(self):
         data = json.loads(request.data)
         if not data:
-            return {'result': 'Failure', 'error': 'No input data provided'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No input data provided'}), 400
         try:
             username = data['username']
             password = data['password']
         except:
-            return {'result': 'Failure', 'error': 'Username or password not given'}, 400
+            return jsonify({'result': 'Failure', 'error': 'Username or password not given'}), 400
 
         for u in database['users']:
             if u['username'] == username:
@@ -36,15 +36,15 @@ class Login(Resource):
                     print(token)
                     sessions.append((username, token))
                     # Return the token
-                    return {'Result': 'Success', 'Token': token}
+                    return jsonify({'Result': 'Success', 'Token': token})
                 else:
                     # Incorrect password
-                    return {'result': 'Failure', 'error': 'Username or password incorrect'}, 400
+                    return jsonify({'result': 'Failure', 'error': 'Username or password incorrect'}), 400
 
                 break
         
         # Username not found:
-        return {'result': 'Failure', 'error': 'Username or password incorrect.'}, 400
+        return jsonify({'result': 'Failure', 'error': 'Username or password incorrect.'}), 400
 
 ### Logout handler ###
 class Logout(Resource):
@@ -52,19 +52,19 @@ class Logout(Resource):
         for i in sessions:
             if i[1] == token:
                 sessions.remove(i)
-                return {"Success": "Logged out."}
-        return {'Error': 'Session doesn\'t exist.'}, 404
+                return jsonify({"Success": "Logged out."})
+        return jsonify({'Error': 'Session doesn\'t exist.'}), 404
 
 class PasswordChange(Resource):
     def post(self, user_id):
         data = request.get_json()
         if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
         try:
             old_password = data["old_password"]
             new_password = data["new_password"]
         except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'Not all required data provided.'}), 400
 
         for user in database['users']:
             if user["id"] == user_id:
@@ -74,12 +74,12 @@ class PasswordChange(Resource):
                     with open("data.json", "w") as file:
                         json.dump(database, file, indent=2)
                     
-                    return {'result' : 'Success'}
+                    return jsonify({'result' : 'Success'})
                 else:
-                    return {'result': 'Failure', 'error': 'Passwords don\'t match'}, 403
+                    return jsonify({'result': 'Failure', 'error': 'Passwords don\'t match'}), 403
 
         # when it does not find the user id
-        return {'result': 'Failure', 'error': 'User account doesn\'t exist'}, 404
+        return jsonify({'result': 'Failure', 'error': 'User account doesn\'t exist'}), 404
 
 
 ##### User interaction #####
@@ -88,65 +88,15 @@ class GetAccount(Resource):
     def get(self, account_id):
         for acc in database['users']:
             if acc['id'] == int(account_id):
-                return acc
+                return jsonify(acc)
 
-        return {'result': 'Failure', 'error': 'Account ID doesn\'t exist'}, 404
-
-class EditProfile(Resource):
-    def post(self, user_id):
-        data = request.get_json()
-        if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
-        try:
-            username = data["username"]
-            name = data["name"]
-            email = data["email"]
-            phone = data["phone"]
-            password = data["password"]
-            about_me = data["about_me"]
-            skills_exp = data["skills_exp"]
-        except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
-
-        for user in database["users"]:
-            if user["id"] == user_id:
-                database["users"].remove(user)
-                break
-
-        # edit the global variable - before updating the file
-        # add it back in with updated info
-        database['users'].append({ "username": username, "name": name, "email": email, "phone": phone, "password": password, "id": user_id, "about_me" : about_me, "skills_exp" : skills_exp })
-
-        # write new db to file
-        with open("data.json", "w") as file:
-            json.dump(database, file, indent=2)
-        
-        return {'result' : 'Success'}
-
-class DeleteAccount(Resource):
-    def post(self, user_id):
-        # del account
-        # TODO Check passwords??
-        # data = request.get_json()
-        # if not data:
-        #     return {'result': 'Failure', 'error': 'No data found.'}, 400
-
-        for user in database["users"]:
-            if user["id"] == user_id:
-                database["users"].remove(user)
-                break
-
-        # write new db to file
-        with open("data.json", "w") as file:
-            json.dump(database, file, indent=2)
-        
-        return {'result': 'success'}
+        return jsonify({'result': 'Failure', 'error': 'Account ID doesn\'t exist'}), 404
 
 class CreateAccount(Resource):
     def post(self):
         data = request.get_json()
         if not data:
-            return {'result': 'Failure', 'error': 'No data found'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No data found'}), 400
         try:
             username = data["username"]
             password = data["password"]
@@ -156,12 +106,12 @@ class CreateAccount(Resource):
             about_me = ""
             skills_exp = ""
         except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'Not all required data provided.'}), 400
 
         # check if username is taken
         for account in database['users']:
             if account['username'] == username:
-                return {'result': 'Failure', 'error': 'Username already exists.'}, 400
+                return jsonify({'result': 'Failure', 'error': 'Username already exists.'}), 400
 
         # calculate new ID
         newId = 0
@@ -178,24 +128,74 @@ class CreateAccount(Resource):
         with open("data.json", "w") as file:
             json.dump(database, file, indent=2)
 
-        # TODO check all the return variables
-        return {'result': 'Success', 'username': username}
+        return jsonify({'result': 'Success', 'username': username})
 
+class EditAccount(Resource):
+    def post(self, user_id):
+        data = request.get_json()
+        if not data:
+            return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
+        try:
+            username = data["username"]
+            name = data["name"]
+            email = data["email"]
+            phone = data["phone"]
+            password = data["password"]
+            about_me = data["about_me"]
+            skills_exp = data["skills_exp"]
+        except:
+            return jsonify({'result': 'Failure', 'error': 'Not all required data provided.'}), 400
+
+        for user in database["users"]:
+            if user["id"] == user_id:
+                database["users"].remove(user)
+                break
+
+        # edit the global variable - before updating the file
+        # add it back in with updated info
+        database['users'].append({ "username": username, "name": name, "email": email, "phone": phone, "password": password, "id": user_id, "about_me" : about_me, "skills_exp" : skills_exp })
+
+        # write new db to file
+        with open("data.json", "w") as file:
+            json.dump(database, file, indent=2)
+        
+        return jsonify({'result' : 'Success'})
+
+class DeleteAccount(Resource):
+    def post(self, user_id):
+        # del account
+        # NOTE: We don't check passwords
+
+        for user in database["users"]:
+            if user["id"] == user_id:
+                database["users"].remove(user)
+                break
+
+        # write new db to file
+        with open("data.json", "w") as file:
+            json.dump(database, file, indent=2)
+        
+        return jsonify({'result': 'success'})
 
 ##### Tasks #####
 ### Get and post tasks ###
 class Posts(Resource):
     def get(self):
         req = request.get_json()
-        if not req
-            return database['posts']
+        if not req:
+            return jsonify(database['posts'])
         
         ret = []
-        # TODO Make this the same as the verified Dafny code
         # Search
         # Search query example:
         # {"search": [{"key": "user_id", "value": "0"}, {"key": "location", "value": "cabramatta"}]}
         if "search" in req:
+            if len(req['search']) == 1:
+                temp = database['posts']
+                quicksort(temp, 0, len(temp), req['search'][0]['key'])
+                ret = binarySearch(temp, req['search'][0]['value'], req['search'][0]['key'])
+                return jsonify(ret)
+
             # Go through each of the posts
             for p in database["posts"]:
                 app = True
@@ -209,33 +209,49 @@ class Posts(Resource):
         else:
             ret = database['posts']
 
+
+        # Sort
+        # Sort query example:
+        # {"sort": [{"key": "user_id"}, {"key": "location"}]}
+        if 'sort' in req:
+            quicksort(ret, 0, len(ret), req['sort'][0]['key'])
+
+
         # Filter
         # Filter query example:
-        # {"filter": [{"key": "user_id", "value": "1"}, {"key": "location", "value": "parramatta"}]}
+        # {"filter": [{"key": "price", "expression": "gt", "value": "1"}, {"key": "location", "value": "parramatta"}]}
         if "filter" in req:
             for p in ret:
                 rem = False
                 for s in req['filter']:
                     # If each query in the given request matches, remove
-                    if p[s['key']] != s['value']:
-                        app = True
-                        break
-                if app:
+                    if s['expression'] == 'eq':
+                        if p[s['key']] != s['value']:
+                            rem = True
+                            break
+                    elif s['expression'] == 'ne':
+                        if p[s['key']] == s['value']:
+                            rem = True
+                            break
+                    elif s['expression'] == 'lt':
+                        if p[s['key']] >= s['value']:
+                            rem = True
+                            break
+                    elif s['expression'] == 'gt':
+                        if p[s['key']] <= s['value']:
+                            rem = True
+                            break
+                    else:
+                        return jsonify({'result': 'Failure', 'Error': 'Unknown expression given'}), 400
+                if rem:
                     ret.remove(p)
 
-        # TODO Make this the same as the verified Dafny code
-        # Sort
-        # Sort query example:
-        # {"sort": [{"key": "user_id"}, {"key": "location"}]}
-        if 'sort' in req:
-            quicksort(ret, 0, len(ret), 'poster_id')
-
-        return ret
+        return jsonify(ret)
 
     def post(self):
         data = request.get_json()
         if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
         try:
             cuisine = data["cuisine"]
             task_open = "true"
@@ -251,7 +267,7 @@ class Posts(Resource):
             quality = data["quality"]
             num_ppl = data["num_ppl"]
         except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'Not all required data provided.'}), 400
 
         # Get new post ID
         newId = 0
@@ -271,13 +287,13 @@ class Posts(Resource):
         with open("data.json", "w") as file:
             json.dump(database, file, indent=2)
         
-        return {'result' : 'success'}
+        return jsonify({'result' : 'success'})
 
 class EditPost(Resource):
     def post(self, post_id):
         data = request.get_json()
         if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
         try:
             cuisine = data["cuisine"]
             task_open = "true"
@@ -292,7 +308,7 @@ class EditPost(Resource):
             quality = data["quality"]
             num_ppl = data["num_ppl"]
         except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'Not all required data provided.'}), 400
 
         for post in database["posts"]:
             if post["id"] == post_id:
@@ -309,7 +325,7 @@ class EditPost(Resource):
         with open("data.json", "w") as file:
             json.dump(database, file, indent=2)
         
-        return {'result' : 'success'}
+        return jsonify({'result' : 'success'})
 
 class DeletePost(Resource):
     def post(self, post_id):
@@ -336,10 +352,18 @@ class PostsByUser(Resource):
 
 ##### Bids #####
 class Bid(Resource):
+    def get(self, post_id):
+        ret = []
+        for i in database['bids']:
+            if i['post_id'] == int(post_id):
+                ret.append(i)
+
+        return jsonify(ret)
+
     def post(self, post_id):
         data = request.get_json()
         if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
         try:
             bidder_id = data["bidder_id"] # basically the account user id - if no account -1
             bid_offer = data["bid_offer"]
@@ -347,7 +371,7 @@ class Bid(Resource):
             name = data["name"]
             phone = data["phone"]
         except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'Not all required data provided.'}), 400
 
         # check whether its the same person in the db 
         # same person = same name && same email && same phone and for that same post
@@ -393,11 +417,22 @@ class Bid(Resource):
         
         return jsonify({'result' : 'success'})
 
+class LowestBid(Resource):
+    def get(self, post_id):
+        ret = []
+        for i in database['bids']:
+            if i['post_id'] == int(post_id):
+                ret.append(i)
+
+        quicksort(ret, 0, len(ret), 'price')
+
+        return jsonify(ret[0])
+
 class EditBid(Resource):
     def post(self):
         data = request.get_json()
         if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
         try:
             bidder_id = data["bidder_id"]
             name = data["name"]
@@ -406,7 +441,7 @@ class EditBid(Resource):
             bid_offer = data["bid_offer"]
             email = data["email"]
         except:
-            return {'result': 'Failure', 'error': 'Not all required data provided.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'Not all required data provided.'}), 400
 
         for bid in database["bids"]:
             if bid["post_id"] == post_id and bid["bidder_id"] == bidder_id:
@@ -427,7 +462,7 @@ class DeleteBid(Resource):
     def post(self):
         data = request.get_json()
         if not data:
-            return {'result': 'Failure', 'error': 'No data found.'}, 400
+            return jsonify({'result': 'Failure', 'error': 'No data found.'}), 400
 
         # del bids
         for bid in database["bids"]:
@@ -459,43 +494,24 @@ def partition(a, start, end, key):
     a[start] = a[pivot]
     a[pivot] = temp
 
+    return pivot
+
 def quicksort(arr, start, end, key):
     if end <= start:
         return
     else:
         pivot = partition(arr, start, end, key)
-        quicksort(arr, start, pivot)
-        quicksort(arr, pivot + 1, end)
+        quicksort(arr, start, pivot, key)
+        quicksort(arr, pivot + 1, end, key)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##### Uninplemented #####
-'''
-@app.route("/verifyAvailUsername", methods=["GET", 'POST'])
-def verifyAvailUsername():
-    data = request.get_json()
-    username = data["username"]
-    for account in database['users']:
-        #print(account)
-        print(account['username'])
-        print(username)
-        if account['username'] == username:
-            print("fjhsdfhk")
-            return jsonify({'result' : 'false'}) # not available
-
-    return jsonify({'result' : 'true'}) # available
-'''
+def binarySearch(arr, value, key):
+    lo = 0
+    hi = len(arr)
+    while lo < hi:
+        mid = int(lo + hi)/2
+        if value < arr[mid][key]:
+            hi = mid
+        elif arr[mid][key] < value:
+            low = mid + 1
+        else:
+            return arr[mid]
