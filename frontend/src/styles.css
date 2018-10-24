@@ -1,8 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
 
+
+btn-primary{
+  background-color: #a7f6ee;
+  color: #a7f6ee;
+}
 .popup-header {
   display: inline;
 }
