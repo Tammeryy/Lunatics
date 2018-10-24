@@ -65,16 +65,4 @@ export class PostTaskComponent implements OnInit {
     this.postService.getNewPostID()
         .subscribe(id => this.post.id = id);
   }
-
-  clearData() {
-    this.post.title ="";
-    this.post.description = "";
-    this.post.cuisine = "";
-    this.post.quality = "";
-    this.post.diet = "";
-    this.post.budget = 0;
-    this.post.event_date = "";
-    this.post.bid_close = "";
-    this.post.location = "";
-  }
 }
