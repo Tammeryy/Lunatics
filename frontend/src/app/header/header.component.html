@@ -13,17 +13,17 @@
     <ul class="nav navbar-nav">
       <!--TODO change li's class to class="active" when it's active-->
       <li><a routerLink="" routerLinkActive="active">Browse</a></li>
-      <li *ngIf="this.activeLogin" routerLink="/task" routerLinkActive="active"><a>Task</a></li>
-      <li *ngIf="this.activeLogin" routerLink="/bidpage" routerLinkActive="active"><a>BidPage</a></li>
-      <li *ngIf="this.activeLogin" routerLink="/profile" routerLinkActive="active"><a>Profile</a></li>
+      <li *ngIf="activeLogin" routerLink="/task" routerLinkActive="active"><a>Task</a></li>
+      <li *ngIf="activeLogin" routerLink="/bidpage" routerLinkActive="active"><a>BidPage</a></li>
+      <li *ngIf="activeLogin" routerLink="/profile" routerLinkActive="active"><a>Profile</a></li>
       <!-- CHANGE STYLING OF THIS -->
       <li><a (click)="openPostPopup()">Post a Task</a></li>
     </ul>
     <!--TODO change li's class to sign out-->
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!this.activeLogin"><a (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>  Sign Up</a></li>
-      <li *ngIf="!this.activeLogin"><a (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>  Login</a></li>
-      <li *ngIf="this.activeLogin"><a (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+      <li *ngIf="!activeLogin"><a (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>  Sign Up</a></li>
+      <li *ngIf="!activeLogin"><a (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>  Login</a></li>
+      <li *ngIf="activeLogin"><a (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
     </ul>
   </div>
 </nav>

@@ -52,16 +52,17 @@ export class PostService {
   }
 
   editPost(post: Post) {
-      // TODO call backend function and make it return
+      // this.posts already gets updated via reference in edit-task updatePost()
+      // TODO call backend function
       return "success";
   }
 
-  deletePost(post: Post) {
+  deletePost(post_id) {
       // TODO replace with backend call
-      let index = this.posts.findIndex(post_obj => post_obj.id === post.id);
+      let index = this.posts.findIndex(post => post.id === post_id);
       this.posts.splice(index, 1);
 
-      index = this.activeUserPosts.findIndex(post_obj => post_obj.id === post.id);
+      index = this.activeUserPosts.findIndex(post => post.id === post_id);
       this.activeUserPosts.splice(index, 1);
       return "success";
   }

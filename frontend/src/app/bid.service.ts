@@ -46,15 +46,22 @@ export class BidService {
   addBid(bid: Bid) {
       // TODO: add backend push function call (return_value = { result: 'success/fail'})
       this.bids.push(bid);
+      this.activeUserBids.push(bid);
       this.newBidID++;
   }
 
-  deleteBid(bid: Bid) {
+  editBid(bid: Bid) {
+      // this.bids already gets updated via reference in edit-bid updateBid()
+      // TODO call backend function and make it return
+      return "success";
+  }
+
+  deleteBid(post_id, bidder_id) {
       // TODO replace with backend call
-      let index = this.bids.findIndex(bid_obj => bid_obj.id === bid.id);
+      let index = this.bids.findIndex(bid => bid.post_id === post_id && bid.bidder_id === bidder_id);
       this.bids.splice(index, 1);
 
-      index = this.activeUserBids.findIndex(bid_obj => bid_obj.id === bid.id);
+      index = this.activeUserBids.findIndex(bid => bid.post_id === post_id && bid.bidder_id === bidder_id);
       this.activeUserBids.splice(index, 1);
       return "success";
   }
