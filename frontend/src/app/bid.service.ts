@@ -9,6 +9,9 @@ import { Bids } from './mock-bids';
 })
 export class BidService {
 
+  // when user logs in, this is filled and then updated every time the user bids or deletes a bid
+  activeUserBids: Bid[];
+
   bids: Bid[];
   newBidID: number;
 
@@ -21,6 +24,14 @@ export class BidService {
       // TODO replace with backend GET
       this.bids = Bids;
       this.newBidID = this.bids.length;
+  }
+
+  initActiveUserBids(user_id) {
+      this.getBids().subscribe(bids => this.activeUserBids = bids.filter(bid => bid.bidder_id === user_id));
+  }
+
+  getActiveUserBids(): Observable<Bid[]> {
+      return of(this.activeUserBids);
   }
 
   getBids(): Observable<Bid[]> {
@@ -36,6 +47,16 @@ export class BidService {
       // TODO: add backend push function call (return_value = { result: 'success/fail'})
       this.bids.push(bid);
       this.newBidID++;
+  }
+
+  deleteBid(bid: Bid) {
+      // TODO replace with backend call
+      let index = this.bids.findIndex(bid_obj => bid_obj.id === bid.id);
+      this.bids.splice(index, 1);
+
+      index = this.activeUserBids.findIndex(bid_obj => bid_obj.id === bid.id);
+      this.activeUserBids.splice(index, 1);
+      return "success";
   }
 
   // TODO replace with backend call to check for valid bid

@@ -12,8 +12,8 @@ export class PostService {
   // when user logs in, this is filled and then updated every time the user posts or deletes a post
   activeUserPosts: Post[];
 
-  newPostID: number;
   posts: Post[];
+  newPostID: number;
 
   constructor() {
       this.init();
