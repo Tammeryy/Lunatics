@@ -60,11 +60,6 @@ export class PostsComponent implements OnInit {
         .subscribe(posts => this.posts = posts);
   }
 
-  getActiveLogin() {
-      this.loginService.getActiveLogin().subscribe(activeLogin => this.activeLogin = activeLogin);
-  }
-
-
   filter(key: string) {
     this.postService.filter(key);
   }
