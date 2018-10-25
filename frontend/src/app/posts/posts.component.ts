@@ -115,15 +115,15 @@ export class PostsComponent implements OnInit {
   }
 
   filterPost(name: string, ischecked: boolean){
-    // TODO add this function
 
 
     if (ischecked == true) {
       //filter post
       console.log("true");
-//      console.log(this.postService.filter(name));
+      this.filteredPosts = this.postService.filter(name);
     } else {
       //unfilter post
+      this.filteredPosts = this.postService.unfilter(name);
       console.log("false");
     }
   }

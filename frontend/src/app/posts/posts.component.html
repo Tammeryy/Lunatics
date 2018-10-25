@@ -12,17 +12,17 @@
       <br>
       <h4>Event Type</h4>
       <div *ngFor="let item of eventArray">
-        <mat-checkbox [(ngModel)]="item.isChecked">{{item.name}}</mat-checkbox>
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}</mat-checkbox>
       </div>
       <br>
       <h4>Dietary Requirement</h4>
       <div *ngFor="let item of dietaryArray">
-        <mat-checkbox [(ngModel)]="item.isChecked">{{item.name}}</mat-checkbox>
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}</mat-checkbox>
       </div>
       <br>
       <h4>Task Budget</h4>
       <div *ngFor="let item of budgetArray">
-        <mat-checkbox [(ngModel)]="item.isChecked">{{item.name}}</mat-checkbox>
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}</mat-checkbox>
       </div>
     </div>
     <div  class="column right">

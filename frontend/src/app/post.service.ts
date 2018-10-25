@@ -19,6 +19,7 @@ export class PostService {
 
   // stuff that was filtered
   posts: Post[];
+  filteredPosts: Post[];
 
   // sorted post -> can revert back to original once sort is finished
   sorted: Post[];
@@ -35,6 +36,7 @@ export class PostService {
     this.hasFilter = false;
     this.originalPosts = POSTS;
     this.posts = POSTS;
+    this.filteredPosts = [];
     this.sorted = POSTS;
     this.newPostID = this.posts.length;
   }
@@ -93,24 +95,24 @@ export class PostService {
   }
 
   filter(key: string) {
-    // add everything in all posts to filtered posta = this.originalPosts;
+    // add everything in all posts to filtered post a = this.originalPosts;
     this.hasFilter = true;
     let a = this.originalPosts;
     let i = 0;
-    console.log(a.length);
     while (i < a.length) {
       if (a[i].cuisine == key ||
         a[i].quality == key ||
         a[i].diet == key) {
-        this.posts.push(a[i]);
+        this.filteredPosts.push(a[i]);
       }
-      i ++;
+      i++;
     }
-    return this.posts;
+    console.log(this.filteredPosts)
+    return this.filteredPosts;
   }
 
   unfilter (key: string) {
-    let a = this.posts;
+    let a = this.filteredPosts;
     let i = 0;
     while (i < a.length) {
       if (a[i].cuisine == key ||
@@ -121,11 +123,11 @@ export class PostService {
       }
       i ++;
     }
-    if (this.posts.length == 0) {
+    if (this.filteredPosts.length == 0) {
       this.hasFilter = false;
       return this.originalPosts;
     }
-    return this.posts;
+    return this.filteredPosts;
   }
 
   search (key: string) {
