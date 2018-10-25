@@ -6,7 +6,7 @@
       <h4 class="filter">Filter By:</h4>
       <hr>
       <h4>Cuisine</h4>
-      <mat-checkbox>Chinese</mat-checkbox>
+      <mat-checkbox >Chinese</mat-checkbox>
       <br>
       <mat-checkbox>Indian</mat-checkbox>
       <br>
@@ -46,7 +46,7 @@
     <div  class="column right">
       <mat-list>
         <div>
-          <input type="text" ng-model="search" class="search-bar" placeholder="Search for a task"/>
+          <input type="text" ng-model="search" class="search-bar" (input)="search($event.target.value)" placeholder="Search for a task"/>
           <mat-form-field>
             <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
             <mat-select placeholder="Sort by">
@@ -56,8 +56,8 @@
           </mat-form-field>
         </div>
 
-        <div *ngIf="posts.length > 0">
-          <div class="well" *ngFor="let post of posts">
+        <div *ngIf="filteredPosts.length > 0">
+          <div class="well" *ngFor="let post of filteredPosts">
             <div class="media">
               <div class="media-body">
                 <h4 class="media-heading task-title">{{post.title}}</h4>
@@ -73,7 +73,7 @@
           </div>
           <br>
         </div>
-        <div  *ngIf="posts.length === 0"><p>There is no post at this moment</p></div>
+        <div  *ngIf="filteredPosts.length === 0"><p>There is no post at this moment</p></div>
       </mat-list>
     </div>
   </div>

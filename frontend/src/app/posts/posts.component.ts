@@ -14,6 +14,9 @@ import { BidTaskComponent } from '../bid-task/bid-task.component';
 })
 export class PostsComponent implements OnInit {
 
+  searchInput: any;
+  filteredPosts: Post[];
+
   // Used to display all posts on home page
   posts: Post[];
   // activeLogin: LoginData;
@@ -57,7 +60,10 @@ export class PostsComponent implements OnInit {
 
   getPosts() {
       this.postService.getPosts()
-        .subscribe(posts => this.posts = posts);
+        .subscribe(posts => {
+          this.posts = posts;
+          this.filteredPosts = posts;
+        });
   }
 
   filter(key: string) {
@@ -69,6 +75,6 @@ export class PostsComponent implements OnInit {
   }
 
   search (key: string) {
-    this.postService.search(key);
+     this.filteredPosts = this.postService.search(key);
   }
 }

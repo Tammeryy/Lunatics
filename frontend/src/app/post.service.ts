@@ -141,7 +141,8 @@ export class PostService {
       }
       i ++;
     }
-    this.sorted = res;
+    // this.sorted = res;
+    return res;
   }
 
   substring_ (str: string, sub: string) {
@@ -149,7 +150,7 @@ export class PostService {
       return false;
     }
     let i = 0;
-    while (i < str.length - sub.length) {
+    while (i <= str.length - sub.length) {
       if (str.substring(i, i+sub.length) == sub) {
         return true;
       }
