@@ -8,7 +8,9 @@ import { BidService } from '../bid.service';
 import { Bid } from '../bid'; // dummy data
 
 import { EditBidComponent } from '../edit-bid/edit-bid.component';
-import { ViewBidDetailsComponent } from '../view-bid-details/view-bid-details.component'; // change to view bid component
+import { ViewBidDetailsComponent } from '../view-bid-details/view-bid-details.component';
+import {Post} from "../post";
+import {PostService} from "../post.service"; // change to view bid component
 
 @Component({
   selector: 'app-bid-page',
@@ -21,13 +23,17 @@ export class BidPageComponent implements OnInit {
   activeLogin: LoginData;
   userBids: Bid[];
 
+  filteredPosts: Bid[];
+
+
   sortByOptions: string[] = [
      'Price', 'Location'
    ];
 
    constructor(private loginService: LoginService,
                private bidService: BidService,
-               public dialog: MatDialog) {
+               public dialog: MatDialog,
+               private postService: PostService,) {
    }
 
   ngOnInit() {
@@ -50,6 +56,14 @@ export class BidPageComponent implements OnInit {
 
       // result refers to 'data' in [mat-dialog-close]
       dialogRef.afterClosed().subscribe(result => {
+      });
+  }
+
+  getPosts() {
+    this.postService.getPosts()
+      .subscribe(bid => {
+        this.userBids = bid;
+        this.filteredPosts = bid;
       });
   }
 

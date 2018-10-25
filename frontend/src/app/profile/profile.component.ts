@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import {Router} from '@angular/router';
 
 import { LoginData } from '../login-data';
 import { LoginService } from '../login.service';
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit {
             this.loginService.setActiveLogin(null);
             this.activeLogin = new LoginData();
             alert('Account deleted successfully. You will be redirected to the home page.');
+            logout();
           }
           else alert('Account deletion unsuccessful.');
       }
