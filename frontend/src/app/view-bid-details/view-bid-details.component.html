@@ -8,24 +8,21 @@
   <div mat-dialog-content class="center">
    <!-- TODO inside header here-->
     <br>
+    <h2>{{post.title}}</h2>
+    <hr>
+    <h2 mat-dialog-title>Description</h2>
+    <p>{{post.description}}</p>
+    <h2 mat-dialog-title>Your Bid Offer</h2>
+    <p>{{bid.bid_offer}}</p>
+    <h2 mat-dialog-title>Your Bid Description</h2>
+    <p> {{bid.description}}</p>
+
     <!--TODO inside descrption here-->
   </div>
 
   <div mat-dialog-content>
 
     <br>
-    <table class="table table-hover table-bordered">
-      <thead>
-      <tr>
-        <th>{{post.title}}</th>
-      </tr>
-      </thead>
-      <tbody> <!-- TODO insert forloop here -->
-      <tr>
-        <td>{{post.description}}</td>
-      </tr>
-      </tbody>
-    </table>
-    <p> {{bid.description}} | {{bid.bid_offer}} </p>
+
   </div>
 </div>
