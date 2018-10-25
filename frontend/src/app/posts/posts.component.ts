@@ -49,6 +49,7 @@ export class PostsComponent implements OnInit {
       lowest_bid: post.lowest_bid
     };
 
+
     // opens a dialog box/pop-up displaying contents from PostTaskComponent's html file
     const dialogRef = this.dialog.open(BidTaskComponent, dialogConfig);
 
@@ -67,4 +68,16 @@ export class PostsComponent implements OnInit {
       this.loginService.getActiveLogin().subscribe(activeLogin => this.activeLogin = activeLogin);
   }
 
+
+  filter(key: string) {
+    this.postService.filter(key);
+  }
+
+  unfilter (key: string) {
+    this.postService.unfilter(key);
+  }
+
+  search (key: string) {
+    this.postService.search(key);
+  }
 }

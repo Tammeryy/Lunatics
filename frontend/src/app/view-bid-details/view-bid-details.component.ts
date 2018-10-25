@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-view-bid-details',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewBidDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<ViewBidDetailsComponent>) { }
 
   ngOnInit() {
   }
