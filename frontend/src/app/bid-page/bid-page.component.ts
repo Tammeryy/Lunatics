@@ -19,12 +19,8 @@ import {PostService} from "../post.service"; // change to view bid component
 })
 export class BidPageComponent implements OnInit {
 
-  filteredBids: Bid[];
   activeLogin: LoginData;
   userBids: Bid[];
-
-  filteredPosts: Bid[];
-
 
   sortByOptions: string[] = [
      'Price', 'Location'
@@ -63,7 +59,6 @@ export class BidPageComponent implements OnInit {
     this.postService.getPosts()
       .subscribe(bid => {
         this.userBids = bid;
-        this.filteredPosts = bid;
       });
   }
 
@@ -101,7 +96,6 @@ export class BidPageComponent implements OnInit {
       // let allBids: Bid[];
       this.bidService.getActiveUserBids().subscribe(bids => {
         this.userBids = bids;
-        this.filteredBids = bids;
       });
       console.log('USER BIDS: ' + this.userBids);
   }
