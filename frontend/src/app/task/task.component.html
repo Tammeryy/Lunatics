@@ -51,7 +51,7 @@
   <div  class="column right">
     <mat-list>
       <div>
-        <input type="text" ng-model="search" placeholder="Search for a task" class="search-bar"/>
+        <input type="text" ng-model="search" (input)="search($event.target.value)" placeholder="Search for a task" class="search-bar"/>
         <mat-form-field>
           <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
           <mat-select placeholder="Sort by">
@@ -60,8 +60,8 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="userPosts.length > 0" >
-        <div class="well" *ngFor="let post of userPosts">
+      <div *ngIf="filteredPosts.length > 0" >
+        <div class="well" *ngFor="let post of filteredPosts">
           <div class="media">
             <div class="media-body">
               <h4 class="media-heading task-title">{{post.title}}</h4>
@@ -90,7 +90,7 @@
         </div>
       </div>
 
-      <div *ngIf="userPosts.length === 0">
+      <div *ngIf="filteredPosts.length === 0">
         <p>You haven't bid in any tasks yet</p>
       </div>
     </mat-list>
