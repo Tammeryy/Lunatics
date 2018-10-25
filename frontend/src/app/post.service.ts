@@ -97,6 +97,7 @@ export class PostService {
     this.hasFilter = true;
     let a = this.originalPosts;
     let i = 0;
+    console.log(a.length);
     while (i < a.length) {
       if (a[i].cuisine == key ||
         a[i].quality == key ||
@@ -105,6 +106,7 @@ export class PostService {
       }
       i ++;
     }
+    return this.posts;
   }
 
   unfilter (key: string) {
@@ -121,8 +123,9 @@ export class PostService {
     }
     if (this.posts.length == 0) {
       this.hasFilter = false;
+      return this.originalPosts;
     }
-
+    return this.posts;
   }
 
   search (key: string) {

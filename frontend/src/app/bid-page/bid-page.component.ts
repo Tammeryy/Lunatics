@@ -55,12 +55,7 @@ export class BidPageComponent implements OnInit {
       });
   }
 
-  getPosts() {
-    this.postService.getPosts()
-      .subscribe(bid => {
-        this.userBids = bid;
-      });
-  }
+
 
   deleteBid(post_id, bid_id) {
     console.log('Delete Bid popup called');

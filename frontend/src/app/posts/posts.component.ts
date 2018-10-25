@@ -7,6 +7,8 @@ import { Post } from '../post'; // dummy data
 
 import { BidTaskComponent } from '../bid-task/bid-task.component';
 
+
+
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -14,9 +16,87 @@ import { BidTaskComponent } from '../bid-task/bid-task.component';
 })
 export class PostsComponent implements OnInit {
 
-  searchInput: any;
   filteredPosts: Post[];
+  selected = "option0";
+  IsChecked:boolean;
+  cuisineArray = [
+    {
+      name: "Chinese",
+      isChecked: false
+    },
+    {
+      name: "Indian",
+      isChecked: false
+    },
+    {
+      name: "Italian",
+      isChecked: false
+    },
+    {
+      name: "Japanese",
+      isChecked: false
+    },
+    {
+      name: "Korean",
+      isChecked: false
+    }
+  ]
 
+  eventArray = [
+    {
+      name: "Casual",
+      isChecked: false
+    },
+    {
+      name: "Formal",
+      isChecked: false
+    },
+    {
+      name: "Party",
+      isChecked: false
+    }
+  ]
+
+  dietaryArray = [
+    {
+      name: "Halal",
+      isChecked: false
+    },
+    {
+      name: "Pescetarians",
+      isChecked: false
+    },
+    {
+      name: "Vegan",
+      isChecked: false
+    },
+    {
+      name: "No Nuts",
+      isChecked: false
+    },
+    {
+      name: "No Milk",
+      isChecked: false
+    }
+  ]
+
+  budgetArray = [
+    {
+      name: "Less Than $50",
+      option: "1",
+      isChecked: false
+    },
+    {
+      name: "$51 ~ $250",
+      option: "2",
+      isChecked: false
+    },
+    {
+      name: "More than $250",
+      option: "3",
+      isChecked: false
+    }
+  ]
   // Used to display all posts on home page
   posts: Post[];
   // activeLogin: LoginData;
@@ -25,12 +105,27 @@ export class PostsComponent implements OnInit {
      'Price', 'Location'
   ];
 
+
   constructor(private postService: PostService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {this.IsChecked =false; }
 
   ngOnInit() {
       // this.getActiveLogin();
       this.getPosts();
+  }
+
+  filterPost(name: string, ischecked: boolean){
+    // TODO add this function
+
+
+    if (ischecked == true) {
+      //filter post
+      console.log("true");
+      console.log(this.postService.filter(name));
+    } else {
+      //unfilter post
+      console.log("false");
+    }
   }
 
   openBidPopup(post: Post) {
@@ -66,13 +161,6 @@ export class PostsComponent implements OnInit {
         });
   }
 
-  filter(key: string) {
-    this.postService.filter(key);
-  }
-
-  unfilter (key: string) {
-    this.postService.unfilter(key);
-  }
 
   search (key: string) {
      this.filteredPosts = this.postService.search(key);

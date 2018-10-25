@@ -49,7 +49,6 @@ export class ProfileComponent implements OnInit {
             this.loginService.setActiveLogin(null);
             this.activeLogin = new LoginData();
             alert('Account deleted successfully. You will be redirected to the home page.');
-            logout();
           }
           else alert('Account deletion unsuccessful.');
       }
