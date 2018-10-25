@@ -12,7 +12,7 @@ export class PostService {
   // when user logs in, this is filled and then updated every time the user posts or deletes a post
   activeUserPosts: Post[];
 
-  hasFilter: Boolean;
+  hasFilter: boolean;
 
   // original posts
   originalPosts: Post[];
