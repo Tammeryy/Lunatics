@@ -73,7 +73,7 @@ export class PostService {
 
   // TODO replace with backend call to check for valid post
   validPost(post: Post) {
-      if (post.title && post.description && post.bid_close && post.location) {
+      if (post.title && post.description && post.bid_close && post.event_date && post.location) {
           return true;
       }
       return false;

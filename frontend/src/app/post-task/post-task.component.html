@@ -8,11 +8,11 @@
   <br>
   <div mat-dialog-content class="content">
     <mat-form-field>
-      <input matInput [(ngModel)]="post.title" placeholder="Task Title" type="text"/>
+      <input matInput [(ngModel)]="post.title" placeholder="Task Title" type="text" required/>
     </mat-form-field>
     <br>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="post.description" placeholder="Description"></textarea>
+        <textarea matInput [(ngModel)]="post.description" placeholder="Description" required></textarea>
     </mat-form-field>
     <mat-form-field>
         <textarea matInput [(ngModel)]="post.cuisine" placeholder="Type of cuisine"></textarea>
@@ -30,13 +30,13 @@
         <textarea matInput [(ngModel)]="post.budget" placeholder="Budget"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="post.event_date" placeholder="Event date"></textarea>
+        <textarea matInput [(ngModel)]="post.event_date" placeholder="Event date" required></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="post.bid_close" placeholder="Bid closing date"></textarea>
+        <textarea matInput [(ngModel)]="post.bid_close" placeholder="Bid closing date" required></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="post.location" placeholder="Location"></textarea>
+        <textarea matInput [(ngModel)]="post.location" placeholder="Location" required></textarea>
     </mat-form-field>
   </div>
 </div>
