@@ -6,7 +6,7 @@
       <h4 class="filter">Filter By:</h4>
       <hr>
       <h4>Cuisine</h4>
-      <mat-checkbox >Chinese</mat-checkbox>
+      <mat-checkbox (change)="checkboxClicked($event.target.value)">Chinese</mat-checkbox>
       <br>
       <mat-checkbox>Indian</mat-checkbox>
       <br>

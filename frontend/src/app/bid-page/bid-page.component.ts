@@ -17,6 +17,7 @@ import { ViewBidDetailsComponent } from '../view-bid-details/view-bid-details.co
 })
 export class BidPageComponent implements OnInit {
 
+  filteredBids: Bid[];
   activeLogin: LoginData;
   userBids: Bid[];
 
@@ -84,11 +85,15 @@ export class BidPageComponent implements OnInit {
 
   getActiveUserBids() {
       // let allBids: Bid[];
-      this.bidService.getActiveUserBids().subscribe(bids => this.userBids = bids);
-      // console.log('ALLPOSTSS: ');
-      // console.log(allBids);
-      // this.userBids = allBids.filter(bid => bid.bider_id === this.activeLogin.id);
+      this.bidService.getActiveUserBids().subscribe(bids => {
+        this.userBids = bids;
+        this.filteredBids = bids;
+      });
       console.log('USER BIDS: ' + this.userBids);
+  }
+
+  search (key: string) {
+     // this.filteredBids = this.bidService.search(key);
   }
 
 }
