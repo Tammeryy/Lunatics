@@ -151,7 +151,7 @@ export class PostService {
     }
     let i = 0;
     while (i <= str.length - sub.length) {
-      if (str.substring(i, i+sub.length) == sub) {
+      if (str.substring(i, i+sub.length).toLowerCase() == sub.toLowerCase()) {
         return true;
       }
       i ++;
