@@ -46,7 +46,7 @@
       <br>
       <mat-checkbox>More than $250</mat-checkbox>
       <br>
-      <button mat-button class="btn btn-primary btn-lg btn-block">Apply Filter</button>
+      <button mat-button class="btn btn-primary btn-lg btn-block" (click)="filter()">Apply Filter</button>
     </div>
     <div  class="column right">
       <mat-list>
@@ -70,7 +70,7 @@
                 <p> {{post.description}}</p>
                 <ul class="list-inline list-unstyled">
                   <!-- change to due date -->
-                  <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+                  <li><span><i class="fas fa-ghost"></i> 2 days, 8 hours </span></li>
                   <li>
                     <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
                     <span><i class="fa fa-facebook-square"></i></span>

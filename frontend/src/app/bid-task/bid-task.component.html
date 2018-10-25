@@ -9,14 +9,14 @@
 
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput [(ngModel)]="bid.name" placeholder="Name*" type="text"/>
+      <input matInput [(ngModel)]="bid.name" placeholder="Name" type="text" required="required"/>
     </mat-form-field>
     <div>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="bid.phone_no" placeholder="Phone number*"></textarea>
+        <input matInput [(ngModel)]="bid.phone_no" placeholder="Phone number" type="tel" required="required">
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="bid.email" placeholder="Email*"></textarea>
+        <input matInput [(ngModel)]="bid.email" placeholder="Email" type="email">
     </mat-form-field>
     <mat-form-field>
         <textarea matInput [(ngModel)]="bid.description" placeholder="Description"></textarea>

@@ -12,6 +12,7 @@ import { PostService } from '../post.service';
 })
 export class ViewBidDetailsComponent implements OnInit {
 
+
   post: Post;
   bid: Bid;
 
@@ -20,6 +21,7 @@ export class ViewBidDetailsComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) data) {
       this.bid = data.bid;
   }
+
 
   ngOnInit() {
       this.getPostByID(this.bid.post_id);
