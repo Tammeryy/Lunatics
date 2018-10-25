@@ -121,7 +121,7 @@ export class PostsComponent implements OnInit {
     if (ischecked == true) {
       //filter post
       console.log("true");
-      console.log(this.postService.filter(name));
+//      console.log(this.postService.filter(name));
     } else {
       //unfilter post
       console.log("false");
