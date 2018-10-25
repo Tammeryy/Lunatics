@@ -42,6 +42,10 @@ export class PostService {
       return of(this.newPostID);
   }
 
+  getPostByID(id) {
+      return of(this.posts.filter(post => post.id === id)[0]);
+  }
+
   // Returns true if post added successfully, else false
   addPost(post: Post) {
       // TODO: replace with backend (return_value = { result: 'success/fail'})

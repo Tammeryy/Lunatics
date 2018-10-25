@@ -67,9 +67,8 @@
   <div class="well" *ngFor="let bid of userBids">
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading task-title">Post ID: {{bid.post_id}} BIDDER ID: {{bid.bidder_id}}</h4>
-        <p class="text-right"> {{bid.lowest_bid | currency}} </p>
-        <p> {{bid.description}}</p>
+        <h4 class="media-heading task-title">{{bid.description}}</h4>
+        <p class="text-right">{{bid.bid_offer | currency}}</p>
         <ul class="list-inline list-unstyled">
           <!-- change to due date -->
           <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
