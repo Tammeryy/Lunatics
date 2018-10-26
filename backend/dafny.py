@@ -41,8 +41,8 @@ def insertionSort(a, key):
     up = 1
     while up < len(a):
         val = a[up]
-        down = a[down]
-        while down > 0 and a[down-1] > val:
+        down = up
+        while down > 0 and a[down-1][key] > val[key]:
             a[down] = a[down-1]
             down -= 1
         a[down] = val

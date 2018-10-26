@@ -359,7 +359,7 @@ class Bid(Resource):
             if i['post_id'] == int(post_id):
                 ret.append(i)
 
-        insertionSort(ret, 0, len(ret), 'price')
+        insertionSort(ret, 'price')
 
         return jsonify(ret)
 
