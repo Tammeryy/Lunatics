@@ -37,7 +37,6 @@ export class PostService {
     this.originalPosts = POSTS;
     this.posts = POSTS;
     this.filteredPosts = [];
-    this.sorted = POSTS;
     this.newPostID = this.posts.length;
   }
 
@@ -107,22 +106,21 @@ export class PostService {
       }
       i++;
     }
-    console.log(this.filteredPosts)
+    console.log(this.filteredPosts);
     return this.filteredPosts;
   }
 
   unfilter (key: string) {
     let a = this.filteredPosts;
-    let i = 0;
-    while (i < a.length) {
+    for (var i = a.length; i--;) {
       if (a[i].cuisine == key ||
         a[i].quality == key ||
         a[i].diet == key) {
-        let rm = a.splice (i, 1);
-        console.log ("removed: ", rm);
+
+        this.filteredPosts.splice(i, 1);
       }
-      i ++;
     }
+
     if (this.filteredPosts.length == 0) {
       this.hasFilter = false;
       return this.originalPosts;

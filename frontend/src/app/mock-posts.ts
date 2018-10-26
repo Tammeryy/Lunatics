@@ -59,7 +59,7 @@ export const POSTS: Post[] = [
         num_ppl: 10,
         bid_close: "22/12/2018",
         event_date: "24/12/2018",
-        cuisine: "malaysian",
+      cuisine: "Malaysian",
         quality: "Fast Food",
         diet: "Halal",
         lowest_bid: 0,

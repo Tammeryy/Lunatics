@@ -25,6 +25,85 @@ export class TaskComponent implements OnInit {
      'Price', 'Location'
    ];
 
+  cuisineArray = [
+    {
+      name: "Chinese",
+      isChecked: false
+    },
+    {
+      name: "Indian",
+      isChecked: false
+    },
+    {
+      name: "Italian",
+      isChecked: false
+    },
+    {
+      name: "Japanese",
+      isChecked: false
+    },
+    {
+      name: "Korean",
+      isChecked: false
+    }
+  ]
+
+  eventArray = [
+    {
+      name: "Casual",
+      isChecked: false
+    },
+    {
+      name: "Formal",
+      isChecked: false
+    },
+    {
+      name: "Party",
+      isChecked: false
+    }
+  ]
+
+  dietaryArray = [
+    {
+      name: "Halal",
+      isChecked: false
+    },
+    {
+      name: "Pescetarians",
+      isChecked: false
+    },
+    {
+      name: "Vegan",
+      isChecked: false
+    },
+    {
+      name: "No Nuts",
+      isChecked: false
+    },
+    {
+      name: "No Milk",
+      isChecked: false
+    }
+  ]
+
+  budgetArray = [
+    {
+      name: "Less Than $50",
+      option: "1",
+      isChecked: false
+    },
+    {
+      name: "$51 ~ $250",
+      option: "2",
+      isChecked: false
+    },
+    {
+      name: "More than $250",
+      option: "3",
+      isChecked: false
+    }
+  ]
+  
    constructor(private loginService: LoginService,
                private postService: PostService,
                public dialog: MatDialog) {

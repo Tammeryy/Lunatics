@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 
 import { Bid } from './bid';
 import { Bids } from './mock-bids';
+import {Post} from "./post";
+import {POSTS} from "./mock-posts";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,13 @@ export class BidService {
   bids: Bid[];
   newBidID: number;
 
+  hasFilter: boolean;
+
+  // original posts
+  originalPosts: Bid[];
+
+  // stuff that was filtered
+  filteredBids: Bid[];
   constructor() {
       this.init();
   }
@@ -24,7 +33,10 @@ export class BidService {
       // TODO replace with backend GET
       this.bids = Bids;
       this.newBidID = this.bids.length;
+    this.originalPosts = Bids;
+    this.filteredBids = [];
   }
+
 
   initActiveUserBids(user_id) {
       this.getBids().subscribe(bids => this.activeUserBids = bids.filter(bid => bid.bidder_id === user_id));
