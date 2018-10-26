@@ -1,64 +1,146 @@
 {
-    "users": [
-        {
-            "id": 0,
-            "username": "timtam",
-            "password": "iwannadropout",
-            "name": "tammy",
-            "phone": "0412345678",
-            "email": "tam@mail.com"
-        },
-        {
-            "id": 1,
-            "username": "MnM",
-            "password": "idontwannadropout",
-            "name": "emily",
-            "phone": "0487654321",
-            "email": "em@mail.com"
-        },
-        {
-            "id": 2,
-            "username": "Lu Slee Choo",
-            "password": "iloveuni",
-            "name": "Lucy",
-            "phone": "0486754231",
-            "email": "luslee@mail.com"
-        }
-    ],
-    "posts": [
-        {
-            "id": 0,
-            "poster_id": 1,
-            "price": "88.88",
-            "location": "cabramatta",
-            "num_ppl": 10,
-            "bid_close": "10/10/2018",
-            "event_date": "24/11/2018",
-            "cuisine": "chinese",
-            "quality": "Fine Dining",
-            "diet": "vegetarian"
-        },
-        {
-            "id": 1,
-            "poster_id": 0,
-            "price": "100.00",
-            "location": "parramatta",
-            "num_ppl": 20,
-            "bid_close": "11/11/2018",
-            "event_date": "24/12/2018",
-            "cuisine": "malaysian",
-            "quality": "Fast Food",
-            "diet": "halal"
-        }
-    ],
-    "bids": [
-        {
-            "post_id": 0,
-            "bidder_id": 2,
-            "name": "Lucy",
-            "phone": "0486754231",
-            "email": "luslee@mail.com",
-            "price": "2.00"
-        }
-    ]
+  "bids": [
+    {
+      "bidder_id": 0, 
+      "name": "TLucy", 
+      "post_id": 1, 
+      "phone": "0486754231", 
+      "bid_offer": 2.0, 
+      "email": "luslee@mail.com"
+    }
+  ], 
+  "posts": [
+    {
+      "cuisine": "cuisine", 
+      "task_open": "true", 
+      "description": "we want yummy food", 
+      "quality": "high quality", 
+      "title": "Looking for a world class chef", 
+      "bid_close": "24/11/2018", 
+      "budget": "5.00", 
+      "diet": "vegan", 
+      "poster_id": 0, 
+      "location": "Sydney", 
+      "event_date": "12/12/2018", 
+      "lowest_bid": null, 
+      "id": 2, 
+      "num_ppl": "5"
+    }, 
+    {
+      "cuisine": "cuisine", 
+      "task_open": "true", 
+      "description": "we want yummy food", 
+      "quality": "high quality", 
+      "title": "Looking for a world class chef", 
+      "bid_close": "24/11/2018", 
+      "budget": 5.0, 
+      "diet": "vegan", 
+      "poster_id": 0, 
+      "location": "Sydney", 
+      "event_date": "12/12/2018", 
+      "lowest_bid": null, 
+      "id": 3, 
+      "num_ppl": 5
+    }, 
+    {
+      "cuisine": "cuisine", 
+      "task_open": "true", 
+      "description": "we want yummy food", 
+      "title": "Looking for a world class chef", 
+      "bid_close": "24/11/2018", 
+      "budget": 5.0, 
+      "diet": "vegan", 
+      "poster_id": 0, 
+      "lowest_bid": null, 
+      "location": "Sydney", 
+      "event_date": "12/12/2018", 
+      "quality": "high quality", 
+      "id": 4, 
+      "num_ppl": 5
+    }, 
+    {
+      "cuisine": "chinese", 
+      "task_open": "true", 
+      "description": "Cater for a wedding event with various options (vegan, vegetarian, etc..)", 
+      "quality": "Fine Dining", 
+      "title": "Cook for-people event", 
+      "bid_close": "10/10/2018", 
+      "budget": 88.88, 
+      "diet": "vegetarian", 
+      "poster_id": 1, 
+      "location": "cabramatta", 
+      "event_date": "24/11/2018", 
+      "lowest_bid": 90, 
+      "id": 0, 
+      "num_ppl": 11
+    }, 
+    {
+      "cuisine": "cuisine", 
+      "task_open": "true", 
+      "description": "we want yummy food", 
+      "quality": "high quality", 
+      "title": "!!!!Looking for a world class chef", 
+      "bid_close": "24/11/2018", 
+      "budget": 5.0, 
+      "diet": "vegan", 
+      "poster_id": 0, 
+      "location": "Sydney", 
+      "event_date": "12/12/2018", 
+      "lowest_bid": null, 
+      "id": 5, 
+      "num_ppl": 5
+    }
+  ], 
+  "users": [
+    {
+      "username": "timtam", 
+      "name": "tammy", 
+      "email": "tam@mail.com", 
+      "phone": "0412345678", 
+      "about_me": "nothing much", 
+      "skills_exp": "no experience", 
+      "password": "mynewpwd", 
+      "id": 0
+    }, 
+    {
+      "username": "MnM", 
+      "name": "emily", 
+      "email": "em@mail.com", 
+      "phone": "0487654321", 
+      "about_me": "", 
+      "skills_exp": "", 
+      "password": "idontwannadropout", 
+      "id": 1
+    }, 
+    {
+      "username": "Tammyfsdfsdfsdfdf", 
+      "name": "Man", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "about_me": "", 
+      "skills_exp": "", 
+      "password": "1234", 
+      "id": 3
+    }, 
+    {
+      "username": "Tammyfsdfsdfsdf11111df", 
+      "name": "Man", 
+      "email": "tammy@gmail.com", 
+      "phone": "044444444", 
+      "about_me": "", 
+      "skills_exp": "", 
+      "password": "1234", 
+      "id": 4
+    }, 
+    {
+      "username": "Lu Slee Choo", 
+      "phone": "0486754231", 
+      "about_me": "luslee fgsdggf", 
+      "name": "Lucy", 
+      "skills_exp": "experienced as 66666", 
+      "password": "iloveuni", 
+      "email": "luslee@mail.com", 
+      "id": 2
+    }
+  ]
 }
