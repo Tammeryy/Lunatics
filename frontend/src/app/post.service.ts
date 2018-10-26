@@ -144,7 +144,6 @@ export class PostService {
       }
       i ++;
     }
-    // this.sorted = res;
     return res;
   }
 
@@ -160,6 +159,62 @@ export class PostService {
       i ++;
     }
     return false;
+  }
+
+  sort (key: string) {
+    if (this.hasFilter) {
+      // run bubble sort 
+      bubblesort (key);
+    } else {
+      quicksort(key);
+    }
+  }
+  
+  bubblesort (key: string) {
+    let outer = this.filteredPosts.length;
+    while (outer > 0) {
+      let inner = 1;
+      while (inner < outer) {
+        if (this.filteredPosts[inner-1].key < this.filteredPosts[inner]) {
+          let tmp = this.filteredPosts[inner];
+          this.filteredPosts[inner] = this.filteredPosts[inner-1];
+          this.filteredPosts[inner-1] = tmp;
+        }
+        inner ++;
+      }
+      outer --;
+    }
+  }
+
+  quicksort (key: string, start: int, end: int) {
+    if (end <= start) {
+      return;
+    } else {
+      let pivot := partition (key, start, end);
+      quicksort (key, start, pivot);
+      quicksort (key, pivot + 1, end);
+    }
+  }
+
+  partition (key, start, end) {
+    if (end <= start) {
+      let pivot = start;
+    }  else {
+      let pivot = start;
+      let i = start + 1;
+      while (i < end) {
+        if (this.originalPosts[i].key < this.originalPosts[i].key) {
+          pivot ++;
+          let tmp = this.originalPosts[i];
+          this.originalPosts[i] = this.originalPosts[pivot];
+          this.originalPosts[pivot] = tmp;
+        }
+        i ++;
+      }
+      let tmp = a[start];
+      this.originalPosts[start] = this.originalPost[pivot];
+      this.originalPosts[pivot] = tmp;
+    }
   }
 
 }
