@@ -85,7 +85,7 @@ ensures multiset (old(a[..])) == multiset (a[..]);
 		while (i < end) 
 		invariant start <= pivot < i <= end;
 
-		invariant 	0 <= start <= end < a.Length ==> forall j :: start <= j < end ==> a[j] <= a[end]
+		invariant 0 <= start <= end < a.Length ==> forall j :: start <= j < end ==> a[j] <= a[end]
 		invariant 0 < start <= end <= a.Length ==> forall j :: start <= j < end ==> a[start-1] <= a[j]
 
 		invariant forall j :: (start <= j <= pivot) ==> a[j] <= a[start];
