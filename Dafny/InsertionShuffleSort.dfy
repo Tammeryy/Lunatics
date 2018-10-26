@@ -1,5 +1,10 @@
+// Team Luna: Dafny Verified Insertion Shuffle Sort 
 
-// true if the elements are sorted between lo and hi, false otherwise
+// Taken from Assignment 2 Exercise 6
+// This insertion sort 'shuffles' each element in the array
+// to the correct position until the array is sorted 
+
+// Checks that an array is sorted 
 predicate sorted (a: array<int>, lo: int, hi: int) 
 reads a;
 requires 0 <= lo <= hi <= a.Length;
@@ -45,16 +50,38 @@ modifies a;
 	}
 }
 
+// Test Cases
 method Main()
 {
-	// do not change this code
-	var a := new int[][6,2,0,6,3,5,0,4,1,6,0]; // testcase 1
-	var msa := multiset(a[..]);
-	InsertionSortShuffle(a);
-	assert sorted(a, 0, a.Length);
-	var msa' := multiset(a[..]);
-	assert msa == msa';
-	var b := new int[][8,7]; // testcase 2
-	InsertionSortShuffle(b);
-	print a[..], b[..];
+	// Empty array
+	var a := new int[][];
+	var msa := multiset (a[..]);
+	InsertionSortShuffle (a);
+	assert (sorted (a, 0, a.Length));
+	var msa' := multiset (a[..]);
+	assert (msa == msa');
+
+	// Sorted array 
+	var b:= new int[][0,1,2,3,4,5,6,7,8,9,10];
+	var msb := multiset (b[..]);
+	InsertionSortShuffle (b);
+	assert (sorted(b, 0, b.Length));
+	var msb' := multiset (b[..]);
+	assert (msb == msb');
+
+	// Reverse sorted array 
+	var c:= new int[][10,9,8,7,6,5,4,3,2,1,0];
+	var msc := multiset (c[..]);
+	InsertionSortShuffle (c);
+	assert (sorted (c, 0, c.Length));
+	var msc' := multiset (c[..]);
+	assert (msc == msc');
+
+	// Randomly unsorted array 
+	var d:= new int[][6,3,4,5,8,9,10,2,1,0,7];
+	var msd := multiset (d[..]);
+	InsertionSortShuffle (d);
+	assert (sorted (d, 0, d.Length));
+	var msd' := multiset (d[..]);
+	assert (msd == msd');
 }
