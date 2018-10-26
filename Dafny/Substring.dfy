@@ -12,7 +12,7 @@ predicate equal (a: seq<char>, b: seq <char>)
 }
 
 // method to check if sub is a prefix of str from str[start..]
-method prefix (str: array<char>, start: int, sub: array<char>) returns (b: bool)
+method Prefix (str: array<char>, start: int, sub: array<char>) returns (b: bool)
 requires 0 <= sub.Length <= str.Length - start <= str.Length;
 requires start <= str.Length;
 ensures b <==> equal(sub[..], str[start..(start + sub.Length)])
@@ -31,7 +31,7 @@ ensures b <==> equal(sub[..], str[start..(start + sub.Length)])
 }
 
 /// method to check substring, returns true/false and the index at which the substring is 
-method substring (str: array<char>, sub: array<char>) returns (b: bool, index: int)
+method Substring (str: array<char>, sub: array<char>) returns (b: bool, index: int)
 ensures b <==> index >= 0 && str.Length >= sub.Length && (index + sub.Length < str.Length) && equal (str[index..(index+sub.Length)], sub[..])
 //ensures !b <==> index < 0 
 
@@ -48,7 +48,7 @@ ensures b <==> index >= 0 && str.Length >= sub.Length && (index + sub.Length < s
   invariant i <= str.Length - sub.Length;
   invariant i > 0 ==> !equal (str[(i-1)..(i-1)+sub.Length], sub[..])
   {
-  	var b := prefix (str, i, sub);
+  	var b := Prefix (str, i, sub);
   	if (b) {
   		assert (i + sub.Length <= str.Length);
   		return true, i;
@@ -58,22 +58,72 @@ ensures b <==> index >= 0 && str.Length >= sub.Length && (index + sub.Length < s
   return false, -1;
 }
 
-// basic testing
+// Test Cases
 method Main () {
+
+	// Testing substring works at the beginning of string
 	var str := new char[]['h', 'e', 'l', 'l', 'o'];
 	var sub := new char[]['h', 'e', 'l', 'l'];
 	var b: bool;
 	var index: int;
-    // testing that prefix works 
-    b := prefix (str, 0, sub);
+
+    // Prefix
+    b := Prefix (str, 0, sub);
     assert (b);
-    // testing substring
-    b, index := substring (startr, sub);
-    // prints correctly but zz
+
+    // Substring
+    b, index := Substring (str, sub);
     print (b);
     print (index);
     // assert (b);
     // assert (index == 0);
-    
+
+    // Testing substring works in the middle of string
+    sub := new char []['e', 'l', 'l'];
+
+    // Prefix 
+    b := Prefix (str, 0, sub);
+    assert (!b);
+    b := Prefix (str, 1, sub);
+    assert (b);
+
+    // Substring
+    b, index := Substring (str, sub);
+    print (b);
+    print (index);
+    // assert (b);
+    // assert (index == 1);
+
+    // Testing substring works at the end of string
+    sub := new char []['l', 'l', 'o'];
+
+    // Prefix 
+    b := Prefix (str, 1, sub);
+    assert (!b);
+    b := Prefix (str, 2, sub);
+    assert (b);
+
+    // Substring
+    b, index := Substring (str, sub);
+    print (b);
+    print (index);
+    // assert (b);
+    // assert (index == 2);
+
+    // Testing substring works for a non-substring
+    sub := new char []['l', 'l', 'a'];
+
+    // Prefix 
+    b := Prefix (str, 1, sub);
+    assert (!b);
+    b := Prefix (str, 2, sub);
+    assert (!b);
+
+    // Substring
+    b, index := Substring (str, sub);
+    print (b);
+    print (index);
+    // assert (!b);
+    // assert (index == -1);
 }
 
