@@ -17,7 +17,6 @@ import { ViewBidsComponent } from '../view-bids/view-bids.component'; // change 
 })
 export class TaskComponent implements OnInit {
 
-  filteredPosts: Post[];
   activeLogin: LoginData;
   userPosts: Post[];
 
@@ -175,13 +174,8 @@ export class TaskComponent implements OnInit {
       // let allPosts: Post[];
       this.postService.getActiveUserPosts().subscribe(posts => {
           this.userPosts = posts;
-          this.filteredPosts = posts;
       });
       console.log(this.userPosts);
-  }
-
-  search(key: string) {
-      this.filteredPosts = this.postService.search(key);
   }
 
 }

@@ -37,8 +37,8 @@
           </mat-form-field>
         </div>
 
-        <div *ngIf="filteredPosts.length > 0">
-          <div class="well" *ngFor="let post of filteredPosts">
+        <div *ngIf="posts.length > 0">
+          <div class="well" *ngFor="let post of posts">
             <div class="media">
               <div class="media-body">
                 <h4 class="media-heading task-title">{{post.title}}</h4>
@@ -54,7 +54,7 @@
           </div>
           <br>
         </div>
-        <div  *ngIf="filteredPosts.length === 0"><p>There is no post at this moment</p></div>
+        <div  *ngIf="posts.length === 0"><p>There is no post at this moment</p></div>
       </mat-list>
     </div>
   </div>

@@ -48,7 +48,7 @@ export class PostService {
   }
 
   getPosts(): Observable<Post[]> {
-    return of(this.originalPosts);
+    return of(this.posts);
   }
 
   getNewPostID() {
@@ -62,7 +62,6 @@ export class PostService {
   // Returns true if post added successfully, else false
   addPost(post: Post) {
     this.originalPosts.push(post);
-    this.posts.push(post);
     this.activeUserPosts.push(post);
     this.newPostID++;
     return true;
@@ -179,24 +178,25 @@ export class PostService {
       if (this.hasFilter) {
         // run bubble sort
         this.bubblesort(key);
-        return this.filteredPosts;
+        return of(this.filteredPosts);
       } else {
-        this.filteredPosts = this.originalPosts;
-        this.quicksort(key, 0, this.filteredPosts.length);
-        return this.filteredPosts;
+        this.filteredPosts = [];
+        this.deepCopy();
+        this.bubblesort(key);
+        return of(this.filteredPosts);
       }
     } else {
-      console.log(this.originalPosts);
-      return this.originalPosts;
+      return of(this.posts);
     }
   }
 
+  // Sorts by given key
   bubblesort(key: string) {
     let outer = this.filteredPosts.length;
     while (outer > 0) {
       let inner = 1;
       while (inner < outer) {
-        if (this.filteredPosts[inner - 1].budget < this.filteredPosts[inner].budget) {
+        if (this.filteredPosts[inner - 1].budget > this.filteredPosts[inner].budget) {
           [this.filteredPosts[inner], this.filteredPosts[inner - 1]] = [this.filteredPosts[inner - 1], this.filteredPosts[inner]]
         }
         inner++;
@@ -232,6 +232,16 @@ export class PostService {
       [this.filteredPosts[start], this.filteredPosts[pivot]] = [this.filteredPosts[pivot], this.filteredPosts[start]]
     }
     return pivot;
+  }
+
+
+  // Deep copies this.posts to currPosts
+  deepCopy() {
+      let i = 0;
+      while (i < this.posts.length) {
+        this.filteredPosts.push(this.posts[i]);
+        i++;
+      }
   }
 
 }

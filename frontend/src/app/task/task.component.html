@@ -46,8 +46,8 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="filteredPosts.length > 0" >
-        <div class="well" *ngFor="let post of filteredPosts">
+      <div *ngIf="userPosts.length > 0" >
+        <div class="well" *ngFor="let post of userPosts">
           <div class="media">
             <div class="media-body">
               <h4 class="media-heading task-title">{{post.title}}</h4>
@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div *ngIf="filteredPosts.length === 0">
+      <div *ngIf="userPosts.length === 0">
         <p>You haven't bid in any tasks yet</p>
       </div>
     </mat-list>

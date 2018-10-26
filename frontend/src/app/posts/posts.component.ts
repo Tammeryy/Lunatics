@@ -16,7 +16,7 @@ import { BidTaskComponent } from '../bid-task/bid-task.component';
 })
 export class PostsComponent implements OnInit {
 
-  filteredPosts: Post[];
+  posts: Post[];
   selected = "";
 
   cuisineArray = [
@@ -97,9 +97,6 @@ export class PostsComponent implements OnInit {
       isChecked: false
     }
   ]
-  // Used to display all posts on home page
-  posts: Post[];
-  // activeLogin: LoginData;
 
   sortByOptions: string[] = [
     'budget'
@@ -118,10 +115,10 @@ export class PostsComponent implements OnInit {
   filterPost(name: string, ischecked: boolean){
     if (ischecked == true) {
       //filter post
-      this.filteredPosts = this.postService.filter(name);
+      this.posts = this.postService.filter(name);
     } else {
       //unfilter post
-      this.filteredPosts = this.postService.unfilter(name);
+      this.posts = this.postService.unfilter(name);
     }
   }
 
@@ -154,15 +151,55 @@ export class PostsComponent implements OnInit {
       this.postService.getPosts()
         .subscribe(posts => {
           this.posts = posts;
-          this.filteredPosts = posts;
+          console.log('GET POSTS');
+          console.log(this.posts);
         });
   }
 
   sort() {
-    // TODO insert function from postservices to get the filtered posts
+    this.postService.sort("budget").subscribe(sortedPosts => this.posts = sortedPosts);
+    // this.quicksort("budget", 0, this.posts.length);
+    console.log(this.posts);
   }
 
+  quicksort(key: string, start, end) {
+    console.log(this.posts);
+    if (end <= start) {
+      return;
+    } else {
+      let pivot = this.partition(key, start, end);
+      this.quicksort(key, start, pivot);
+      this.quicksort(key, pivot + 1, end);
+    }
+  }
+
+  partition(key, start, end) {
+    let pivot = start;
+    if (end <= start) {
+      let pivot = start;
+    } else {
+      let pivot = start;
+      let i = start;
+      while (i < end) {
+        if (this.posts[i].budget < this.posts[start].budget) {
+          pivot++;
+          // [this.posts[i], this.posts[pivot]] = [this.posts[pivot], this.posts[i]]
+          let temp = this.posts[i];
+          this.posts[i] = this.posts[pivot];
+          this.posts[pivot] = temp;
+        }
+        i++;
+      }
+      let temp = this.posts[start];
+      this.posts[start] = this.posts[pivot];
+      this.posts[pivot] = temp;
+      // [this.posts[start], this.posts[pivot]] = [this.posts[pivot], this.posts[start]]
+    }
+    return pivot;
+  }
+
+
   search (key: string) {
-     this.filteredPosts = this.postService.search(key);
+     this.posts = this.postService.search(key);
   }
 }
