@@ -55,10 +55,10 @@ export class BidService {
   }
 
   // Returns true if bid added successfully, else false
-  addBid(bid: Bid) {
+  addBid(user_type: string, bid: Bid) {
       // TODO: add backend push function call (return_value = { result: 'success/fail'})
       this.bids.push(bid);
-      this.activeUserBids.push(bid);
+      if (user_type !== "guest") this.activeUserBids.push(bid);
       this.newBidID++;
       return "success";
   }

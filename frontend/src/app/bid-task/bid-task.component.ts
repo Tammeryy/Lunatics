@@ -65,7 +65,10 @@ export class BidTaskComponent implements OnInit {
   addBid() {
       if (this.validBid()) {
           console.log("[BID] Title: " + this.post.title + " | Lowest Bid: " + this.post.lowest_bid);
-          const result = this.bidService.addBid(this.bid);
+          let result;
+          if (this.activeLogin && this.activeLogin.username && this.activeLogin.password) result = this.bidService.addBid("existingUser", this.bid);
+          else result = this.bidService.addBid("guest", this.bid);
+
           if (result === "success") {
               // this.successAlert();
               this.dialogRef.close(this.bid.bid_offer);
@@ -87,7 +90,7 @@ export class BidTaskComponent implements OnInit {
   }
 
   validBid() {
-      if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.description && this.bid.bid_offer) {
+      if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.bid_offer) {
           return true;
       }
       return false;

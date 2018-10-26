@@ -57,7 +57,6 @@ export class PostTaskComponent implements OnInit {
       }
       else {
         this.missingFields = true;
-        alert('Post details are invalid. Try again');
       }
   }
 

@@ -39,6 +39,7 @@
         <textarea matInput [(ngModel)]="post.location" placeholder="Location" required></textarea>
     </mat-form-field>
   </div>
+  <p *ngIf="missingFields" style="color:red">Missing required fields marked with *.</p>
 </div>
 <div mat-dialog-actions class="buttonDiv">
   <button mat-button (click)="addPost()" cdkFocusInitial class="btn btn-primary btn-mine-right">Post Task</button>
