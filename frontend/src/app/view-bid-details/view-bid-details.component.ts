@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Bid } from '../bid';
 import { Post } from '../post';
 import { PostService } from '../post.service';
+import {AlertService} from "../alert.service";
 
 @Component({
   selector: 'app-view-bid-details',
@@ -18,6 +19,7 @@ export class ViewBidDetailsComponent implements OnInit {
 
   constructor(private postService: PostService,
               public dialogRef: MatDialogRef<ViewBidDetailsComponent>,
+              private alertService: AlertService,
               @Inject(MAT_DIALOG_DATA) data) {
       this.bid = data.bid;
   }

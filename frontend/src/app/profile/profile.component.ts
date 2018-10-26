@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 
 import { LoginData } from '../login-data';
 import { LoginService } from '../login.service';
+import {AlertService} from "../alert.service";
 
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
@@ -17,7 +18,9 @@ export class ProfileComponent implements OnInit {
   activeLogin: LoginData;
 
   constructor(private loginService: LoginService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private alertService: AlertService) {
+  }
 
   ngOnInit() {
       this.getActiveLogin();
@@ -48,9 +51,10 @@ export class ProfileComponent implements OnInit {
           if (result === "success") {
             this.loginService.setActiveLogin(null);
             this.activeLogin = new LoginData();
-            alert('Account deleted successfully. You will be redirected to the home page.');
+            this.alertService.successAlert('Account deleted successfully. You will be redirected to the home page.');
           }
-          else alert('Account deletion unsuccessful.');
+          else this.alertService.failAlert('Account deletion unsuccessful.');
+
       }
   }
 

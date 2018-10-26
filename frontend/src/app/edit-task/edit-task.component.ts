@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Post } from '../post';
 import { PostService } from '../post.service';
+import {AlertService} from '../alert.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -31,6 +32,7 @@ export class EditTaskComponent implements OnInit {
 
   constructor(private postService: PostService,
               public dialogRef: MatDialogRef<EditTaskComponent>,
+              private alertService: AlertService,
               @Inject(MAT_DIALOG_DATA) data) {
       this.post = data.post;
   }
@@ -50,11 +52,8 @@ export class EditTaskComponent implements OnInit {
 
   editTask() {
       if (this.validPost()) {
-          alert('Post updated');
-          console.log(this.post);
+        this.alertService.successAlert('Post updated');
           if (this.updatePost() === "success") alert('Edit task successful!');
-          console.log(this.updatedPost);
-          console.log(this.post);
           this.dialogRef.close();
       }
       else {

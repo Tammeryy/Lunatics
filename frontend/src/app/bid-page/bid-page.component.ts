@@ -6,6 +6,7 @@ import { LoginData } from '../login-data';
 
 import { BidService } from '../bid.service';
 import { Bid } from '../bid'; // dummy data
+import {AlertService} from '../alert.service';
 
 import { EditBidComponent } from '../edit-bid/edit-bid.component';
 import { ViewBidDetailsComponent } from '../view-bid-details/view-bid-details.component';
@@ -108,6 +109,7 @@ export class BidPageComponent implements OnInit {
    constructor(private loginService: LoginService,
                private bidService: BidService,
                public dialog: MatDialog,
+               private alertService: AlertService,
                private postService: PostService,) {
    }
 
@@ -140,8 +142,8 @@ export class BidPageComponent implements OnInit {
     console.log('Delete Bid popup called');
     if (confirm('Delete bid?')) {
         const result = this.bidService.deleteBid(post_id, bid_id);
-        if (result === "success") alert('Bid deleted successfully');
-        else alert('Bid deletion was unsuccessful');
+      if (result === "success") this.alertService.successAlert('Bid deleted successfully');
+      else this.alertService.failAlert('Bid deletion was unsuccessful');
     }
   }
 

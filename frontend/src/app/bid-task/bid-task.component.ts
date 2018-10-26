@@ -5,6 +5,7 @@ import { Post } from '../post';
 
 import { BidService } from '../bid.service';
 import { Bid } from '../bid';
+import {AlertService} from '../alert.service';
 
 import { LoginService } from '../login.service';
 import { LoginData } from '../login-data';
@@ -30,6 +31,7 @@ export class BidTaskComponent implements OnInit {
 
   constructor(private bidService: BidService,
               private loginService: LoginService,
+              private alertService: AlertService,
               public dialogRef: MatDialogRef<BidTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
     // data refers to dialogConfig.data from Posts component in openBidPopup()
@@ -69,12 +71,13 @@ export class BidTaskComponent implements OnInit {
               this.dialogRef.close(this.bid.bid_offer);
           }
           else {
-              alert('Bid could not be added.');
+            this.alertService.failAlert('Bid could not be added.');
               this.dialogRef.close();
           }
       }
       else {
-        alert('Bid details are invalid. Try again');
+        this.alertService.failAlert('Bid details are invalid. Try again');
+
       }
   }
 

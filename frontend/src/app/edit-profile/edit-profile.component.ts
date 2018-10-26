@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { LoginData } from '../login-data';
 import { LoginService } from '../login.service';
+import {AlertService} from '../alert.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,6 +26,7 @@ export class EditProfileComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               public dialogRef: MatDialogRef<EditProfileComponent>,
+              private alertService: AlertService,
               @Inject(MAT_DIALOG_DATA) data) {
       this.activeLogin = data.activeLogin;
       console.log('Active Login: ' + this.activeLogin);
@@ -45,7 +47,7 @@ export class EditProfileComponent implements OnInit {
   editProfile() {
     if (this.validDetails()) {
         console.log(this.activeLogin);
-        if (this.updateProfile() === "success") alert('Profile updated successfully!');
+      if (this.updateProfile() === "success") this.alertService.successAlert('Profile updated successfully!');
         console.log(this.updatedLogin);
         console.log(this.activeLogin);
         this.dialogRef.close();
