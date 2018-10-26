@@ -13,7 +13,7 @@
     <mat-form-field>
         <input matInput [(ngModel)]="data.password" placeholder="Password" type="password" required/>
     </mat-form-field>
-    <p *ngIf="missingFields" style="color:red">Missing required fields marked with *.</p>
+    <!-- <p *ngIf="missingFields" style="color:red">Missing required fields marked with *.</p> -->
   </div>
   <div mat-dialog-actions class="buttonDiv">
     <button mat-button [mat-dialog-close] (click)="signUp()" class="btn btn-default">Create an account</button>
