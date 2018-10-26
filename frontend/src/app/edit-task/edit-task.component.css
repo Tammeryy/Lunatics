@@ -1,0 +1,14 @@
+.mat-form-field {
+  width: 325px;
+}
+
+.buttonDiv {
+  /* need to align buttons in center - currently doesn't work */
+  position: relative;
+}
+
+
+.btn-mine-right{
+  right: 0;
+  position: absolute;
+}

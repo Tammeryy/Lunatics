@@ -1,0 +1,46 @@
+<div class="post-popup">
+  <div class="post-popup-header">
+    <!-- the "x" text represents the exit button on top right corner of post task popup box -->
+    <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
+    <h1 mat-dialog-title>Edit Task</h1>
+  </div>
+  <br>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput [value]="post.title" (input)="updatedPost.title=$event.target.value"  placeholder="Task Title" type="text"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <textarea matInput [value]="post.description" (input)="updatedPost.description=$event.target.value" placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.cuisine" (input)="updatedPost.cuisine=$event.target.value" placeholder="Type of cuisine"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.quality" (input)="updatedPost.quality=$event.target.value" placeholder="Food quality"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.diet" (input)="updatedPost.diet=$event.target.value" placeholder="Type of diet"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.num_ppl" (input)="updatedPost.num_ppl=$event.target.value" placeholder="Number of people"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.budget" (input)="updatedPost.budget=$event.target.value" placeholder="Budget"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.event_date" (input)="updatedPost.event_date=$event.target.value" placeholder="Event date"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.bid_close" (input)="updatedPost.bid_close=$event.target.value" placeholder="Bid closing date"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [value]="post.location" (input)="updatedPost.location=$event.target.value" placeholder="Location"></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="buttonDiv">
+    <button mat-button (click)="editTask()" cdkFocusInitial class="btn btn-primary btn-mine-right">Edit Task</button>
+  </div>
+
+</div>

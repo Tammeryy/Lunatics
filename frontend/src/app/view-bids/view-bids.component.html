@@ -2,21 +2,36 @@
   <div class="bid-popup-header">
     <!-- the "x" text represents the exit button on top right corner of bid task popup box -->
     <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
-    <div class="popup-heading"><h1 mat-dialog-title>{{post.title}}</h1><p id="exit-button" (click)="exitClick()">x</p></div>
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
   </div>
   <br>
-  <div mat-dialog-content>
-    <h3> Current Lowest Bid:{{post.lowest_bid}}</h3>
-    <mat-list-item *ngFor="let bid of post.bids">
-      <b mat-line> {{bid.name}} </b> <span id="budget"> {{bid.bid_offer | currency}} </span>
-      <p mat-line> {{bid.phone_no}} </p>
-      <p mat-line> {{bid.email}} </p>
-      <p mat-line> {{bid.description}} </p>
-      <br>
-    </mat-list-item>
-  </div>
-  <div mat-dialog-content>
+  <div mat-dialog-content class="center">
+    <h1>{{post.title}}</h1>
+    <hr>
     <h2 mat-dialog-title>Description</h2>
     <p>{{post.description}}</p>
+    <h2 mat-dialog-title> Current Lowest Bid:{{post.lowest_bid}}</h2>
+  </div>
+
+  <div mat-dialog-content>
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Bidded</th>
+        <th>Contact No.</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let bid of bids">
+        <tr>
+          <td> {{bid.name}} </td>
+          <td id="budget">{{bid.bid_offer | currency}} </td>
+          <td> {{bid.phone_no}} </td>
+          <td> {{bid.email}} </td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 </div>

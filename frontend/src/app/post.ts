@@ -1,15 +1,18 @@
 import { Bid } from './bid';
 
 export class Post {
-  post_id: number;
+  id: number;
   title: string;
   description: string;
   poster_id: number;
-  poster_name: string;
-  lowest_bid: number;
-  task_open: boolean;
-  due_date: any; // change to date variable type
+  cuisine: string;
+  quality: string;
+  diet: string;
+  num_ppl: number;
+  budget: number;
+  bid_close: string; // change to date variable type
+  event_date: string;
   location: any; // change to location type
-  // Add more variables below
-  bids: Bid[];
+  task_open: string;
+  lowest_bid: number;
 }

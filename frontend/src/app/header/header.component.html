@@ -1,39 +1,26 @@
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">{{title}}</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <!--TODO change li's class to class="active" when it's active-->
-      <li><a href="#">Browse</a></li>
-      <li *ngIf="this.activeLogin"><a href="#">Task</a></li>
-      <li *ngIf="this.activeLogin"><a href="#">Profile</a></li>
-      <!-- CHANGE STYLING OF THIS -->
-      <li><a href="#" (click)="openPostPopup()">Post a Task</a></li>
-    </ul>
-    <!--TODO change li's class to sign out-->
-    <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!this.activeLogin"><a href="#" (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-      <li *ngIf="!this.activeLogin"><a href="#" (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-      <li *ngIf="this.activeLogin"><a href="#" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-    </ul>
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <a class="navbar-brand" routerLink="">{{title}}</a>
   </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/"><a>Browse
+        Tasks</a></li>
+      <li *ngIf="this.activeLogin" routerLink="/task" routerLinkActive="active" class="nav-item"><a>My Tasks</a></li>
+      <li *ngIf="this.activeLogin" routerLink="/bidpage" routerLinkActive="active" class="nav-item"><a>My Bids</a></li>
+      <li *ngIf="this.activeLogin" routerLink="profile" routerLinkActive="active" class="nav-item"><a>Profile</a></li>
+      <li class="nav-item"><a (click)="openPostPopup()">Post a Task</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="!activeLogin"><a (click)="openSignUp()"><span class="glyphicon glyphicon-user"></span>  Sign Up</a></li>
+      <li *ngIf="!activeLogin"><a (click)="openLogin()"><span class="glyphicon glyphicon-log-in"></span>  Login</a></li>
+      <li *ngIf="activeLogin" routerLink=""><a routerLink="" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
 </nav>
-<li *ngIf="activeLogin">
-  <i>ID: {{activeLogin.id}} | Login: {{activeLogin.username}} | Password: {{activeLogin.password}}</i>
-  <p> Requesting Post Task: {{requestPostTask}} </p>
-</li>
-<li *ngIf="activeLogin">
-  <i>Login successful</i>
-</li>
-<h2> Accounts </h2>
-<li *ngFor="let login of logins">
-  <p> Account: {{login.username}} | {{login.password}} </p>
-</li>
+
+<router-outlet></router-outlet>

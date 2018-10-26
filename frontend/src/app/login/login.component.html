@@ -1,21 +1,23 @@
 <div class="popup">
   <div class="popup-header">
-    <h1 mat-dialog-title>Login</h1><p id="exit-button" (click)="exitClick()">x</p>
+    <h1 mat-dialog-title>Login</h1>
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
   </div>
-  <br>
-  <div mat-dialog-content>
+  <div mat-dialog-content class="inputDiv">
     <!-- <b>Username: </b> -->
     <mat-form-field>
-      <input matInput [(ngModel)]="data.username" placeholder="Username" type="text"/>
+      <input matInput [(ngModel)]="data.username" placeholder="Username" type="text" required/>
     </mat-form-field>
     <br>
     <!-- <b>Password: </b> -->
     <mat-form-field>
-        <input matInput [(ngModel)]="data.password" placeholder="Password" type="text"/>
+        <input matInput [(ngModel)]="data.password" placeholder="Password" type="password" required/>
     </mat-form-field>
+    <!-- <p *ngIf="missingFields" style="color:red">Missing required fields marked with *.</p> -->
   </div>
-  <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close] (click)="signUp()">Create an account</button>
-    <button mat-button (click)="verifyLogin()" cdkFocusInitial>Login</button>
+  <div mat-dialog-actions class="buttonDiv">
+    <button mat-button [mat-dialog-close] (click)="signUp()" class="btn btn-default">Create an account</button>
+    <button mat-button (click)="checkLogin()" class="btn btn-primary btn-mine-right">Login</button>
   </div>
+
 </div>

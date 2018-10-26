@@ -2,29 +2,45 @@
   <div class="post-popup-header">
     <!-- the "x" text represents the exit button on top right corner of post task popup box -->
     <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
-    <h1 mat-dialog-title>Post Task</h1><p id="exit-button" (click)="exitClick()">x</p>
+    <h1 mat-dialog-title>Post Task</h1>
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
   </div>
   <br>
-  <div mat-dialog-content>
+  <div mat-dialog-content class="content">
     <mat-form-field>
-      <input matInput [(ngModel)]="post.title" placeholder="Task Title" type="text"/>
+      <input matInput [(ngModel)]="post.title" placeholder="Task Title" type="text" required/>
     </mat-form-field>
     <br>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="post.description" placeholder="Description"></textarea>
-    </mat-form-field>
-    <!-- <mat-form-field>
-        <textarea matInput [(ngModel)]="post.lowest_bid" placeholder="Lowest Bid"></textarea>
-    </mat-form-field> -->
-    <mat-form-field>
-        <textarea matInput [(ngModel)]="post.due_date" placeholder="Due date"></textarea>
+        <textarea matInput [(ngModel)]="post.description" placeholder="Description" required></textarea>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="post.location" placeholder="Location"></textarea>
+        <textarea matInput [(ngModel)]="post.cuisine" placeholder="Type of cuisine"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="post.quality" placeholder="Food quality"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="post.diet" placeholder="Type of diet"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="post.num_ppl" placeholder="Number of people"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="post.budget" placeholder="Budget"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="post.event_date" placeholder="Event date" required></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="post.bid_close" placeholder="Bid closing date" required></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="post.location" placeholder="Location" required></textarea>
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
-    <!-- dialog box will only close if "post" list is not empty ([mat-dialog-close]="post")-->
-    <button mat-button (click)="verifyPost()" cdkFocusInitial>Post Task</button>
-  </div>
+  <!-- <p *ngIf="missingFields" style="color:red">Missing required fields marked with *.</p> -->
+</div>
+<div mat-dialog-actions class="buttonDiv">
+  <button mat-button (click)="addPost()" cdkFocusInitial class="btn btn-primary btn-mine-right">Post Task</button>
 </div>

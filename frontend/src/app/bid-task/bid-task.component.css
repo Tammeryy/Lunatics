@@ -1,11 +1,3 @@
-.bid-popup-header {
-  display: inline;
-}
-
-.bid-popup-header h1 {
-  float: left;
-}
-
 .bid-popup-header #exit-button {
   float: right;
   font-size: 1.5em;
@@ -13,18 +5,45 @@
   margin-bottom: 10%;
 }
 
-#bid-button {
-  /* need to align button to right */
+.buttonDiv {
+  /* need to align buttons in center - currently doesn't work */
+  position: relative;
 }
 
-mat-form-field {
-  width: 80%;
+.btn-mine-right{
+  right: 0;
+  bottom: 5px;
+  position: absolute;
 }
 
-mat-dialog-actions {
-  /* need to align items to left currently doesn't work */
+.mat-form-field {
+  width: 325px;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
 }
 
-mat-dialog-title {
-  margin-bottom: 10%;
+.column {
+  float: left;
+  width: 150px;
 }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+td {
+  text-align: center;
+}
+
+th {
+  text-align: center;
+}
+

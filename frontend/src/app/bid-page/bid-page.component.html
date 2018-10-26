@@ -1,0 +1,80 @@
+<!-- TODO SAME CODE AS POST-->
+<ul class="all-post">
+  <li *ngFor="let bid of bids">
+    Title: {{bid.title}}
+    <!-- TODO add bid details here -->
+    <button mat-button>Bid Now</button>
+  </li>
+</ul>
+<div class="container">
+
+<div class="row">
+
+    <div class="column left" >
+      <br>
+      <h4 class="filter">Filter By:</h4>
+      <hr>
+      <h4>Cuisine</h4>
+      <div *ngFor="let item of cuisineArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+        </mat-checkbox>
+      </div>
+      <br>
+      <h4>Event Type</h4>
+      <div *ngFor="let item of eventArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+        </mat-checkbox>
+      </div>
+      <br>
+      <h4>Dietary Requirement</h4>
+      <div *ngFor="let item of dietaryArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+        </mat-checkbox>
+      </div>
+      <br>
+      <h4>Task Budget</h4>
+      <div *ngFor="let item of budgetArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+        </mat-checkbox>
+      </div>
+    </div>
+  <div  class="column right">
+<mat-list>
+  <div>
+    <input type="text" ng-model="search" class="search-bar" (input)="search($event.target.value)" placeholder="Search for a task"/>
+    <mat-form-field>
+      <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
+      <mat-select placeholder="Sort by">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="well" *ngFor="let bid of userBids">
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading task-title">{{bid.description}}</h4>
+        <p class="text-right">{{bid.bid_offer | currency}}</p>
+        <ul class="list-inline list-unstyled">
+          <!-- change to due date -->
+          <li><span></span></li>
+        </ul>
+      </div>
+      <div id="right-btn" class="bid-button">
+        <a class="btn btn-primary btn-mine-right " (click)="openEditPopup(bid)">
+          <span>Edit</span>
+        </a>
+        <a class="btn btn-danger btn-mine-right" (click)="deleteBid(bid.id)">
+          <span>Delete</span>
+        </a>
+        <a class="btn btn-warning btn-mine-right" (click)="openViewBidDetailsPopup(bid)">
+          <span>View Details</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</mat-list>
+  </div>
+</div>
+</div>
+<router-outlet></router-outlet>

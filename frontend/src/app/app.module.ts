@@ -6,6 +6,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +25,18 @@ import { PostTaskComponent } from './post-task/post-task.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BidTaskComponent } from './bid-task/bid-task.component';
 import { ViewBidsComponent } from './view-bids/view-bids.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
+import { BidPageComponent } from './bid-page/bid-page.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditBidComponent } from './edit-bid/edit-bid.component';
+import { ViewBidDetailsComponent } from './view-bid-details/view-bid-details.component';
+
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent, pathMatch: 'full'},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'task', component: TaskComponent},
+  {path: 'bidpage', component: BidPageComponent}
+];
 
 @NgModule({
   declarations: [
@@ -32,7 +50,12 @@ import { ViewBidsComponent } from './view-bids/view-bids.component';
     PostTaskComponent,
     SignUpComponent,
     BidTaskComponent,
-    ViewBidsComponent
+    ViewBidsComponent,
+    EditTaskComponent,
+    BidPageComponent,
+    EditProfileComponent,
+    EditBidComponent,
+    ViewBidDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +66,22 @@ import { ViewBidsComponent } from './view-bids/view-bids.component';
     MatInputModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSliderModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {enableTracing: false} // <-- debugging purposes only
+    )
+  ],
+  exports: [
+    ReactiveFormsModule,
   ],
   providers: [AppComponent, HeaderComponent],
-  bootstrap: [AppComponent, LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent, ViewBidsComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginComponent, PostTaskComponent, SignUpComponent, BidTaskComponent, ViewBidsComponent, EditTaskComponent, EditProfileComponent, ViewBidDetailsComponent, EditBidComponent]
 })
 export class AppModule { }

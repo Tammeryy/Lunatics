@@ -1,5 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import { AlertService } from '../alert.service';
+import { PostService } from '../post.service';
 import { POSTS } from '../mock-posts';
 import { Post } from '../post';
 
@@ -10,29 +13,34 @@ import { Post } from '../post';
 })
 export class PostTaskComponent implements OnInit {
 
-  posts = POSTS;
-
-  // post = POST;
   post: Post = {
-    post_id: Object.keys(this.posts).length+1,
+    id: 0,
     title: "",
     description: "",
     poster_id: 0,
-    poster_name: "",
-    lowest_bid: 0,
-    task_open: false,
-    due_date: "",
+    cuisine: "",
+    quality: "",
+    diet: "",
+    num_ppl: 0,
+    budget: 0,
+    event_date: "",
+    bid_close: "", // change to date variable type
     location: "",
-    bids: []
+    task_open: "true",
+    lowest_bid: 0,
   };
 
-  constructor(public dialogRef: MatDialogRef<PostTaskComponent>,
+  missingFields: boolean = false;
+
+  constructor(private postService: PostService,
+              private alertService: AlertService,
+              public dialogRef: MatDialogRef<PostTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
-    this.post.poster_id = data.poster_id;
-    this.post.poster_name = data.poster_name; // data refers to dialogConfig.data passed in from header component
+      this.post.poster_id = data.poster_id;
   }
 
   ngOnInit() {
+      this.getNewPostID();
   }
 
   // closes the Post Task pop-up dialog box (done in html page)
@@ -40,36 +48,25 @@ export class PostTaskComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  verifyPost() {
-    console.log("[VERIFY POST] ID: " + this.post.poster_id + " | " + this.post.poster_name + " | " + this.post.title + " | " + this.post.description + " | " + this.post.due_date + " | " + this.post.location);
-    if (confirm("Post task?")) {
-      // TODO: need somewhere to store current login data to access
-      if (this.post.poster_name && this.post.title && this.post.description && this.post.due_date && this.post.location) {
-        this.post.task_open = true;
-        alert('Post details are valid. Adding post to browse list...');
-        this.addPost(this.post);
-        this.dialogRef.close(true);
+  addPost() {
+      this.missingFields = false;
+      if (this.validPost()) {
+        this.alertService.successAlert('Task posted successfully.');
+        const result = this.postService.addPost(this.post);// TODO replace with if (this.add)
+        this.dialogRef.close(result);
       }
       else {
-        alert('Post details are invalid. Try again');
-        this.clearData();
+        this.missingFields = true;
       }
-    }
   }
 
-  addPost(newPost: any) {
-    console.log('Add post called');
-    this.posts.push(newPost);
-    // TODO needs to also update the user's list of own posts/tasks
+  validPost() {
+      // TODO replace with backend verify code
+      return this.postService.validPost(this.post);
   }
 
-  clearData() {
-    this.post.title ="";
-    this.post.description = "";
-    this.post.lowest_bid = 0;
-    this.post.task_open = false;
-    this.post.due_date = "";
-    this.post.location = "";
-    this.post.bids = [];
+  getNewPostID() {
+    this.postService.getNewPostID()
+        .subscribe(id => this.post.id = id);
   }
 }

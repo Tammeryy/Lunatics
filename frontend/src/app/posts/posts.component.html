@@ -1,26 +1,61 @@
-<h2>All Posts</h2>
-<ul class="all-post">
-  <li *ngFor="let post of posts" (click)="onSelect(post)">
-    Title: {{post.title}}
-    <!-- TODO add post details here -->
-    <button mat-button>Bid Now</button>
-  </li>
-</ul>
 
-<mat-list>
-  <div class="search-bar">
-    <input type="text" ng-model="search" placeholder="Search for a task"/>
-    <mat-form-field>
-      <!--TODO SORT BY DROPDOWN BUTTON add all options and make it functional -->
-      <mat-select placeholder="Sort by">
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+<div class="container">
+  <div class="row">
+    <div class="column left" >
+      <br>
+      <h4 class="filter">Filter By:</h4>
+      <hr>
+      <h4>Cuisine</h4>
+      <div *ngFor="let item of cuisineArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}</mat-checkbox>
+      </div>
+      <br>
+      <h4>Event Type</h4>
+      <div *ngFor="let item of eventArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}</mat-checkbox>
+      </div>
+      <br>
+      <h4>Dietary Requirement</h4>
+      <div *ngFor="let item of dietaryArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}</mat-checkbox>
+      </div>
+      <br>
+      <h4>Task Budget</h4>
+      <div *ngFor="let item of budgetArray">
+        <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}</mat-checkbox>
+      </div>
+    </div>
+    <div  class="column right">
+      <mat-list>
+        <div>
+          <input type="text" ng-model="search" class="search-bar" (input)="search($event.target.value)" placeholder="Search for a task"/>
+          <mat-form-field>
+            <mat-select [(value)]="selected" placeholder="Sort by" (selectionChange)="sort()">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="posts.length > 0">
+          <div class="well" *ngFor="let post of posts">
+            <div class="media">
+              <div class="media-body">
+                <h4 class="media-heading task-title">{{post.title}}</h4>
+                <p class="text-right"> {{post.lowest_bid | currency}} </p>
+                <p> {{post.description}}</p>
+                <ul class="list-inline list-unstyled">
+                  <!-- change to due date -->
+                  <li><span>Event date: {{post.event_date}}</span></li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="bid-button" (click)="openBidPopup(post)"> Bid </button>
+          </div>
+          <br>
+        </div>
+        <div  *ngIf="posts.length === 0"><p>There is no post at this moment</p></div>
+      </mat-list>
+    </div>
   </div>
-  <mat-list-item *ngFor="let post of posts" (click)="onSelect(post)">
-    <b mat-line id="task-title"> {{post.title}} </b> <span id="budget"> {{post.lowest_bid | currency}} </span>
-    <p mat-line id="task-desc"> {{post.description}} </p>
-    <button class="btn btn-warning" id="bid-button" (click)="openBidPopup(post)"> Bid </button>
-  </mat-list-item>
-</mat-list>
+</div>

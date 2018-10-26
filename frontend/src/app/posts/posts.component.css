@@ -1,23 +1,23 @@
 .search-bar {
-  text-align: center;
+  text-align: left;
+  width: 575px;
+  margin-bottom: 15px;
 }
 
-.search-bar input {
-  width: 70%;
-  margin-bottom: 1em;
+* {
+  font-family: Helvetica;
 }
 
+.container
+{
+  width: 95%;
+}
+mat-select
+{
+  right: 0;
+}
 #task-list {
   text-align: center;
-}
-
-mat-list {
-}
-
-mat-list-item {
-  outline: 2px solid red;
-  position: relative;
-  height: 8em !important;
 }
 
 #budget {
@@ -26,23 +26,94 @@ mat-list-item {
   text-align: right;
   margin-top: -5em;
 }
-
 #task-title, #task-desc {
   text-align: left;
 }
-
-#task-title {
+.filter{
+  font-size: 20px;
+  font-weight: bold;
+}
+.task-title {
   position: absolute;
-  top: 0;
-  outline: 1px solid blue;
+  top: 7px;
+  font-size: 18px;
+  font-family: Helvetica;
+  font-weight: bold;
 }
-
-#task-desc {
+.task-desc {
+  position: absolute;
+  font-size: 13px;
+  font-family: Helvetica;
 }
-
 #bid-button {
+  bottom: 5px;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  right: 5px;
   margin-top: 1em;
 }
+#budget {
+  font-size: 18px;
+  color: #f7f7f7;
+  font-family: Helvetica, sans-serif;
+}
+#h2 {
+  font-size: 45px;
+  line-height: 190px;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+mat-checkbox + mat-checkbox {
+  margin-left: 10px;
+}
+
+#a-btn-slide-text
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-top: 1em;
+}
+
+#bottom-btn
+{
+  position: absolute;
+  bottom: 10px;
+  margin-top: 1em;
+}
+
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 20%;
+  position: relative;
+  overflow: auto;
+  border: 0;
+  margin-left: 20px;
+}
+
+.right {
+  width: 70%;
+  position: relative;
+  overflow: auto;
+  margin-right: 10px;
+}
+
+
+mat-form-field {
+  padding: 20px;
+}
+
+.well{
+  position: relative;
+}
+
+#left-column{
+  display: table-cell;
+  border: 1px solid #6c757d;
+}
+

@@ -1,18 +1,30 @@
 <div class="popup">
   <div class="popup-header">
-    <h1 mat-dialog-title>Sign up</h1><p id="exit-button" (click)="exitClick()">x</p>
+    <h1 mat-dialog-title>Sign up</h1>
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
   </div>
   <br>
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput [(ngModel)]="data.username" placeholder="Username" type="text"/>
+        <input matInput [(ngModel)]="data.name" placeholder="Name" type="text" required="required"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.username" placeholder="Username" type="text" required="required"/>
     </mat-form-field>
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="data.password" placeholder="Password" type="text"/>
+        <input matInput [(ngModel)]="data.password" placeholder="Password" type="password" required="required"/>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.phone" placeholder="Phone number" type="tel" required="required"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.email" placeholder="Email" type="email" required="required"/>
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="verifyDetails()" cdkFocusInitial>Create an account</button>
+  <br>
+  <div mat-dialog-actions class="buttonDiv">
+    <button (click)="verifyDetails()" class="btn btn-primary btn-mine-right">Create an account</button>
   </div>
 </div>

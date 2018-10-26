@@ -93,3 +93,14 @@ body{
   font-weight: 600;
   color: #0062cc;
 }
+
+.btn{
+  padding: 5px;
+  margin: 1px;
+}
+
+.btn-top-right
+{
+  position: absolute;
+  right: 150px;
+}

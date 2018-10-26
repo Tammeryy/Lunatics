@@ -1,0 +1,28 @@
+<div class="bid-popup">
+  <div class="bid-popup-header">
+    <!-- the "x" text represents the exit button on top right corner of bid task popup box -->
+    <!-- (click)="exitClick()": when the "x" button is clicked, call the exitClick() function to close the popup box -->
+    <button type="button" class="close" aria-label="Close" (click)="exitClick()"><span aria-hidden="true">&times;</span></button>
+  </div>
+  <br>
+  <div mat-dialog-content class="center">
+   <!-- TODO inside header here-->
+    <br>
+    <h2>{{post.title}}</h2>
+    <hr>
+    <h2 mat-dialog-title>Description</h2>
+    <p>{{post.description}}</p>
+    <h2 mat-dialog-title>Your Bid Offer</h2>
+    <p>{{bid.bid_offer}}</p>
+    <h2 mat-dialog-title>Your Bid Description</h2>
+    <p> {{bid.description}}</p>
+
+    <!--TODO inside descrption here-->
+  </div>
+
+  <div mat-dialog-content>
+
+    <br>
+
+  </div>
+</div>

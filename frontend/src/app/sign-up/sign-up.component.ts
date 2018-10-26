@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { Logins } from '../mock-logins';
+
+import { LoginService } from '../login.service';
 import { LoginData } from '../login-data';
+import {AlertService} from "../alert.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -10,17 +12,24 @@ import { LoginData } from '../login-data';
 })
 export class SignUpComponent implements OnInit {
 
-  logins = Logins;
-
   data: LoginData = {
-    id: Object.keys(this.logins).length+1,
-    username: "",
-    password: ""
+    id: 0,
+    username: '',
+    password: '',
+    name: '',
+    phone: '',
+    email: '',
+    about_me: '',
+    skills_exp: ''
   };
 
-  constructor(public dialogRef: MatDialogRef<SignUpComponent>) { }
+  constructor(private loginService: LoginService,
+              public dialogRef: MatDialogRef<SignUpComponent>,
+              private alertService: AlertService) {
+  }
 
   ngOnInit() {
+      this.getNewLoginID();
   }
 
   exitClick(): void {
@@ -29,26 +38,28 @@ export class SignUpComponent implements OnInit {
 
   verifyDetails(): void {
     // TODO insert verify username and password code
-
     // valid username and password
-    if (this.data.username && this.data.password) {
-      alert('Valid sign up details! Creating new account...');
+    if (this.validSignUp()) {
+      this.alertService.successAlert('Valid sign up details! Creating new account...');
       this.addAccount();
       this.dialogRef.close();
     }
     else {
-      alert('Invalid sign up details. Try again.');
-      this.clearData();
+      this.alertService.failAlert('Invalid sign up details. Try again.');
     }
   }
 
+  // TODO add verification code from backend
+  validSignUp() {
+      return this.loginService.validSignUp(this.data);
+  }
+
   addAccount() {
-    this.logins.push(this.data);
+      this.loginService.addAccount(this.data);
   }
 
-  clearData() {
-    this.data.username = "";
-    this.data.password = "";
+  getNewLoginID() {
+      this.loginService.getNewLoginID()
+          .subscribe(id => this.data.id = id);
   }
-
 }
