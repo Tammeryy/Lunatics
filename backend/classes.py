@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 # from flask_restful import Api
 from hashlib import md5
 from time import time
+from dafny import *
 import json
 
 # TODO Posted time for tasks
@@ -357,6 +358,8 @@ class Bid(Resource):
         for i in database['bids']:
             if i['post_id'] == int(post_id):
                 ret.append(i)
+
+        insertionSort(ret, 0, len(ret), 'price')
 
         return jsonify(ret)
 
