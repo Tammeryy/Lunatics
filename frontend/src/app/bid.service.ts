@@ -80,7 +80,7 @@ export class BidService {
   }
 
   validBid(bid: Bid) {
-      if (bid.description && bid.bid_offer) {
+      if (bid.description && bid.bid_offer && bid.bid_offer > 0) {
           return true;
       }
       return false;

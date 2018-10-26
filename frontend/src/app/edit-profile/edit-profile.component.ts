@@ -58,8 +58,8 @@ export class EditProfileComponent implements OnInit {
   }
 
   validDetails() {
-      // TODO if (this.activeLogin.)
-      return true;
+      if (this.updatedLogin.about_me && this.updatedLogin.skills_exp) return true;
+      return false;
   }
 
   updateProfile() {

@@ -58,7 +58,8 @@ export class LoginService {
       // TODO replace with backend verifying code to check if valid signup and doesn't exist in backend
       const existingUser = this.logins.filter(login => login.username === data.username || login.email === data.email);
       if (existingUser.length > 0) return false;
-      return true;
+      if (data.username && data.password) return true;
+      return false;
   }
 
   getUser(username: string, password: string) {

@@ -70,12 +70,11 @@ export class BidTaskComponent implements OnInit {
           else result = this.bidService.addBid("guest", this.bid);
 
           if (result === "success") {
-              // this.successAlert();
               this.dialogRef.close(this.bid.bid_offer);
           }
           else {
             this.alertService.failAlert('Bid could not be added.');
-              this.dialogRef.close();
+            this.dialogRef.close();
           }
       }
       else {
@@ -90,7 +89,7 @@ export class BidTaskComponent implements OnInit {
   }
 
   validBid() {
-      if (this.bid.name && this.bid.phone_no && this.bid.email && this.bid.bid_offer) {
+      if (this.bid.name && this.bid.phone_no && (this.bid.phone_no.length === 8 || this.bid.phone_no.length === 10) && this.bid.email && this.bid.email.includes("@") && this.bid.bid_offer && this.bid.bid_offer > 0) {
           return true;
       }
       return false;
