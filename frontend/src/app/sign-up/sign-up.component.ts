@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { LoginService } from '../login.service';
 import { LoginData } from '../login-data';
+import {AlertService} from "../alert.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -23,7 +24,9 @@ export class SignUpComponent implements OnInit {
   };
 
   constructor(private loginService: LoginService,
-              public dialogRef: MatDialogRef<SignUpComponent>) { }
+              public dialogRef: MatDialogRef<SignUpComponent>,
+              private alertService: AlertService) {
+  }
 
   ngOnInit() {
       this.getNewLoginID();
@@ -37,12 +40,12 @@ export class SignUpComponent implements OnInit {
     // TODO insert verify username and password code
     // valid username and password
     if (this.validSignUp()) {
-      alert('Valid sign up details! Creating new account...');
+      this.alertService.successAlert('Valid sign up details! Creating new account...');
       this.addAccount();
       this.dialogRef.close();
     }
     else {
-      alert('Invalid sign up details. Try again.');
+      this.alertService.failAlert('Invalid sign up details. Try again.');
     }
   }
 

@@ -8,7 +8,8 @@ import { PostService } from '../post.service';
 import { Post } from '../post'; // dummy data
 
 import { EditTaskComponent } from '../edit-task/edit-task.component';
-import { ViewBidsComponent } from '../view-bids/view-bids.component'; // change to view bid component
+import {ViewBidsComponent} from '../view-bids/view-bids.component';
+import {AlertService} from "../alert.service"; // change to view bid component
 
 @Component({
   selector: 'app-task',
@@ -104,8 +105,9 @@ export class TaskComponent implements OnInit {
   ]
 
   constructor(private loginService: LoginService,
-               private postService: PostService,
-               public dialog: MatDialog) {
+              private postService: PostService,
+              private alertService: AlertService,
+              public dialog: MatDialog) {
    }
 
   ngOnInit() {
@@ -135,8 +137,8 @@ export class TaskComponent implements OnInit {
     console.log('Delete Post popup called');
     if (confirm('Delete post?')) {
         const result = this.postService.deletePost(post.id);
-        if (result === "success") alert('Post deleted successfully');
-        else alert('Post deletion was unsuccessful');
+      if (result === "success") this.alertService.successAlert('Post deleted successfully');
+      else this.alertService.failAlert('Post deletion was unsuccessful');
     }
   }
 
@@ -144,8 +146,8 @@ export class TaskComponent implements OnInit {
     console.log('Close Post popup called');
     if (confirm('Close post?')) {
         const result = this.postService.closePost(post.id);
-        if (result === "success") alert('Post closed successfully');
-        else alert('Closing post was unsuccessful');
+      if (result === "success") this.alertService.successAlert('Post closed successfully');
+      else this.alertService.failAlert('Closing post was unsuccessful');
     }
   }
 

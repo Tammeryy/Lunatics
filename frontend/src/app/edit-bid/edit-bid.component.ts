@@ -5,6 +5,7 @@ import { Post } from '../post';
 import { PostService } from '../post.service';
 import { BidService } from '../bid.service';
 import { Bid } from '../bid';
+import {AlertService} from "../alert.service";
 
 @Component({
   selector: 'app-edit-bid',
@@ -27,6 +28,7 @@ export class EditBidComponent implements OnInit {
 
   constructor(private bidService: BidService,
               private postService: PostService,
+              private alertService: AlertService,
               public dialogRef: MatDialogRef<EditBidComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
       this.bid = data.bid;
@@ -59,15 +61,11 @@ export class EditBidComponent implements OnInit {
 
   editBid() {
       if (this.validBid()) {
-          alert('Bid updated');
-          console.log(this.bid);
-          if (this.updateBid() === "success") alert('Edit task successful!');
-          console.log(this.updatedBid);
-          console.log(this.bid);
+        if (this.updateBid() === "success") this.alertService.successAlert('Edit task successful!');
           this.dialogRef.close();
       }
       else {
-          alert('Bid failed to update');
+        this.alertService.failAlert('Bid failed to update');
           this.dialogRef.close();
       }
   }
