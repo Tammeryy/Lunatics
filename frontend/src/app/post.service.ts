@@ -48,7 +48,7 @@ export class PostService {
   }
 
   getPosts(): Observable<Post[]> {
-    return of(this.posts);
+    return of(this.originalPosts);
   }
 
   getNewPostID() {
@@ -56,11 +56,12 @@ export class PostService {
   }
 
   getPostByID(id) {
-    return of(this.posts.filter(post => post.id === id)[0]);
+    return of(this.originalPosts.filter(post => post.id === id)[0]);
   }
 
   // Returns true if post added successfully, else false
   addPost(post: Post) {
+    this.originalPosts.push(post);
     this.posts.push(post);
     this.activeUserPosts.push(post);
     this.newPostID++;
@@ -73,7 +74,10 @@ export class PostService {
   }
 
   deletePost(post_id) {
-    let index = this.posts.findIndex(post => post.id === post_id);
+    let index = this.originalPosts.findIndex(post => post.id === post_id);
+    this.originalPosts.splice(index, 1);
+
+    index = this.posts.findIndex(post => post.id === post_id);
     this.posts.splice(index, 1);
 
     index = this.activeUserPosts.findIndex(post => post.id === post_id);
@@ -83,13 +87,16 @@ export class PostService {
 
   closePost(post_id) {
     // Removes post from Browse Task page
-    let index = this.posts.findIndex(post => post.id === post_id);
+    let index = this.originalPosts.findIndex(post => post.id === post_id);
+    this.originalPosts.splice(index, 1);
+
+    // Removes post from Browse Task page
+    index = this.posts.findIndex(post => post.id === post_id);
     this.posts.splice(index, 1);
 
     // Updates task_open variable in post and 'Status' (HTML) from 'Status: Open' to 'Status: Closed'
     index = this.activeUserPosts.findIndex(post => post.id === post_id);
     this.activeUserPosts[index].task_open = "false";
-    // this.activeUserPosts.splice(index, 1);
     return "success";
   }
 
