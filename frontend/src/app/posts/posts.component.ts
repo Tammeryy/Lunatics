@@ -102,7 +102,7 @@ export class PostsComponent implements OnInit {
   // activeLogin: LoginData;
 
   sortByOptions: string[] = [
-     'Price', 'Location'
+    'budget'
   ];
 
 
@@ -158,6 +158,9 @@ export class PostsComponent implements OnInit {
         });
   }
 
+  sort() {
+    // TODO insert function from postservices to get the filtered posts
+  }
 
   search (key: string) {
      this.filteredPosts = this.postService.search(key);

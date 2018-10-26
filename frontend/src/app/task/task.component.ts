@@ -103,8 +103,8 @@ export class TaskComponent implements OnInit {
       isChecked: false
     }
   ]
-  
-   constructor(private loginService: LoginService,
+
+  constructor(private loginService: LoginService,
                private postService: PostService,
                public dialog: MatDialog) {
    }

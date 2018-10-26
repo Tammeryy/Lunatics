@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
 
-import { Post } from './post';
-import { POSTS } from './mock-posts';
+import {Post} from './post';
+import {POSTS} from './mock-posts';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +57,7 @@ export class PostService {
   }
 
   getPostByID(id) {
-      return of(this.posts.filter(post => post.id === id)[0]);
+    return of(this.posts.filter(post => post.id === id)[0]);
   }
 
   // Returns true if post added successfully, else false
@@ -106,11 +106,10 @@ export class PostService {
       }
       i++;
     }
-    console.log(this.filteredPosts);
     return this.filteredPosts;
   }
 
-  unfilter (key: string) {
+  unfilter(key: string) {
     let a = this.filteredPosts;
     for (var i = a.length; i--;) {
       if (a[i].cuisine == key ||
@@ -128,7 +127,7 @@ export class PostService {
     return this.filteredPosts;
   }
 
-  search (key: string) {
+  search(key: string) {
     let a = this.posts;
     if (!this.hasFilter) {
       a = this.originalPosts;
@@ -139,82 +138,86 @@ export class PostService {
       // concat all the stuff we need together
       let s = this.posts[i].title;
       s.concat(this.posts[i].description, this.posts[i].location, this.posts[i].cuisine, this.posts[i].quality, this.posts[i].diet);
-      if (this.substring_ (s, key)) {
+      if (this.substring_(s, key)) {
         res.push(this.posts[i]);
       }
-      i ++;
+      i++;
     }
     return res;
   }
 
-  substring_ (str: string, sub: string) {
+  substring_(str: string, sub: string) {
     if (str.length < sub.length) {
       return false;
     }
     let i = 0;
     while (i <= str.length - sub.length) {
-      if (str.substring(i, i+sub.length).toLowerCase() == sub.toLowerCase()) {
+      if (str.substring(i, i + sub.length).toLowerCase() == sub.toLowerCase()) {
         return true;
       }
-      i ++;
+      i++;
     }
     return false;
   }
 
-  sort (key: string) {
-    if (this.hasFilter) {
-      // run bubble sort 
-      bubblesort (key);
+  sort(key: string) {
+    if (key == "budget") {
+      if (this.hasFilter) {
+        // run bubble sort
+        this.bubblesort(key);
+        return this.filteredPosts;
+      } else {
+        this.filteredPosts = this.originalPosts;
+        this.quicksort(key, 0, this.filteredPosts.length);
+        return this.filteredPosts;
+      }
     } else {
-      quicksort(key);
+      console.log(this.originalPosts);
+      return this.originalPosts;
     }
   }
-  
-  bubblesort (key: string) {
+
+  bubblesort(key: string) {
     let outer = this.filteredPosts.length;
     while (outer > 0) {
       let inner = 1;
       while (inner < outer) {
-        if (this.filteredPosts[inner-1].key < this.filteredPosts[inner]) {
-          let tmp = this.filteredPosts[inner];
-          this.filteredPosts[inner] = this.filteredPosts[inner-1];
-          this.filteredPosts[inner-1] = tmp;
+        if (this.filteredPosts[inner - 1].budget < this.filteredPosts[inner].budget) {
+          [this.filteredPosts[inner], this.filteredPosts[inner - 1]] = [this.filteredPosts[inner - 1], this.filteredPosts[inner]]
         }
-        inner ++;
+        inner++;
       }
-      outer --;
+      outer--;
     }
   }
 
-  quicksort (key: string, start: int, end: int) {
+  quicksort(key: string, start, end) {
     if (end <= start) {
       return;
     } else {
-      let pivot := partition (key, start, end);
-      quicksort (key, start, pivot);
-      quicksort (key, pivot + 1, end);
+      let pivot = this.partition(key, start, end);
+      this.quicksort(key, start, pivot);
+      this.quicksort(key, pivot + 1, end);
     }
   }
 
-  partition (key, start, end) {
+  partition(key, start, end) {
+    let pivot = start;
     if (end <= start) {
       let pivot = start;
-    }  else {
+    } else {
       let pivot = start;
-      let i = start + 1;
+      let i = start;
       while (i < end) {
-        if (this.originalPosts[i].key < this.originalPosts[i].key) {
-          pivot ++;
-          let tmp = this.originalPosts[i];
-          this.originalPosts[i] = this.originalPosts[pivot];
-          this.originalPosts[pivot] = tmp;
+        if (this.filteredPosts[i].budget < this.filteredPosts[start].budget) {
+          pivot++;
+          [this.filteredPosts[i], this.filteredPosts[pivot]] = [this.filteredPosts[pivot], this.filteredPosts[i]]
         }
-        i ++;
+        i++;
       }
-      let tmp = a[start];
-      this.originalPosts[start] = this.originalPost[pivot];
-      this.originalPosts[pivot] = tmp;
+      [this.filteredPosts[start], this.filteredPosts[pivot]] = [this.filteredPosts[pivot], this.filteredPosts[start]]
     }
+    return pivot;
   }
 
 }
