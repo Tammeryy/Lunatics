@@ -3,6 +3,11 @@ mat-form-field {
   margin: 3px;
 }
 
+.inputDiv {
+    text-align: center;
+    width: 100%;
+}
+
 .buttonDiv {
   /* need to align buttons in center - currently doesn't work */
   position: relative;

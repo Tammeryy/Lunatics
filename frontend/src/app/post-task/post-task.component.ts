@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { AlertService } from '../alert.service';
 import { PostService } from '../post.service';
 import { POSTS } from '../mock-posts';
 import { Post } from '../post';
@@ -29,7 +30,10 @@ export class PostTaskComponent implements OnInit {
     lowest_bid: 0,
   };
 
+  missingFields: boolean = false;
+
   constructor(private postService: PostService,
+              private alertService: AlertService,
               public dialogRef: MatDialogRef<PostTaskComponent>,
               @Inject(MAT_DIALOG_DATA) data) {
       this.post.poster_id = data.poster_id;
@@ -45,12 +49,14 @@ export class PostTaskComponent implements OnInit {
   }
 
   addPost() {
+      this.missingFields = false;
       if (this.validPost()) {
-        alert('Post details are valid. Adding post to browse list...');
+        this.alertService.successAlert('Task posted successfully.');
         const result = this.postService.addPost(this.post);// TODO replace with if (this.add)
         this.dialogRef.close(result);
       }
       else {
+        this.missingFields = true;
         alert('Post details are invalid. Try again');
       }
   }

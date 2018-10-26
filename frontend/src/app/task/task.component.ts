@@ -53,12 +53,21 @@ export class TaskComponent implements OnInit {
       });
   }
 
-  deletePost(post_id) {
+  deletePost(post: Post) {
     console.log('Delete Post popup called');
     if (confirm('Delete post?')) {
-        const result = this.postService.deletePost(post_id);
+        const result = this.postService.deletePost(post.id);
         if (result === "success") alert('Post deleted successfully');
         else alert('Post deletion was unsuccessful');
+    }
+  }
+
+  closePost(post: Post) {
+    console.log('Close Post popup called');
+    if (confirm('Close post?')) {
+        const result = this.postService.closePost(post.id);
+        if (result === "success") alert('Post closed successfully');
+        else alert('Closing post was unsuccessful');
     }
   }
 

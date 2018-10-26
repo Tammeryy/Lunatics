@@ -149,7 +149,7 @@ export class PostsComponent implements OnInit {
 
     // result refers to 'data' in [mat-dialog-close]
     dialogRef.afterClosed().subscribe(newBid_offer => {
-      if (newBid_offer && newBid_offer > post.lowest_bid) post.lowest_bid = newBid_offer;
+      if (newBid_offer && newBid_offer < post.lowest_bid) post.lowest_bid = newBid_offer;
     });
   }
 

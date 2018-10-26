@@ -44,9 +44,8 @@ export class EditProfileComponent implements OnInit {
 
   editProfile() {
     if (this.validDetails()) {
-        alert('Login updated');
         console.log(this.activeLogin);
-        if (this.updateProfile() === "success") alert('Edit task successful!');
+        if (this.updateProfile() === "success") alert('Profile updated successfully!');
         console.log(this.updatedLogin);
         console.log(this.activeLogin);
         this.dialogRef.close();

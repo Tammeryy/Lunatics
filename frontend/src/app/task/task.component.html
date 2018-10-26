@@ -69,15 +69,18 @@
               <p> {{post.description}}</p>
               <ul class="list-inline list-unstyled">
                 <!-- change to due date -->
-                <li><span><span>Event date: {{post.event_date}}</span></span></li>
+                <li><span><span>Event date: {{post.event_date}} | Status: </span><span *ngIf='post.task_open === "true"' id="openTask">Open</span><span *ngIf='post.task_open === "false"' id="closedTask">Closed</span></span></li>
               </ul>
             </div>
             <div id="right-btn" class="bid-button">
-              <a class="btn btn-primary btn-mine-right " (click)="openEditPopup(post)">
+              <a *ngIf='post.task_open === "true"' class="btn btn-primary btn-mine-right " (click)="openEditPopup(post)">
                 <span>  Edit</span>
               </a>
-              <a class="btn btn-danger btn-mine-right" (click)="deletePost(post)">
+              <a *ngIf='post.task_open === "true"' class="btn btn-danger btn-mine-right" (click)="deletePost(post)">
                 <span>  Unassign Task</span>
+              </a>
+              <a *ngIf='post.task_open === "true"' class="btn btn-success btn-mine-right" (click)="closePost(post)">
+                <span>  Close Task</span>
               </a>
               <a class="btn btn-warning btn-mine-right" (click)="openViewBidPopup(post)">
                 <span>View Bids</span>

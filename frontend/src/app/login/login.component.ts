@@ -5,6 +5,7 @@ import { PostService } from '../post.service';
 import { BidService } from '../bid.service';
 import { LoginService } from '../login.service';
 import { LoginData } from '../login-data';
+import { AlertService } from '../alert.service';
 
 import { SignUpComponent } from '../sign-up/sign-up.component';
 
@@ -20,9 +21,12 @@ export class LoginComponent implements OnInit {
     password: ""
   };
 
+  missingFields: boolean = false;
+
   constructor(private loginService: LoginService,
               private postService: PostService,
               private bidService: BidService,
+              private alertService: AlertService,
               public dialog: MatDialog,
               public dialogRef: MatDialogRef<LoginComponent>) { }
 
@@ -36,20 +40,22 @@ export class LoginComponent implements OnInit {
   // Check if user w/ username and password exists.
   // Returns matching LoginData object to dialogRef if user exists.
   checkLogin() {
+      this.missingFields = false;
       if (this.validLogin()) {
           const user: LoginData = this.getUser(this.data.username, this.data.password);
           if (user) {
-              alert('Login successful. Logging in...');
+              this.alertService.successAlert('Login successful');
               this.setActiveLogin(user);
               this.dialogRef.close(user);
           }
           else {
-              alert('Login failed. Try again.');
+              this.alertService.failAlert('Login failed. Try again.');
               this.clearData();
           }
       }
       else {
-          alert('Invalid login. Please fill out all fields');
+          this.missingFields = true;
+          this.alertService.failAlert('Invalid login. Please fill out all fields');
       }
   }
 

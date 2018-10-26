@@ -32,7 +32,6 @@ export class PostService {
 
   // Grab initial posts data from backend
   init() {
-    // TODO replace with backend GET
     this.hasFilter = false;
     this.originalPosts = POSTS;
     this.posts = POSTS;
@@ -63,7 +62,6 @@ export class PostService {
 
   // Returns true if post added successfully, else false
   addPost(post: Post) {
-    // TODO: replace with backend (return_value = { result: 'success/fail'})
     this.posts.push(post);
     this.activeUserPosts.push(post);
     this.newPostID++;
@@ -72,12 +70,10 @@ export class PostService {
 
   editPost(post: Post) {
     // this.posts already gets updated via reference in edit-task updatePost()
-    // TODO call backend function
     return "success";
   }
 
   deletePost(post_id) {
-    // TODO replace with backend call
     let index = this.posts.findIndex(post => post.id === post_id);
     this.posts.splice(index, 1);
 
@@ -86,7 +82,18 @@ export class PostService {
     return "success";
   }
 
-  // TODO replace with backend call to check for valid post
+  closePost(post_id) {
+    // Removes post from Browse Task page
+    let index = this.posts.findIndex(post => post.id === post_id);
+    this.posts.splice(index, 1);
+
+    // Updates task_open variable in post and 'Status' (HTML) from 'Status: Open' to 'Status: Closed'
+    index = this.activeUserPosts.findIndex(post => post.id === post_id);
+    this.activeUserPosts[index].task_open = "false";
+    // this.activeUserPosts.splice(index, 1);
+    return "success";
+  }
+
   validPost(post: Post) {
     if (post.title && post.description && post.bid_close && post.event_date && post.location) {
       return true;

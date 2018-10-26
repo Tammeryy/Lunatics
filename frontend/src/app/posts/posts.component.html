@@ -36,7 +36,6 @@
               <mat-option *ngFor="let state of sortByOptions" [value]="state">{{state}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <p>You selected: {{selected}}</p>
         </div>
 
         <div *ngIf="filteredPosts.length > 0">

@@ -62,11 +62,10 @@ export class BidTaskComponent implements OnInit {
   // If adding bid to backend is successful, make success alert popup
   addBid() {
       if (this.validBid()) {
-          alert('Bid details are valid. Adding bid to browse list...');
           console.log("[BID] Title: " + this.post.title + " | Lowest Bid: " + this.post.lowest_bid);
           const result = this.bidService.addBid(this.bid);
           if (result === "success") {
-              alert('Bid added successfully!');
+              // this.successAlert();
               this.dialogRef.close(this.bid.bid_offer);
           }
           else {

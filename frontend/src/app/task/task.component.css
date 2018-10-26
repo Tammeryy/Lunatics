@@ -125,3 +125,10 @@ mat-form-field {
   margin: 2px;
 }
 
+#openTask {
+  color: green;
+}
+
+#closedTask {
+  color: red;
+}
