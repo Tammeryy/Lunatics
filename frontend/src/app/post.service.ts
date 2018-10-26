@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
 
-import { Post } from './post';
-import { POSTS } from './mock-posts';
+import {Post} from './post';
+import {POSTS} from './mock-posts';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,6 @@ export class PostService {
     this.originalPosts = POSTS;
     this.posts = POSTS;
     this.filteredPosts = [];
-    this.sorted = POSTS;
     this.newPostID = this.posts.length;
   }
 
@@ -57,7 +56,7 @@ export class PostService {
   }
 
   getPostByID(id) {
-      return of(this.posts.filter(post => post.id === id)[0]);
+    return of(this.posts.filter(post => post.id === id)[0]);
   }
 
   // Returns true if post added successfully, else false
@@ -114,22 +113,20 @@ export class PostService {
       }
       i++;
     }
-    console.log(this.filteredPosts)
     return this.filteredPosts;
   }
 
-  unfilter (key: string) {
+  unfilter(key: string) {
     let a = this.filteredPosts;
-    let i = 0;
-    while (i < a.length) {
+    for (var i = a.length; i--;) {
       if (a[i].cuisine == key ||
         a[i].quality == key ||
         a[i].diet == key) {
-        let rm = a.splice (i, 1);
-        console.log ("removed: ", rm);
+
+        this.filteredPosts.splice(i, 1);
       }
-      i ++;
     }
+
     if (this.filteredPosts.length == 0) {
       this.hasFilter = false;
       return this.originalPosts;
@@ -137,7 +134,7 @@ export class PostService {
     return this.filteredPosts;
   }
 
-  search (key: string) {
+  search(key: string) {
     let a = this.posts;
     if (!this.hasFilter) {
       a = this.originalPosts;
@@ -148,27 +145,86 @@ export class PostService {
       // concat all the stuff we need together
       let s = this.posts[i].title;
       s.concat(this.posts[i].description, this.posts[i].location, this.posts[i].cuisine, this.posts[i].quality, this.posts[i].diet);
-      if (this.substring_ (s, key)) {
+      if (this.substring_(s, key)) {
         res.push(this.posts[i]);
       }
-      i ++;
+      i++;
     }
-    // this.sorted = res;
     return res;
   }
 
-  substring_ (str: string, sub: string) {
+  substring_(str: string, sub: string) {
     if (str.length < sub.length) {
       return false;
     }
     let i = 0;
     while (i <= str.length - sub.length) {
-      if (str.substring(i, i+sub.length).toLowerCase() == sub.toLowerCase()) {
+      if (str.substring(i, i + sub.length).toLowerCase() == sub.toLowerCase()) {
         return true;
       }
-      i ++;
+      i++;
     }
     return false;
+  }
+
+  sort(key: string) {
+    if (key == "budget") {
+      if (this.hasFilter) {
+        // run bubble sort
+        this.bubblesort(key);
+        return this.filteredPosts;
+      } else {
+        this.filteredPosts = this.originalPosts;
+        this.quicksort(key, 0, this.filteredPosts.length);
+        return this.filteredPosts;
+      }
+    } else {
+      console.log(this.originalPosts);
+      return this.originalPosts;
+    }
+  }
+
+  bubblesort(key: string) {
+    let outer = this.filteredPosts.length;
+    while (outer > 0) {
+      let inner = 1;
+      while (inner < outer) {
+        if (this.filteredPosts[inner - 1].budget < this.filteredPosts[inner].budget) {
+          [this.filteredPosts[inner], this.filteredPosts[inner - 1]] = [this.filteredPosts[inner - 1], this.filteredPosts[inner]]
+        }
+        inner++;
+      }
+      outer--;
+    }
+  }
+
+  quicksort(key: string, start, end) {
+    if (end <= start) {
+      return;
+    } else {
+      let pivot = this.partition(key, start, end);
+      this.quicksort(key, start, pivot);
+      this.quicksort(key, pivot + 1, end);
+    }
+  }
+
+  partition(key, start, end) {
+    let pivot = start;
+    if (end <= start) {
+      let pivot = start;
+    } else {
+      let pivot = start;
+      let i = start;
+      while (i < end) {
+        if (this.filteredPosts[i].budget < this.filteredPosts[start].budget) {
+          pivot++;
+          [this.filteredPosts[i], this.filteredPosts[pivot]] = [this.filteredPosts[pivot], this.filteredPosts[i]]
+        }
+        i++;
+      }
+      [this.filteredPosts[start], this.filteredPosts[pivot]] = [this.filteredPosts[pivot], this.filteredPosts[start]]
+    }
+    return pivot;
   }
 
 }

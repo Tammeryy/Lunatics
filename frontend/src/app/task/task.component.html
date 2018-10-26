@@ -11,42 +11,28 @@
     <h4 class="filter">Filter By:</h4>
     <hr>
     <h4>Cuisine</h4>
-    <mat-checkbox>Chinese</mat-checkbox>
-    <br>
-    <mat-checkbox>Indian</mat-checkbox>
-    <br>
-    <mat-checkbox>Italian</mat-checkbox>
-    <br>
-    <mat-checkbox>Japanese</mat-checkbox>
-    <br>
-    <mat-checkbox>Korean</mat-checkbox>
+    <div *ngFor="let item of cuisineArray">
+      <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+      </mat-checkbox>
+    </div>
     <br>
     <h4>Event Type</h4>
-    <mat-checkbox>Casual</mat-checkbox>
-    <br>
-    <mat-checkbox>Formal</mat-checkbox>
-    <br>
-    <mat-checkbox>Party</mat-checkbox>
+    <div *ngFor="let item of eventArray">
+      <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+      </mat-checkbox>
+    </div>
     <br>
     <h4>Dietary Requirement</h4>
-    <mat-checkbox>Halal</mat-checkbox>
-    <br>
-    <mat-checkbox>Pescetarians</mat-checkbox>
-    <br>
-    <mat-checkbox>Vegan</mat-checkbox>
-    <br>
-    <mat-checkbox>No Nuts</mat-checkbox>
-    <br>
-    <mat-checkbox>No Milk</mat-checkbox>
+    <div *ngFor="let item of dietaryArray">
+      <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+      </mat-checkbox>
+    </div>
     <br>
     <h4>Task Budget</h4>
-    <mat-checkbox>Less Than $50</mat-checkbox>
-    <br>
-    <mat-checkbox>$51 ~ $250</mat-checkbox>
-    <br>
-    <mat-checkbox>More than $250</mat-checkbox>
-    <br>
-    <button mat-button class="btn btn-primary btn-lg btn-block">Apply Filter</button>
+    <div *ngFor="let item of budgetArray">
+      <mat-checkbox [(ngModel)]="item.isChecked" (change)="filterPost(item.name, item.isChecked)">{{item.name}}
+      </mat-checkbox>
+    </div>
   </div>
   <div  class="column right">
     <mat-list>

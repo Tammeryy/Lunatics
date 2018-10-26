@@ -17,8 +17,8 @@ import { BidTaskComponent } from '../bid-task/bid-task.component';
 export class PostsComponent implements OnInit {
 
   filteredPosts: Post[];
-  selected = "option0";
-  IsChecked:boolean;
+  selected = "";
+
   cuisineArray = [
     {
       name: "Chinese",
@@ -102,12 +102,13 @@ export class PostsComponent implements OnInit {
   // activeLogin: LoginData;
 
   sortByOptions: string[] = [
-     'Price', 'Location'
+    'budget'
   ];
 
 
   constructor(private postService: PostService,
-              public dialog: MatDialog) {this.IsChecked =false; }
+              public dialog: MatDialog) {
+  }
 
   ngOnInit() {
       // this.getActiveLogin();
@@ -115,16 +116,12 @@ export class PostsComponent implements OnInit {
   }
 
   filterPost(name: string, ischecked: boolean){
-
-
     if (ischecked == true) {
       //filter post
-      console.log("true");
       this.filteredPosts = this.postService.filter(name);
     } else {
       //unfilter post
       this.filteredPosts = this.postService.unfilter(name);
-      console.log("false");
     }
   }
 
@@ -161,6 +158,9 @@ export class PostsComponent implements OnInit {
         });
   }
 
+  sort() {
+    // TODO insert function from postservices to get the filtered posts
+  }
 
   search (key: string) {
      this.filteredPosts = this.postService.search(key);
