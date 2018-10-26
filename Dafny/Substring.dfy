@@ -109,21 +109,5 @@ method Main () {
     print (index);
     // assert (b);
     // assert (index == 2);
-
-    // Testing substring works for a non-substring
-    sub := new char []['l', 'l', 'a'];
-
-    // Prefix 
-    b := Prefix (str, 1, sub);
-    assert (!b);
-    b := Prefix (str, 2, sub);
-    assert (!b);
-
-    // Substring
-    b, index := Substring (str, sub);
-    print (b);
-    print (index);
-    // assert (!b);
-    // assert (index == -1);
 }
 
